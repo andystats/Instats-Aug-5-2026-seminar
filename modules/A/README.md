@@ -7,9 +7,13 @@ which part of a current study feels least defensible.
 
 ## Materials
 
-- [Module A slides (PowerPoint)](Module_A_Welcome_and_Journey.pptx)
-- [Module A slides (PDF)](Module_A_Welcome_and_Journey.pdf)
+- [Editable LaTeX source](SegmentA_Welcome.tex)
+- [Compiled Beamer slides](SegmentA_Welcome.pdf)
+- [PowerPoint version](Module_A_Welcome_and_Journey.pptx)
 
 All workshop times are shown in Eastern Time.
+
+To rebuild the Beamer slides, run `latexmk -pdf SegmentA_Welcome.tex` from this
+folder.
 
 [Return to the seminar overview](../../README.md)

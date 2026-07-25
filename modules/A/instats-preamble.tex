@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Shared Instats preamble for the Aug 5 segment decks.
+% January template: metropolis, accent 4A9EFF, InStats_RWL.png logo.
+% Each segment deck does:
+%   \documentclass[aspectratio=169]{beamer}
+%   \input{instats-preamble}
+%   \title{...}\subtitle{...}\author{...}\date{...}
+% and opens with \instatstitle.
+%
+% Placeholder types:
+%   \pendingbox{owner}{what}  - content someone still owes
+%   \shotslot{name}{desc}     - screenshot to capture (drop at art/<name>.png)
+%   \artslot{name}{desc}      - hand-drawn art (drop at art/<name>.png)
+%   \pnum{...}                - inline pending numbers/facts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, mathtools, bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,calc}
+
+\definecolor{accent}{HTML}{4A9EFF}
+\definecolor{pendorange}{HTML}{E67E22}
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{background canvas}{bg=white}
+\metroset{progressbar=frametitle,block=fill}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+
+\newcommand{\instatstitle}{%
+  \begin{frame}[plain]
+    \titlepage
+    \begin{textblock*}{3cm}(11.5cm,0.5cm)
+      \includegraphics[width=3cm]{art/InStats_RWL.png}
+    \end{textblock*}
+  \end{frame}}
+
+\newcommand{\pendingbox}[2]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \node[draw=pendorange, dashed, very thick, rounded corners, fill=pendorange!8,
+          minimum width=0.88\textwidth, minimum height=0.52\textheight,
+          align=center, text width=0.78\textwidth]
+      {{\color{pendorange}\bfseries PLACEHOLDER \textbar\ owner: #1}\\[6pt] #2};
+  \end{tikzpicture}
+  \end{center}}
+
+\newcommand{\shotslot}[2]{%
+  \IfFileExists{art/#1.png}{%
+    \begin{center}\includegraphics[height=0.62\textheight]{art/#1.png}\end{center}%
+  }{%
+    \begin{center}
+    \begin{tikzpicture}
+      \node[draw=accent, dashed, very thick, rounded corners, fill=accent!6,
+            minimum width=0.88\textwidth, minimum height=0.55\textheight,
+            align=center, text width=0.78\textwidth]
+        {{\color{accent}\bfseries SCREENSHOT}\\[1pt] {\ttfamily art/#1.png}\\[6pt] #2};
+    \end{tikzpicture}
+    \end{center}}}
+
+\newcommand{\artslot}[3][0.55]{%
+  \IfFileExists{art/#2.png}{%
+    \begin{center}\includegraphics[height=#1\textheight]{art/#2.png}\end{center}%
+  }{%
+    \begin{center}
+    \begin{tikzpicture}
+      \node[draw=accent, dashed, very thick, rounded corners, fill=white,
+            minimum width=0.85\textwidth, minimum height=#1\textheight,
+            align=center, text width=0.75\textwidth]
+        {{\color{accent}\bfseries HAND-DRAWN ART}\\[1pt] {\ttfamily art/#2.png}\\[6pt] #3};
+    \end{tikzpicture}
+    \end{center}}}
+
+\newcommand{\pnum}[1]{\textcolor{pendorange}{\textbf{[PENDING: #1]}}}
