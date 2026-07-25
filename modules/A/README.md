@@ -1,16 +1,15 @@
-# Module A — Causal questions first
+# Module A — Welcome + Intro
 
 ## Purpose
 
-Begin with the decision, treatment contrast, outcome, and time horizon that
-matter. This module introduces the distinction between association and a causal
-effect and establishes the question-first promise of the workshop.
+Introduce the workshop, preview the completed artifact participants will build,
+and identify which parts of a current study feel least defensible.
 
 ## Materials planned here
 
-- Opening slides
-- Causal-question framing exercise
-- Target-trial introduction
+- Welcome and workshop overview
+- Completed-artifact preview
+- Opening poll or chat prompt
 - Participant notes
 
 **Status:** Structure ready; materials are being assembled.

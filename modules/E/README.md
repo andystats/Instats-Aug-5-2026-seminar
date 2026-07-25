@@ -1,17 +1,16 @@
-# Module E — From protocol to estimand
+# Module E — Audit-First AI
 
 ## Purpose
 
-Connect eligibility, treatment strategies, time zero, follow-up, outcome, and
-effect measure. This module makes the target trial and estimand concrete before
-any estimator is selected.
+Audit a proposed AI-generated roadmap field, decide whether to accept, correct,
+or reject it, and record the evidence required.
 
 ## Materials planned here
 
-- Protocol template
-- Estimand worksheet
-- Time-zero examples
-- Alignment checks
+- AI overreach example
+- Roadmap-field audit exercise
+- Evidence requirements
+- Audit-log template
 
 **Status:** Structure ready; materials are being assembled.
 

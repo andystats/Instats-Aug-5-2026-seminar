@@ -4,9 +4,8 @@ Companion materials for the **INStats online seminar on 5 August 2026**.
 
 Welcome from **Kathryn, Andy, Robert, and Auriane**.
 
-This repository will grow alongside the workshop. We will use it to share the
-slides, worked examples, code, data, and take-home materials needed to move from
-a causal question to an analysis that can be explained and defended.
+This repository contains the seminar slides, worked examples, code, data, and
+participant materials. Materials will be added as they are finalized.
 
 ## Seminar home
 
@@ -18,17 +17,16 @@ The student-facing course page is:
 
 | Module | Focus | Materials |
 | --- | --- | --- |
-| A | Causal questions first | [Open Module A](modules/A/) |
-| B | Audit before analysis | [Open Module B](modules/B/) |
-| C | Build the causal roadmap | [Open Module C](modules/C/) |
-| D | Work the pneumonia problem | [Open Module D](modules/D/) |
-| E | From protocol to estimand | [Open Module E](modules/E/) |
-| F | Live in Causal Navigator | [Open Module F](modules/F/) |
-| G | TMLE walkthrough | [Open Module G](modules/G/) |
-| H | Take-home workshop kit | [Open Module H](modules/H/) |
+| A | Welcome + Intro | [Open Module A](modules/A/) |
+| B | Example with Robert Platt | [Open Module B](modules/B/) |
+| C | Foundations | [Open Module C](modules/C/) |
+| D | The Roadmap | [Open Module D](modules/D/) |
+| E | Audit-First AI | [Open Module E](modules/E/) |
+| F | Live Navigator | [Open Module F](modules/F/) |
+| G | TMLE | [Open Module G](modules/G/) |
+| H | Close + Kit | [Open Module H](modules/H/) |
 
-Modules G and H are the working homes for the reproducible TMLE demonstration
-and the participant starter kit.
+Modules G and H contain the TMLE walkthrough and participant workshop kit.
 
 ## Repository structure
 

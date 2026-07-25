@@ -1,10 +1,9 @@
-# Module H — Take-home workshop kit
+# Module H — Close + Kit
 
 ## Purpose
 
-Give participants a small, reusable starting kit for their own study. The kit
-will pair blank templates with the completed pneumonia example so each item has
-both an explanation and a concrete reference.
+Summarize the workshop and provide the participant kit and
+right-heart-catheterization worked example.
 
 ## Kit contents planned here
 

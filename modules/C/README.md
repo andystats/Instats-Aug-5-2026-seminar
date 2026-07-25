@@ -1,17 +1,16 @@
-# Module C — Build the causal roadmap
+# Module C — Foundations
 
 ## Purpose
 
-Make the study's linked decisions visible and reviewable. This module introduces
-the causal roadmap and shows how a clear question becomes a protocol, causal
-model, estimand, analysis, diagnostics, and interpretation.
+Introduce association versus intervention, counterfactual contrasts, causal
+structures, target-trial protocols, and time-zero alignment.
 
 ## Materials planned here
 
-- Eight-step roadmap overview
-- Blank roadmap worksheet
-- Decision prompts
-- Small-group roadmap exercise
+- Foundations slides
+- Counterfactual and causal-structure examples
+- Target-trial protocol
+- Pneumonia-vaccine example
 
 **Status:** Structure ready; materials are being assembled.
 

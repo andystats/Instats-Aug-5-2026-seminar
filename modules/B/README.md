@@ -1,17 +1,16 @@
-# Module B — Audit before analysis
+# Module B — Example with Robert Platt
 
 ## Purpose
 
-Pressure-test the scientific question before estimation begins. This is the
-home for the audit-first perspective: what could invalidate the comparison,
-which decisions remain hidden, and where evidence may overreach.
+Use a concrete example from Robert Platt to show how a persuasive analysis can
+fail and why the causal roadmap matters.
 
 ## Materials planned here
 
-- Audit-first slides
-- Assumption prompts
-- Failure-mode checklist
-- Breakout activity
+- Research question
+- What looked persuasive
+- What went wrong
+- Consequence and roadmap location
 
 **Status:** Structure ready; materials are being assembled.
 

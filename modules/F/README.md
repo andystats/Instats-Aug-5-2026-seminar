@@ -1,17 +1,16 @@
-# Module F — Live in Causal Navigator
+# Module F — Live Navigator
 
 ## Purpose
 
-Use Causal Navigator to turn the roadmap into a shared, auditable study
-workspace. The live demonstration will enter the pneumonia example, inspect its
-causal diagram, and export a reusable roadmap.
+Complete the prepared pneumonia example in Causal Navigator using the no-login
+manual route, then export the study summary.
 
 ## Materials planned here
 
+- Prepared Navigator entries
 - Live-demo guide
-- Completed Navigator example
-- Demo recovery notes
-- Exported study materials
+- Planned discussion points
+- Exported study summary
 
 **Status:** Structure ready; materials are being assembled.
 

@@ -1,18 +1,17 @@
-# Module D — The pneumonia problem
+# Module D — The Roadmap
 
 ## Purpose
 
-Work one problem from beginning to end: the effect of pneumococcal vaccination
-on pneumonia hospitalization in older adults. The example is hypothetical and
-uses simulated data for teaching.
+Connect the protocol, causal diagram, observed-data mapping, identification
+assumptions, estimand, estimator, sensitivity plan, and interpretation.
 
 ## Materials planned here
 
-- Problem statement
-- Completed causal roadmap
-- Target-trial protocol
+- Eight-step roadmap overview
+- Protocol and observed-data mapping
 - Causal diagram
-- Discussion prompts
+- Identification assumptions
+- Estimand and estimator
 
 **Status:** Structure ready; materials are being assembled.
 

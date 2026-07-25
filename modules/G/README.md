@@ -1,10 +1,9 @@
-# Module G — TMLE walkthrough
+# Module G — TMLE
 
 ## Purpose
 
-Run the pneumonia example as a reproducible analysis. We will compare the
-data-generating truth, crude association, and adjusted estimates; then work
-through TMLE, diagnostics, uncertainty, and interpretation.
+Compare crude, g-computation, IPW, and TMLE estimates using simulated teaching
+data. Review overlap, uncertainty, and what TMLE cannot repair.
 
 ## Walkthrough path
 
