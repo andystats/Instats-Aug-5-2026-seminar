@@ -9,7 +9,6 @@ which part of a current study feels least defensible.
 
 - [Editable LaTeX source](SegmentA_Welcome.tex)
 - [Compiled Beamer slides](SegmentA_Welcome.pdf)
-- [PowerPoint version](Module_A_Welcome_and_Journey.pptx)
 
 All workshop times are shown in Eastern Time.
 
