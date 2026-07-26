@@ -7,7 +7,7 @@ assumptions, estimand, estimator, sensitivity plan, and interpretation.
 
 ## Materials planned here
 
-- Eight-step roadmap overview
+- Eight (or sometimes 9)-step roadmap overview
 - Protocol and observed-data mapping
 - Causal diagram
 - Identification assumptions
