@@ -1,11 +1,135 @@
 % Module A: Welcome + Intro
 % INStats Causal Roadmaps with AI workshop
 % August 5, 2026 | all times Eastern
+%
+% BUILD: compile TWICE (or latexmk -pdf). This deck uses tikz
+% [remember picture] overlays; a single fresh pass misplaces the
+% title slide, band tags, footer, and river slide.
 \documentclass[aspectratio=169]{beamer}
-\input{instats-preamble}
+
+% ==================== Theme and packages ============================
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{microtype}   % also provides \textls for the label chip
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,fadings}
+
+% ==================== Palette and chrome ============================
+\definecolor{accent}{HTML}{4A9EFF}
+\definecolor{slate}{HTML}{23373B}   % metropolis mDarkTeal; header band
+
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{alerted text}{fg=accent}
+% fg = bg turns metropolis's growing progress bar into a constant
+% full-width accent rule under the title band.
+\setbeamercolor{progress bar}{fg=accent, bg=accent}
+\setbeamerfont{frametitle}{series=\bfseries}
+\metroset{progressbar=frametitle, block=fill}
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\setlength{\metropolis@progressinheadfoot@linewidth}{1.6pt}
+\makeatother
+
+% Right-aligned module/time tag inside the header band.
+% Set per frame with \bandtag{Module B \(\cdot\) 12:20--12:45 ET};
+% the value persists until the next \bandtag.
+\makeatletter
+\def\intro@bandtag{}
+\newcommand{\bandtag}[1]{\gdef\intro@bandtag{#1}}
+\addtobeamertemplate{frametitle}{}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=east, text=white, opacity=0.8,
+          font=\fontsize{7.5}{9}\selectfont]
+      at ([xshift=-0.65cm,yshift=-0.50cm]current page.north east)
+      {\intro@bandtag};
+  \end{tikzpicture}}
+\makeatother
+
+% Footer: hairline rule, module tag left, brand + date right
+% (plain frames skip it)
+\setbeamertemplate{footline}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[black!14, line width=0.4pt]
+      ([xshift=0.65cm,yshift=0.60cm]current page.south west) --
+      ([xshift=-0.65cm,yshift=0.60cm]current page.south east);
+    \node[anchor=south west, font=\fontsize{5.5}{7}\selectfont, text=black!45]
+      at ([xshift=0.65cm,yshift=0.28cm]current page.south west)
+      {Module A \(\cdot\) Welcome + Intro};
+    \node[anchor=south east, font=\fontsize{5.5}{7}\selectfont, text=black!45]
+      at ([xshift=-0.65cm,yshift=0.28cm]current page.south east)
+      {Instats \(\cdot\) August 5, 2026};
+  \end{tikzpicture}}
+
+% ==================== Image frames ==================================
+% Feathered fade from the photo edge into white: a radial PDF fading,
+% transparent to 0.80r, fully opaque white by 0.95r, so no photo pixel
+% survives at the clip boundary and the falloff is perfectly smooth.
+\pgfdeclareradialshading{introedgeshading}{\pgfpointorigin}{%
+  color(0bp)=(pgftransparent!100);
+  color(20bp)=(pgftransparent!100);
+  color(23.8bp)=(pgftransparent!0);
+  color(25bp)=(pgftransparent!0)}
+\pgfdeclarefading{introedgefade}{\pgfuseshading{introedgeshading}}
+\newcommand{\featheredge}[1]{%
+  \fill[white, path fading=introedgefade, fit fading=true]
+    (0,0) circle (#1+0.01);}
+
+% Circle-cropped image (center crop, covers the circle):
+% \circleclip{radius-cm}{file}
+\newcommand{\circleclip}[2]{%
+  \pgfmathsetmacro{\ccd}{2*#1}%
+  \begin{scope}
+    \clip (0,0) circle (#1);
+    \sbox0{\includegraphics{#2}}%
+    \ifdim\wd0<\ht0
+      \node[inner sep=0pt] at (0,0) {\includegraphics[width=\ccd cm]{#2}};%
+    \else
+      \node[inner sep=0pt] at (0,0) {\includegraphics[height=\ccd cm]{#2}};%
+    \fi
+  \end{scope}}
+
+% Portrait/porthole with circle crop + fade: \biopic[radius-cm]{file}
+\newcommand{\biopic}[2][2.0]{%
+  \begin{tikzpicture}
+    \circleclip{#1}{#2}
+    \featheredge{#1}
+  \end{tikzpicture}}
+
+% Rounded-corner card for rectangular images whose edges carry content
+% (screenshots, diagrams, paper titles): \previewcard[width-cm]{file}
+\newcommand{\previewcard}[2][7.0]{%
+  \sbox0{\includegraphics[width=#1cm]{#2}}%
+  \pgfmathsetmacro{\pch}{#1*\ht0/\wd0}%
+  \begin{tikzpicture}
+    \begin{scope}
+      \clip[rounded corners=9pt] (0,0) rectangle (#1,\pch);
+      \node[anchor=south west, inner sep=0pt] at (0,0) {\usebox0};
+    \end{scope}
+  \end{tikzpicture}}
+
+% Round artwork shown whole (not cropped), sized like the portholes:
+% \previewring[radius-cm]{file}
+\newcommand{\previewring}[2][2.45]{%
+  \begin{tikzpicture}
+    \pgfmathsetmacro{\prd}{2*#1*0.92}%
+    \node[inner sep=0pt] at (0,0) {\includegraphics[width=\prd cm]{#2}};
+    \path (0,-#1-0.13) -- (0,#1+0.13);
+  \end{tikzpicture}}
+
+% Small accent label chip (chat prompt etc.)
+\newcommand{\labelchip}[1]{%
+  \tikz{\node[fill=accent!10, text=accent, rounded corners=3pt,
+    inner xsep=9pt, inner ysep=4.5pt, font=\scriptsize\bfseries] {\textls[140]{#1}};}}
+% ====================================================================
 
 \title{Data Can Deceive}
-\subtitle{Causal Roadmaps with AI}
+\subtitle{Causal Roadmaps with (and without) AI}
 \author{Kathryn \and Andy \and Robert \and Auriane}
 \institute{Module A: Welcome + Intro}
 \date{August 5, 2026 \quad $\cdot$ \quad 12:00--12:20 ET}
@@ -16,11 +140,36 @@
 % Welcome
 % --------------------------------------------------------------------
 \begin{frame}[plain]
-  \vspace*{-0.55cm}
-  \titlepage
-  \begin{textblock*}{3cm}(11.5cm,0.5cm)
-    \includegraphics[width=3cm]{art/InStats_RWL.png}
-  \end{textblock*}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east]
+      at ([xshift=-0.6cm,yshift=-0.5cm]current page.north east)
+      {\includegraphics[width=2.9cm]{art/InStats_RWL.png}};
+
+    \node[anchor=west, text=slate,
+          font=\bfseries\fontsize{27}{31}\selectfont]
+      at ([xshift=1.4cm,yshift=1.55cm]current page.west)
+      {Data Can Deceive};
+    \node[anchor=west, text=accent, font=\fontsize{14.5}{18}\selectfont]
+      at ([xshift=1.42cm,yshift=0.72cm]current page.west)
+      {Causal Roadmaps with (and without) AI};
+
+    \draw[black!16, line width=0.5pt]
+      ([xshift=1.42cm,yshift=0.05cm]current page.west) --
+      ([xshift=7.6cm,yshift=0.05cm]current page.west);
+
+    \node[anchor=west, text=slate,
+          font=\bfseries\fontsize{10.5}{13}\selectfont]
+      at ([xshift=1.42cm,yshift=-0.62cm]current page.west)
+      {Module A \(\cdot\) Welcome + Intro};
+    \node[anchor=west, text=black!55, font=\fontsize{9.5}{12}\selectfont]
+      at ([xshift=1.42cm,yshift=-1.18cm]current page.west)
+      {August 5, 2026 \(\cdot\) 12:00--12:20 ET};
+
+    \node[anchor=west, text=black!60, font=\fontsize{9.5}{12}\selectfont]
+      at ([xshift=1.42cm,yshift=-2.35cm]current page.west)
+      {Welcome from Kathryn, Andy,
+       Robert, and Auriane };
+  \end{tikzpicture}
   \note{[Sources]\par
     \texttt{\detokenize{art/InStats_RWL.png}}\par
     \texttt{\detokenize{planning/Workshop Outline.docx}}}
@@ -28,30 +177,33 @@
 
 % --------------------------------------------------------------------
 % Introductions
+% Fixed top anchors ([T] + constant vspace) so the credential line,
+% role, and bio start at the same height on all four speaker slides.
 % --------------------------------------------------------------------
-\begin{frame}{Kathryn Morrison}
+\bandtag{Module A \(\cdot\) 12:00--12:20 ET}
+
+\begin{frame}[t]{Kathryn Morrison, PhD, PStat}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.31\textwidth}
+    \begin{column}{0.33\textwidth}
       \centering
-      \includegraphics[
-        width=0.92\linewidth,
-        height=0.62\textheight,
-        keepaspectratio
-      ]{intros/Kathryn Morrison.jpg}
+      \vspace*{0.55cm}
+      \biopic[2.0]{intros/Kathryn Morrison.jpg}
     \end{column}
-    \begin{column}{0.63\textwidth}
-      \textcolor{accent}{\Large\textbf{PhD, PStat}}
+    \begin{column}{0.61\textwidth}
+   %   \vspace*{0.35cm}
+   %   \textcolor{accent}{\large\textbf{PhD \(\cdot\) PStat}}
 
-      \vspace{0.4cm}
-      \textbf{Co-founder and President, Precision Analytics}
+      \vspace{0.35cm}
+      \textcolor{slate}{\textbf{Co-founder and President, Precision Analytics}}
 
-      \vspace{0.55cm}
-      Accredited statistician whose consulting spans genomics, clinical
-      research, and statistical technology.
+      \vspace{0.5cm}
+      {\color{black!65}
+      Accredited statistician whose consulting spans genomics, forensics, clinical
+      research, and statistical technology.\par}
 
-      \vspace{0.65cm}
-      \textbf{Today:} opening context, causal foundations, audit-first AI,
-      and calibration of the conclusions.
+      \vspace{0.6cm}
+      \textcolor{slate}{\textbf{Today:}} {\color{black!65} causal context and  foundations, audit-first AI, and workshop guide.}
     \end{column}
   \end{columns}
   \note{[Sources]\par
@@ -60,29 +212,29 @@
     \texttt{\detokenize{intros/Kathryn Morrison.jpg}}}
 \end{frame}
 
-\begin{frame}{Andy Wilson}
+\begin{frame}[t]{Andy Wilson, PhD, MStat}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.31\textwidth}
+    \begin{column}{0.33\textwidth}
       \centering
-      \includegraphics[
-        width=0.92\linewidth,
-        height=0.62\textheight,
-        keepaspectratio
-      ]{intros/Andy Wilson.jpg}
+      \vspace*{0.55cm}
+      \biopic[2.0]{intros/Andy Wilson.jpg}
     \end{column}
-    \begin{column}{0.63\textwidth}
-      \textcolor{accent}{\Large\textbf{PhD, MStat}}
+    \begin{column}{0.61\textwidth}
+    % \vspace*{0.35cm}
+     % \textcolor{accent}{\large\textbf{PhD \(\cdot\) MStat}}
 
-      \vspace{0.4cm}
-      \textbf{Adjunct Professor, University of Utah}
+      \vspace{0.35cm}
+      \textcolor{slate}{\textbf{Adjunct Professor, University of Utah}}
 
-      \vspace{0.55cm}
+      \vspace{0.5cm}
+      {\color{black!65}
       Teaches Causal Methods in Public Health and co-develops the
-      open-source Causal Navigator through Tao of RWD.
+      open-source Causal Navigator through Tao of RWD.\par}
 
-      \vspace{0.65cm}
-      \textbf{Today:} the causal roadmap, live Navigator demonstration,
-      and TMLE walkthrough.
+      \vspace{0.6cm}
+      \textcolor{slate}{\textbf{Today:}} {\color{black!65}the causal
+      roadmap, live Navigator demonstration, and TMLE walkthrough.}
     \end{column}
   \end{columns}
   \note{[Sources]\par
@@ -90,28 +242,30 @@
     \texttt{\detokenize{intros/Andy Wilson.jpg}}}
 \end{frame}
 
-\begin{frame}{Robert Platt}
+
+\begin{frame}[t]{Robert Platt, PhD}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.31\textwidth}
+    \begin{column}{0.33\textwidth}
       \centering
-      \includegraphics[
-        width=0.92\linewidth,
-        height=0.62\textheight,
-        keepaspectratio
-      ]{intros/Robert Platt.jpg}
+      \vspace*{0.55cm}
+      \biopic[2.0]{intros/Robert Platt.jpg}
     \end{column}
-    \begin{column}{0.63\textwidth}
-      \textcolor{accent}{\Large\textbf{PhD}}
+    \begin{column}{0.61\textwidth}
+  %    \vspace*{0.35cm}
+   %  \textcolor{accent}{\large\textbf{PhD}}
 
-      \vspace{0.4cm}
-      \textbf{Professor of Biostatistics, McGill University}
+      \vspace{0.35cm}
+      \textcolor{slate}{\textbf{Professor of Biostatistics, McGill University}}
 
-      \vspace{0.55cm}
+      \vspace{0.5cm}
+      {\color{black!65}
       Co-lead of the Canadian Network for Observational Drug Effect
-      Studies, with a focus on pharmacoepidemiology using claims and EHR data.
+      Studies, with a focus on pharmacoepidemiology using claims and
+      EHR data.\par}
 
-      \vspace{0.65cm}
-      \textbf{Today:} a concrete example of why the causal roadmap matters.
+      \vspace{0.6cm}
+      \textcolor{slate}{\textbf{Today:}} {\color{black!65} Compelling Causal Example(s).}
     \end{column}
   \end{columns}
   \note{[Sources]\par
@@ -119,28 +273,28 @@
     \texttt{\detokenize{intros/Robert Platt.jpg}}}
 \end{frame}
 
-\begin{frame}{Auriane Journet}
+\begin{frame}[t]{Auriane Journet, MScPH student}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.31\textwidth}
+    \begin{column}{0.33\textwidth}
       \centering
-      \includegraphics[
-        width=0.92\linewidth,
-        height=0.62\textheight,
-        keepaspectratio
-      ]{intros/Auriane Journet.jpg}
+      \vspace*{0.55cm}
+      \biopic[2.0]{intros/Auriane Journet.jpg}
     \end{column}
-    \begin{column}{0.63\textwidth}
-      \textcolor{accent}{\Large\textbf{MScPH student}}
+    \begin{column}{0.61\textwidth}
+    %  \vspace*{0.35cm}
+    %  \textcolor{accent}{\large\textbf{MScPH student}}
 
-      \vspace{0.4cm}
-      \textbf{McGill University; President, UAEM McGill}
+      \vspace{0.35cm}
+      \textcolor{slate}{\textbf{McGill University \(\cdot\) President, UAEM McGill}}
 
-      \vspace{0.55cm}
-      Auriane supports the workshop's live delivery.
+      \vspace{2.5cm}
+      {\color{black!65}
+      Auriane supports today's workshop's live delivery.\par}
 
-      \vspace{0.65cm}
-      \textbf{Today:} screen share and production support, including the
-      live Navigator session.
+    %  \vspace{0.6cm}
+   %   \textcolor{slate}{\textbf{Today:}} {\color{black!65}screen share
+    %  and production support, including the live Navigator session.}
     \end{column}
   \end{columns}
   \note{[Sources]\par
@@ -149,69 +303,15 @@
 \end{frame}
 
 % --------------------------------------------------------------------
-% Opening prompt
-% --------------------------------------------------------------------
-\begin{frame}{Before we begin}
-  \vfill
-  \begin{center}
-    \textcolor{accent}{\textbf{Chat prompt}}
-
-    \vspace{0.7cm}
-    {\LARGE\itshape
-      Which step in your current study\\
-      feels least defensible?}
-
-    \vspace{0.9cm}
-    Add one step or decision in the chat.
-  \end{center}
-  \vfill
-  \note{Collect several answers and return to them in Module H.\par
-    [Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
-\end{frame}
-
-% --------------------------------------------------------------------
-% Visual journey
+% Visual journey: the schematic preamble to the section intros.
+% Title and labels are baked into the art; nothing overlays it.
 % --------------------------------------------------------------------
 \begin{frame}[plain]
   \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=south west,inner sep=0pt] at (current page.south west)
-      {\includegraphics[width=\paperwidth,height=\paperheight]
-        {art/river-journey.png}};
-
-    \fill[white,opacity=0.93]
-      (current page.north west) rectangle
-      ([yshift=-1.38cm]current page.north east);
-
-    \node[
-      anchor=north west,
-      text=black!82,
-      font=\bfseries\fontsize{22}{24}\selectfont
-    ] at ([xshift=0.55cm,yshift=-0.22cm]current page.north west)
-      {Workshop journey \(\cdot\) 12:00--5:00 ET};
-
-    \node[
-      anchor=north west,
-      text=black!60,
-      font=\fontsize{9.2}{11}\selectfont
-    ] at ([xshift=0.56cm,yshift=-0.93cm]current page.north west)
-      {A Welcome \quad B Robert \quad C Foundations \quad D Roadmap \quad
-       E AI audit \quad F Navigator \quad G TMLE \quad H Close};
-
-    \foreach \letter/\x/\y in {
-      A/1.20/7.49,
-      B/3.59/6.21,
-      C/5.89/7.15,
-      D/6.73/4.94,
-      E/10.23/6.16,
-      F/10.60/4.46,
-      G/12.75/3.53,
-      H/15.01/2.56}
-      \node[
-        font=\bfseries\fontsize{18}{20}\selectfont,
-        text=black!82
-      ] at ([xshift=\x cm,yshift=-\y cm]current page.north west)
-        {\letter};
+    % Export replacement art at 16:9 (e.g. 1920x1080) to fill the page.
+    \node at (current page.center)
+      {\includegraphics[width=\paperwidth,height=\paperheight,
+        keepaspectratio]{art/river-journey.png}};
   \end{tikzpicture}
   \note{Use the river for a quick orientation to Modules A--H.\par
     [Sources]\par
@@ -220,18 +320,17 @@
 \end{frame}
 
 % --------------------------------------------------------------------
-% Module previews
-% The right column on each slide is intentionally open for one graphic.
+% Section intros: outline left, framing image right.
+% Module + time live in the header band (\bandtag).
+% Drop each image at art/preview-<Letter>.png to fill the porthole.
 % --------------------------------------------------------------------
-\begin{frame}{Example with Robert Platt}
+\bandtag{Module B \(\cdot\) 12:20--12:45 ET}
+\begin{frame}[t]{Example with Robert Platt}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module B}}
-      \hfill
-      \textcolor{black!55}{12:20--12:45 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item The research question
         \item Why the result looked persuasive
         \item What went wrong---and the consequence
@@ -239,24 +338,24 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{0.3cm}
+      \biopic[2.45]{intros/Robert Platt.jpg}
     \end{column}
   \end{columns}
   \note{[Sources]\par
     \texttt{\detokenize{planning/Workshop Outline.docx}}\par
-    \texttt{\detokenize{intros/bios.txt}}}
+    \texttt{\detokenize{intros/bios.txt}}\par
+    \texttt{\detokenize{intros/Robert Platt.jpg}}}
 \end{frame}
 
-\begin{frame}{Foundations}
+\bandtag{Module C \(\cdot\) 12:45--1:25 ET}
+\begin{frame}[t]{Foundations}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module C}}
-      \hfill
-      \textcolor{black!55}{12:45--1:25 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item Association versus intervention
         \item Confounders, mediators, and colliders
         \item Target-trial protocol and time zero
@@ -264,23 +363,23 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{0.4cm}
+      \previewcard[4.9]{art/iceberg.png}
     \end{column}
   \end{columns}
   \note{[Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{art/iceberg.png}}}
 \end{frame}
 
-\begin{frame}{The Roadmap}
+\bandtag{Module D \(\cdot\) 1:35--2:20 ET}
+\begin{frame}[t]{The Roadmap}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module D}}
-      \hfill
-      \textcolor{black!55}{1:35--2:20 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item Protocol and target trial
         \item DAG and common causes
         \item Identification and observed data
@@ -288,23 +387,23 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{2.2cm}
+      \previewcard[7.0]{art/roadmap.png}
     \end{column}
   \end{columns}
   \note{[Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{art/roadmap.png}}}
 \end{frame}
 
-\begin{frame}{Audit-First AI}
+\bandtag{Module E \(\cdot\) 2:20--2:45 ET}
+\begin{frame}[t]{Audit-First AI}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module E}}
-      \hfill
-      \textcolor{black!55}{2:20--2:45 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item Review an AI-generated roadmap field
         \item Accept, correct, or reject it
         \item Name the evidence required
@@ -312,23 +411,23 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{0.3cm}
+      \biopic[2.45]{intros/Kathryn Morrison.jpg}
     \end{column}
   \end{columns}
   \note{[Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{intros/Kathryn Morrison.jpg}}}
 \end{frame}
 
-\begin{frame}{Live Navigator}
+\bandtag{Module F \(\cdot\) 3:15--4:10 ET}
+\begin{frame}[t]{Live Navigator}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module F}}
-      \hfill
-      \textcolor{black!55}{3:15--4:10 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item Start from a prepared study
         \item Work through all eight steps
         \item Pause for key design decisions
@@ -336,23 +435,23 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add a Navigator screenshot or workflow graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{0.5cm}
+      \previewcard[7.0]{art/navigator.png}
     \end{column}
   \end{columns}
   \note{[Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{art/navigator.png}}}
 \end{frame}
 
-\begin{frame}{TMLE}
+\bandtag{Module G \(\cdot\) 4:20--4:55 ET}
+\begin{frame}[t]{TMLE}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module G}}
-      \hfill
-      \textcolor{black!55}{4:20--4:55 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
         \item Start from the estimand defined upstream
         \item Compare crude, g-computation, IPW, and TMLE
         \item Review the targeting update
@@ -360,35 +459,63 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{2.15cm}
+      \includegraphics[width=7.0cm]{art/tmle.png}
     \end{column}
   \end{columns}
   \note{[Sources]\par
-    \texttt{\detokenize{planning/Workshop Outline.docx}}}
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{art/tmle.png}}}
 \end{frame}
 
-\begin{frame}{Close + Kit}
+\bandtag{Module H \(\cdot\) 4:55--5:00 ET}
+\begin{frame}[t]{Close + Kit}
+  \vspace*{0.45cm}
   \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \textcolor{accent}{\textbf{Module H}}
-      \hfill
-      \textcolor{black!55}{4:55--5:00 ET}
-
-      \vspace{0.45cm}
-      \begin{itemize}
-        \item Protocol, roadmap, audit, estimation
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
+        \item Protocol, roadmap, audit, estimation, interpretation
         \item Participant workshop kit
         \item Worked example
         \item What will you change before your next model is fit?
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      % Add one informative graphic here.
-      \vspace{0.68\textheight}
+      \centering
+      \vspace*{0.3cm}
+      \previewring[2.45]{art/Yin_and_Yang.png}
     \end{column}
   \end{columns}
   \note{[Sources]\par
+    \texttt{\detokenize{planning/Workshop Outline.docx}}\par
+    \texttt{\detokenize{art/Yin_and_Yang.png}}}
+\end{frame}
+
+% --------------------------------------------------------------------
+% Closing prompt: segue from the intro into Module B
+% --------------------------------------------------------------------
+\bandtag{Module A \(\cdot\) 12:00--12:20 ET}
+\begin{frame}[t]{Before we set off}
+  \vfill
+  \begin{center}
+    \labelchip{CHAT PROMPT}
+
+    \vspace{0.75cm}
+    {\fontsize{20}{26}\selectfont\itshape\color{slate}
+      Which causal claim in your current work\\
+      feels least defensible?\par}
+
+    \vspace{0.85cm}
+    {\color{black!55}Share one step or decision in the chat---we'll
+      come back to it at the close.\par}
+  \end{center}
+  \vfill
+  \note{Segue: Robert opens with what happens when a claim like this
+    goes unexamined. Collect several answers and return to them in
+    Module H.\par
+    [Sources]\par
     \texttt{\detokenize{planning/Workshop Outline.docx}}}
 \end{frame}
 
