@@ -1,0 +1,143 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Shared Beamer styling for Segment H.
+% Uses the established seminar palette and a compact 16:9 close format.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\definecolor{accent}{HTML}{4A9EFF}
+\definecolor{slate}{HTML}{23373B}
+\definecolor{navorange}{HTML}{EA700D}
+\definecolor{resultgreen}{HTML}{1C8F6A}
+\definecolor{softgray}{HTML}{F3F6F7}
+
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{alerted text}{fg=accent}
+\setbeamercolor{progress bar}{fg=accent,bg=accent}
+\setbeamerfont{frametitle}{series=\bfseries}
+\metroset{progressbar=frametitle,block=fill}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{itemize item}{%
+  \color{navorange}\raise0.15ex\hbox{\scriptsize$\blacksquare$}}
+\makeatletter
+\setlength{\metropolis@progressinheadfoot@linewidth}{1.6pt}
+\makeatother
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+\newcommand{\instatstitle}{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[slate]
+        (current page.south west) rectangle
+        ([xshift=0.22cm]current page.north west);
+      \fill[accent]
+        ([xshift=0.22cm]current page.south west) rectangle
+        ([xshift=0.31cm]current page.north west);
+
+      \node[anchor=north east]
+        at ([xshift=-0.65cm,yshift=-0.5cm]current page.north east)
+        {\includegraphics[width=2.85cm]{art/InStats_RWL.png}};
+
+      \node[anchor=west,text=slate,text width=12.1cm,align=left,
+            font=\bfseries\fontsize{29}{33}\selectfont]
+        at ([xshift=1.45cm,yshift=1.48cm]current page.west)
+        {\inserttitle};
+      \node[anchor=west,text=accent,text width=11.6cm,align=left,
+            font=\fontsize{15}{19}\selectfont]
+        at ([xshift=1.47cm,yshift=0.56cm]current page.west)
+        {\insertsubtitle};
+
+      \draw[black!16,line width=0.5pt]
+        ([xshift=1.47cm,yshift=-0.08cm]current page.west) --
+        ([xshift=8.25cm,yshift=-0.08cm]current page.west);
+
+      \node[anchor=west,text=slate,
+            font=\bfseries\fontsize{10.5}{13}\selectfont]
+        at ([xshift=1.47cm,yshift=-0.7cm]current page.west)
+        {\insertinstitute};
+      \node[anchor=west,text=black!55,
+            font=\fontsize{9.5}{12}\selectfont]
+        at ([xshift=1.47cm,yshift=-1.26cm]current page.west)
+        {\insertdate};
+      \node[anchor=west,text=black!60,
+            font=\fontsize{9.5}{12}\selectfont]
+        at ([xshift=1.47cm,yshift=-2.34cm]current page.west)
+        {\insertauthor};
+    \end{tikzpicture}
+  \end{frame}}
+
+\newcommand{\frametag}[1]{%
+  \begin{textblock*}{5.0cm}(10.65cm,0.31cm)
+    \raggedleft\color{white!85}\scriptsize\bfseries #1
+  \end{textblock*}}
+
+\newcommand{\phasebox}[3]{%
+  \node[
+    draw=#1!65,
+    fill=#1!7,
+    rounded corners=2pt,
+    minimum width=2.42cm,
+    minimum height=1.62cm,
+    text width=2.03cm,
+    align=center,
+    inner sep=5pt
+  ] (#2) {%
+    \color{#1}\bfseries #3%
+  };%
+}
+
+\newcommand{\kitcard}[3]{%
+  \begin{tikzpicture}
+    \node[
+      draw=black!14,
+      fill=softgray,
+      rounded corners=2pt,
+      minimum height=3.38cm,
+      text width=2.92cm,
+      align=left,
+      inner sep=9pt
+    ] {%
+      {\color{#1}\fontsize{22}{24}\selectfont\bfseries #2}\par
+      \vspace{0.20cm}
+      {\color{slate}\bfseries #3}%
+    };
+  \end{tikzpicture}}
+
+\newcommand{\actionfield}[3]{%
+  \begin{tikzpicture}[baseline]
+    \node[
+      circle,
+      fill=#1,
+      text=white,
+      font=\bfseries,
+      minimum size=0.70cm,
+      inner sep=0pt
+    ] (number) {#2};
+    \node[
+      anchor=west,
+      text width=6.0cm,
+      align=left,
+      font=\normalsize
+    ] at ([xshift=0.28cm]number.east) {#3};
+    \draw[black!22,line width=0.5pt]
+      ([xshift=0.30cm,yshift=-0.42cm]number.east) --
+      ([xshift=6.18cm,yshift=-0.42cm]number.east);
+  \end{tikzpicture}}
