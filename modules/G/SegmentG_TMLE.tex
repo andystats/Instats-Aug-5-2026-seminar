@@ -9,6 +9,7 @@
 \usefonttheme{professionalfonts}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,bm}
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{lmodern}
@@ -109,11 +110,10 @@
       pneumococcal vaccination on 12-month hospitalization risk?
 
       \vspace{0.7em}
-      \textbf{Target}
+      \textbf{Target: marginal 12-month risk difference}
       \[
         \Psi = E\!\left[Y^{(1)}\right] - E\!\left[Y^{(0)}\right]
       \]
-      A marginal risk difference.
     \end{column}
     \begin{column}{0.42\textwidth}
       \textbf{Observed data}
@@ -165,16 +165,18 @@
         \node[v,below=of pp] (pv) {prior vaccine};
         \node[a,right=2.0cm of pp] (A) {\(A\): vaccinated};
         \node[outcome,right=2.1cm of A] (Y) {\(Y\): hospitalization};
-        \draw[-{Latex[length=2.2mm]},black!55] (age) -- (pp);
-        \draw[-{Latex[length=2.2mm]},black!55]
-  (age.west) to[bend right=35] (pv.west);
-        \draw[-{Latex[length=2.2mm]},black!55] (age) -- (A);
-        \draw[-{Latex[length=2.2mm]},black!55] (pp) -- (A);
-        \draw[-{Latex[length=2.2mm]},black!55] (pv) -- (A);
-        \draw[-{Latex[length=2.2mm]},black!55] (age.east) to[bend left=24] (Y.north);
-        \draw[-{Latex[length=2.2mm]},black!55] (pp.east) to[bend left=8] (Y.west);
-        \draw[-{Latex[length=2.2mm]},black!55] (pv.east) to[bend right=24] (Y.south);
-        \draw[-{Latex[length=2.4mm]},accent,very thick] (A) -- (Y);
+        \begin{pgfonlayer}{background}
+          \draw[-{Latex[length=2.2mm]},black!55] (age) -- (pp);
+          \draw[-{Latex[length=2.2mm]},black!55]
+            (age.west) to[bend right=35] (pv.west);
+          \draw[-{Latex[length=2.2mm]},black!55] (age) -- (A);
+          \draw[-{Latex[length=2.2mm]},black!55] (pp) -- (A);
+          \draw[-{Latex[length=2.2mm]},black!55] (pv) -- (A);
+          \draw[-{Latex[length=2.2mm]},black!55] (age.east) to[bend left=24] (Y.north);
+          \draw[-{Latex[length=2.2mm]},black!55] (pp.east) to[out=35,in=145] (Y.west);
+          \draw[-{Latex[length=2.2mm]},black!55] (pv.east) to[bend right=24] (Y.south);
+          \draw[-{Latex[length=2.4mm]},accent,very thick] (A) -- (Y);
+        \end{pgfonlayer}
       \end{tikzpicture}%
       }
 
@@ -187,7 +189,7 @@
     \sourcefile{simulate_pneumonia_data.R}.}
 \end{frame}
 
-\begin{frame}{The Crude Association Reflects Confounding by Indication}
+\begin{frame}{Crude Association Reflects Confounding by Indication}
   \small
   \begin{columns}[c]
     \begin{column}{0.31\textwidth}
@@ -209,7 +211,8 @@
     \begin{column}{0.25\textwidth}
       \begin{block}{Crude RD}
         \centering
-        \(\mathbf{+0.76}\) percentage points
+        {\large\(\mathbf{+0.76}\)}\\[-0.1em]
+        {\scriptsize percentage points}
       \end{block}
     \end{column}
   \end{columns}
@@ -225,7 +228,10 @@
 
 \begin{frame}{Four Estimators Address the Same Risk-Difference Target}
   \small
-  \begin{tabular}{@{}p{0.22\textwidth}p{0.29\textwidth}p{0.39\textwidth}@{}}
+  \begin{tabular}{@{}
+      >{\raggedright\arraybackslash}p{0.22\textwidth}
+      >{\raggedright\arraybackslash}p{0.29\textwidth}
+      >{\raggedright\arraybackslash}p{0.39\textwidth}@{}}
     \toprule
     \textbf{Estimator} & \textbf{Main model} & \textbf{How it forms the contrast} \\
     \midrule
@@ -257,10 +263,10 @@
         Q(A,W)=E(Y\mid A,W).
       \]
 
-      For every participant, obtain
+      For every participant, obtain both intervention predictions:
       \[
         \widehat Q(1,W_i)
-        \quad\text{and}\quad
+        \qquad
         \widehat Q(0,W_i).
       \]
 
@@ -363,9 +369,11 @@
     \node[box,right=1.0cm of q] (g) {\(\widehat g(W)\)\\treatment fit};
     \node[key,right=1.0cm of g] (target) {targeting\\update};
     \node[box,right=1.0cm of target] (psi) {\(\widehat\Psi\) and CI\\risk difference};
-    \draw[-{Latex[length=2.4mm]},thick,black!45] (q) -- (target);
-    \draw[-{Latex[length=2.4mm]},thick,black!45] (g) -- (target);
-    \draw[-{Latex[length=2.4mm]},thick,accent] (target) -- (psi);
+    \begin{pgfonlayer}{background}
+      \draw[-{Latex[length=2.4mm]},thick,black!45] (q.north) -- ++(0,0.48cm) -| (target.north);
+      \draw[-{Latex[length=2.4mm]},thick,black!45] (g) -- (target);
+      \draw[-{Latex[length=2.4mm]},thick,accent] (target) -- (psi);
+    \end{pgfonlayer}
   \end{tikzpicture}
 
   \vspace{0.85cm}
@@ -496,7 +504,7 @@ fit$estimates$ATE$CI
     \sourcefile{simulate_pneumonia_data.R}.}
 \end{frame}
 
-\begin{frame}{TMLE Inherits the Study's Causal Assumptions}
+\begin{frame}{TMLE Carries the Study's Causal Assumptions}
   \small
   \begin{columns}[T]
     \begin{column}{0.47\textwidth}
@@ -527,7 +535,7 @@ fit$estimates$ATE$CI
     van der Laan (2014), and the Navigator roadmap.}
 \end{frame}
 
-\begin{frame}{The Estimate Completes the Roadmap}
+\begin{frame}{Estimate Completes the Roadmap}
   \small
   \centering
   \begin{tikzpicture}[

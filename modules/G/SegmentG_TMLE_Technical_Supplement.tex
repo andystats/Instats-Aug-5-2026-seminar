@@ -11,6 +11,7 @@
 \usefonttheme{professionalfonts}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,bm}
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{lmodern}
@@ -137,7 +138,7 @@
     companion R scripts.}
 \end{frame}
 
-\begin{frame}{The Navigator Defines the Statistical Problem}
+\begin{frame}{Navigator Defines the Statistical Problem}
   \small
   \begin{columns}[T]
     \begin{column}{0.53\textwidth}
@@ -212,16 +213,18 @@
     \node[v,below=of pp] (pv) {prior vaccine};
     \node[a,right=2.2cm of pp] (A) {\(A\): vaccinated};
     \node[outcome,right=2.3cm of A] (Y) {\(Y\): hospitalization};
-    \draw[-{Latex[length=2.2mm]},black!55] (age) -- (pp);
-    \draw[-{Latex[length=2.2mm]},black!55]
-  (age.west) to[bend right=35] (pv.west);
-    \draw[-{Latex[length=2.2mm]},black!55] (age) -- (A);
-    \draw[-{Latex[length=2.2mm]},black!55] (pp) -- (A);
-    \draw[-{Latex[length=2.2mm]},black!55] (pv) -- (A);
-    \draw[-{Latex[length=2.2mm]},black!55] (age.east) to[bend left=24] (Y.north);
-    \draw[-{Latex[length=2.2mm]},black!55] (pp.east) to[bend left=8] (Y.west);
-    \draw[-{Latex[length=2.2mm]},black!55] (pv.east) to[bend right=24] (Y.south);
-    \draw[-{Latex[length=2.4mm]},accent,very thick] (A) -- (Y);
+    \begin{pgfonlayer}{background}
+      \draw[-{Latex[length=2.2mm]},black!55] (age) -- (pp);
+      \draw[-{Latex[length=2.2mm]},black!55]
+        (age.west) to[bend right=35] (pv.west);
+      \draw[-{Latex[length=2.2mm]},black!55] (age) -- (A);
+      \draw[-{Latex[length=2.2mm]},black!55] (pp) -- (A);
+      \draw[-{Latex[length=2.2mm]},black!55] (pv) -- (A);
+      \draw[-{Latex[length=2.2mm]},black!55] (age.east) to[bend left=24] (Y.north);
+      \draw[-{Latex[length=2.2mm]},black!55] (pp.east) to[out=35,in=145] (Y.west);
+      \draw[-{Latex[length=2.2mm]},black!55] (pv.east) to[bend right=24] (Y.south);
+      \draw[-{Latex[length=2.4mm]},accent,very thick] (A) -- (Y);
+    \end{pgfonlayer}
   \end{tikzpicture}
 
   \vspace{0.65cm}
@@ -231,7 +234,7 @@
     \sourcefile{simulate_pneumonia_data.R}.}
 \end{frame}
 
-\begin{frame}{The Generator Creates Confounding by Indication}
+\begin{frame}{Generator Creates Confounding by Indication}
   \footnotesize
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
@@ -250,11 +253,11 @@
       \textbf{Outcome mechanism}
       \[
       \begin{aligned}
-        \operatorname{logit}P(Y=1\mid A,W)
-        ={}&-3.00 -0.80A\\
-           &+0.25\frac{\mathrm{age}-65}{10}\\
-           &+1.60\,\mathrm{priorPneumonia}\\
-           &-0.15\,\mathrm{priorVaccine}.
+        &\operatorname{logit}P(Y=1\mid A,W)\\[-0.15em]
+        &\quad = -3.00 -0.80A\\
+        &\quad +0.25\frac{\mathrm{age}-65}{10}\\
+        &\quad +1.60\,\mathrm{priorPneumonia}\\
+        &\quad -0.15\,\mathrm{priorVaccine}.
       \end{aligned}
       \]
       The treatment coefficient is protective on the log-odds scale.
@@ -276,9 +279,7 @@
         \item 5,000 observations
         \item 1,627 vaccinated
         \item 334 hospitalizations
-        \item SHA-256:
-          \scriptsize\codeword{F020D8880321F3BF9E8D0AEB9319E196}\\
-          \scriptsize\codeword{4408D00BB7657B677E02A0A27A5FD2BA}
+        \item Frozen CSV verified row-for-row against the archived generator
       \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
@@ -300,7 +301,7 @@
     \sourcefile{data/pneumonia_data.csv}.}
 \end{frame}
 
-\begin{frame}{TMLE Uses Two Nuisance Functions and One Targeting Step}
+\begin{frame}{TMLE Uses Two Nuisance Fits and One Targeting Step}
   \small
   \centering
   \resizebox{\textwidth}{!}{%
@@ -314,10 +315,12 @@
     \node[key,right=0.75cm of g] (t) {\(\widehat Q^*\)\\targeting update};
     \node[box,right=0.75cm of t] (p) {\(\widehat\Psi\)\\plug-in contrast};
     \node[box,right=0.75cm of p] (e) {\(\widehat D^*\)\\SE and CI};
-    \draw[-{Latex[length=2.2mm]},black!45] (q) -- (t);
-    \draw[-{Latex[length=2.2mm]},black!45] (g) -- (t);
-    \draw[-{Latex[length=2.2mm]},accent,thick] (t) -- (p);
-    \draw[-{Latex[length=2.2mm]},black!45] (p) -- (e);
+    \begin{pgfonlayer}{background}
+      \draw[-{Latex[length=2.2mm]},black!45] (q.north) -- ++(0,0.42cm) -| (t.north);
+      \draw[-{Latex[length=2.2mm]},black!45] (g) -- (t);
+      \draw[-{Latex[length=2.2mm]},accent,thick] (t) -- (p);
+      \draw[-{Latex[length=2.2mm]},black!45] (p) -- (e);
+    \end{pgfonlayer}
   \end{tikzpicture}%
   }
 
@@ -328,7 +331,7 @@
   \slidesource{TMLE sequence follows van der Laan and Rose (2011).}
 \end{frame}
 
-\begin{frame}{The Initial Outcome Regression Learns \(Q(A,W)\)}
+\begin{frame}{Initial Outcome Regression Learns \(Q(A,W)\)}
   \small
   \[
     Q_0(a,w)=E(Y\mid A=a,W=w).
@@ -442,7 +445,7 @@
     (2011) and Petersen et al. (2012).}
 \end{frame}
 
-\begin{frame}{The Observed Data Show Shared Treatment Support}
+\begin{frame}{Observed Data Show Shared Treatment Support}
   \begin{columns}[c]
     \begin{column}{0.66\textwidth}
       \centering
@@ -467,7 +470,7 @@
     guidance follows Petersen et al. (2012).}
 \end{frame}
 
-\begin{frame}{The Clever Covariate Focuses the Update}
+\begin{frame}{Clever Covariate Focuses the Update}
   \small
   For a binary treatment and the average risk difference,
   \[
@@ -581,7 +584,7 @@
     \sourcefile{outputs/pneumonia_tmle_technical_results.csv}.}
 \end{frame}
 
-\begin{frame}{The Efficient Influence Function Supplies Uncertainty}
+\begin{frame}{Efficient Influence Function Supplies Uncertainty}
   \footnotesize
   For the average risk difference,
   \[
@@ -636,7 +639,7 @@ H <- A / g - (1 - A) / (1 - g)
     \sourcefile{pneumonia_tmle_technical.R}; SuperLearner API version 2.0-29.}
 \end{frame}
 
-\begin{frame}[fragile]{Manual Step 2: Target, Average, and Form the Interval}
+\begin{frame}[fragile]{Manual Step 2: Target, Average, and Infer}
   \begin{lstlisting}[language=R]
 fluctuation <- glm(
   Y ~ -1 + H + offset(qlogis(QAW)),
@@ -685,7 +688,7 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     \sourcefile{pneumonia_tmle_technical.R}.}
 \end{frame}
 
-\begin{frame}{The Technical Results Keep Every Estimator on One Scale}
+\begin{frame}{Technical Results Share One Risk-Difference Scale}
   \small
   \centering
   \begin{tabular}{@{}lrrr@{}}
@@ -711,7 +714,7 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     \sourcefile{simulate_pneumonia_data.R}.}
 \end{frame}
 
-\begin{frame}{The Estimator Comparison Separates Association from Adjustment}
+\begin{frame}{Estimator Comparison Separates Association from Adjustment}
   \centering
   \vspace{-0.2cm}
   \includegraphics[width=0.82\textwidth]{art/estimator_comparison.png}
@@ -853,7 +856,7 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     Robins (2020).}
 \end{frame}
 
-\begin{frame}{The Audit Trail Connects Data, Code, Output, and Session State}
+\begin{frame}{Audit Trail Connects Data, Code, Output, and Session State}
   \scriptsize
   \begin{tabular}{@{}p{0.32\textwidth}p{0.58\textwidth}@{}}
     \toprule
@@ -880,9 +883,13 @@ Q1_updated <- fit$Qstar[, "Q1W"]
   \slidesource{Artifact roles and build order from the Segment G package.}
 \end{frame}
 
-\begin{frame}{TMLE, AIPW, and DML Share an Orthogonal-Score Perspective}
+\begin{frame}{TMLE, AIPW, and DML Use Orthogonal Scores}
   \scriptsize
-  \begin{tabular}{@{}p{0.18\textwidth}p{0.24\textwidth}p{0.24\textwidth}p{0.22\textwidth}@{}}
+  \begin{tabular}{@{}
+      >{\raggedright\arraybackslash}p{0.18\textwidth}
+      >{\raggedright\arraybackslash}p{0.24\textwidth}
+      >{\raggedright\arraybackslash}p{0.24\textwidth}
+      >{\raggedright\arraybackslash}p{0.22\textwidth}@{}}
     \toprule
     & \textbf{TMLE} & \textbf{AIPW / one-step} & \textbf{DML} \\
     \midrule
@@ -912,7 +919,7 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     et al. (2018), and Kennedy (2023).}
 \end{frame}
 
-\begin{frame}{Technical Takeaways}
+\begin{frame}{\hspace{0.12em}Technical Takeaways}
   \small
   \begin{enumerate}
     \item The Navigator fixes the population, time order, adjustment set, and
@@ -937,39 +944,36 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     outputs.}
 \end{frame}
 
-\begin{frame}{References: Causal Inference and Targeted Learning}
-  \scriptsize
-  \begin{thebibliography}{99}
-    \bibitem{hernan2020}
-      Hernan MA, Robins JM. \emph{Causal Inference: What If}. Chapman \&
-      Hall/CRC; 2020.
-    \bibitem{petersen2012}
-      Petersen ML, Porter KE, Gruber S, Wang Y, van der Laan MJ. Diagnosing and
-      responding to violations in the positivity assumption.
+\begin{frame}{Causal Inference References}
+  \footnotesize
+  \color{slate}
+  \begin{itemize}
+    \setlength{\itemsep}{0.55em}
+    \item Hernan MA, Robins JM. \emph{Causal Inference: What If}.
+      Chapman \& Hall/CRC; 2020.
+    \item Petersen ML, Porter KE, Gruber S, Wang Y, van der Laan MJ.
+      Diagnosing and responding to violations in the positivity assumption.
       \emph{Statistical Methods in Medical Research}. 2012.
-    \bibitem{petersen2014}
-      Petersen ML, van der Laan MJ. Causal models and learning from data:
+    \item Petersen ML, van der Laan MJ. Causal models and learning from data:
       integrating causal modeling and statistical estimation.
       \emph{Epidemiology}. 2014.
-    \bibitem{tl2011}
-      van der Laan MJ, Rose S. \emph{Targeted Learning}. Springer; 2011.
-  \end{thebibliography}
+    \item van der Laan MJ, Rose S. \emph{Targeted Learning}. Springer; 2011.
+  \end{itemize}
   \slidesource{Full bibliographic entries shown on slide.}
 \end{frame}
 
-\begin{frame}{References: Machine Learning and Inference}
-  \tiny
-  \begin{thebibliography}{99}
-    \bibitem{chernozhukov2018}
-      Chernozhukov V, et al. Double/debiased machine learning for treatment
+\begin{frame}{Machine Learning References}
+  \small
+  \color{slate}
+  \begin{itemize}
+    \setlength{\itemsep}{0.75em}
+    \item Chernozhukov V, et al. Double/debiased machine learning for treatment
       and structural parameters. \emph{The Econometrics Journal}. 2018.
-    \bibitem{kennedy2023}
-      Kennedy EH. Semiparametric doubly robust targeted double machine
+    \item Kennedy EH. Semiparametric doubly robust targeted double machine
       learning: a review. \emph{arXiv:2203.06469}. 2023.
-    \bibitem{sl2007}
-      van der Laan MJ, Polley EC, Hubbard AE. Super Learner.
+    \item van der Laan MJ, Polley EC, Hubbard AE. Super Learner.
       \emph{Statistical Applications in Genetics and Molecular Biology}. 2007.
-  \end{thebibliography}
+  \end{itemize}
   \slidesource{Full bibliographic entries shown on slide; software versions in
     \sourcefile{outputs/session_info.txt}.}
 \end{frame}

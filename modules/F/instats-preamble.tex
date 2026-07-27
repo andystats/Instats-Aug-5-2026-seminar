@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{ragged2e}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{xcolor}
@@ -39,6 +40,9 @@
 \makeatletter
 \setlength{\metropolis@progressinheadfoot@linewidth}{1.6pt}
 \makeatother
+
+\newcommand{\instatsnohyphen}{\hyphenpenalty=10000\exhyphenpenalty=10000\relax}
+\newcolumntype{L}[1]{>{\RaggedRight\instatsnohyphen\arraybackslash}p{#1}}
 
 \newcommand{\instatstitle}{%
   \begin{frame}[plain]
@@ -90,21 +94,21 @@
   \begin{tikzpicture}
     \node[
       draw=navorange!70,fill=navorange!6,rounded corners=2pt,
-      text width=0.92\linewidth,align=left,inner sep=7pt
-    ] {\textcolor{navorange}{\bfseries #1}\\[-1pt]#2};
+      text width=\dimexpr\linewidth-18pt\relax,align=left,inner sep=7pt
+    ] {\RaggedRight\instatsnohyphen\textcolor{navorange}{\bfseries #1}\\[-1pt]#2\par};
   \end{tikzpicture}}
 
 \newcommand{\evidencebox}[2]{%
   \begin{tikzpicture}
     \node[
       draw=black!16,fill=softgray,rounded corners=2pt,
-      text width=0.92\linewidth,align=left,inner sep=7pt
-    ] {\textcolor{navorange}{\bfseries #1}\\[-1pt]#2};
+      text width=\dimexpr\linewidth-18pt\relax,align=left,inner sep=7pt
+    ] {\RaggedRight\instatsnohyphen\textcolor{navorange}{\bfseries #1}\\[-1pt]#2\par};
   \end{tikzpicture}}
 
 \newcommand{\screensnap}[2][0.61]{%
   \IfFileExists{#2}{%
-    \includegraphics[height=#1\textheight,keepaspectratio]{#2}%
+    \includegraphics[width=\linewidth,height=#1\textheight,keepaspectratio]{#2}%
   }{%
     \begin{tikzpicture}
       \node[

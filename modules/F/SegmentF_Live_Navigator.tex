@@ -24,13 +24,13 @@
 
       \vspace{0.28cm}
       {\large\bfseries
-        Same causal logic. Now every decision is visible, revisable, and
+        Same causal logic. Every decision becomes visible, revisable, and
         exportable.}
 
-      \vspace{0.4cm}
+      \vspace{0.35cm}
       {\footnotesize
         \decisionbox{Workshop stance}{
-          The Navigator is documentation infrastructure---not an oracle.}}
+          Navigator records choices; it is not an oracle.}}
     \end{column}
     \begin{column}{0.65\textwidth}
       \centering
@@ -67,7 +67,7 @@
 \end{frame}
 
 % 4--9 minutes
-\begin{frame}{The crude association reflects confounding by indication}
+\begin{frame}{The crude association is confounded}
   \frametag{Checkpoint 1}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.52\textwidth}
@@ -88,15 +88,15 @@
       \vspace{0.25cm}
       \hrule
       \vspace{0.15cm}
-      {\normalsize\bfseries\color{black!55}Crude RD}\\[-2pt]
-      {\fontsize{23}{26}\selectfont\bfseries\color{resultred}
-        \(+0.76\) percentage points}
+      {\small\bfseries\color{black!55}Crude RD}\hspace{0.3cm}%
+      {\fontsize{21}{24}\selectfont\bfseries\color{resultred}
+        \(+0.76\) pp}\par
     \end{column}
     \begin{column}{0.44\textwidth}
       {\footnotesize
         \decisionbox{Individual prediction \(\rightarrow\) pair check}{
-          Before seeing the prepared answer, name the population, time zero,
-          outcome window, and contrast needed to interpret this difference.}}
+          Name the population, time zero, follow-up, and contrast needed to
+          interpret the difference.}}
 
       \vspace{0.25cm}
       {\small\bfseries
@@ -108,7 +108,7 @@
 \end{frame}
 
 % 9--12 minutes
-\begin{frame}{Lock the target trial before the result}
+\begin{frame}{Lock the target trial before results}
   \frametag{Step 1 setup}
   \small
   \begin{tabular}{>{\bfseries\color{navorange}}p{0.18\textwidth}p{0.72\textwidth}}
@@ -131,7 +131,7 @@
 \end{frame}
 
 % 12--16 minutes
-\begin{frame}{Step 1: question-first means fully specified}
+\begin{frame}{Step 1: fully specify the causal question}
   \frametag{Navigator}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.30\textwidth}
@@ -149,7 +149,7 @@
       \vspace{0.08cm}
       {\scriptsize
         \decisionbox{Checkpoint}{
-          Which single phrase would most change the estimand?}}
+          Which phrase most changes the estimand?}}
     \end{column}
     \begin{column}{0.66\textwidth}
       \centering
@@ -159,7 +159,7 @@
 \end{frame}
 
 % 16--20 minutes
-\begin{frame}{Step 2: the DAG names the adjustment set}
+\begin{frame}{Step 2: use the DAG to name adjustment}
   \frametag{Checkpoint 2}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.40\textwidth}
@@ -179,7 +179,7 @@
 
       {\scriptsize
         \decisionbox{Accept, correct, or reject?}{
-          Does this adjustment set follow from the DAG we are willing to defend?}}
+          Does this adjustment set follow from the DAG you are willing to defend?}}
     \end{column}
     \begin{column}{0.56\textwidth}
       \centering
@@ -216,41 +216,41 @@
 \begin{frame}{Step 3: make the protocol computable}
   \frametag{Observed data}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.26\textwidth}
+    \begin{column}{0.24\textwidth}
       {\normalsize\stepbadge{3}\quad\bfseries Map the data}
 
       \vspace{0.30cm}
-      {\fontsize{25}{28}\selectfont\bfseries\color{slate}5,000}
+      {\fontsize{22}{25}\selectfont\bfseries\color{slate}5,000}
       {\small\color{black!55}\ people}
 
       \vspace{0.18cm}
-      {\fontsize{23}{26}\selectfont\bfseries\color{navorange}1,627}
+      {\fontsize{20}{23}\selectfont\bfseries\color{navorange}1,627}
       {\small\color{black!55}\ vaccinated}
 
       \vspace{0.18cm}
-      {\fontsize{23}{26}\selectfont\bfseries\color{resultred}334}
+      {\fontsize{20}{23}\selectfont\bfseries\color{resultred}334}
       {\small\color{black!55}\ events}
 
       \vspace{0.25cm}
       {\footnotesize
-        The fixed CSV has one row per person, complete baseline covariates,
-        treatment, and 12-month outcome.}
+        One row per person; complete baseline covariates, treatment, and
+        12-month outcome.}
     \end{column}
-    \begin{column}{0.70\textwidth}
-      \small
-      \begin{tabular}{>{\bfseries\color{navorange}}p{0.21\textwidth}p{0.66\textwidth}}
-        Protocol element & Observed-data mapping\\
+    \begin{column}{0.72\textwidth}
+      \footnotesize
+      \begin{tabular}{@{}>{\bfseries\color{navorange}}L{0.24\linewidth}L{0.66\linewidth}@{}}
+        Protocol & Observed-data mapping\\
         \midrule
-        Population & One eligibility-defined row per participant\\[0.35cm]
-        Treatment & Binary baseline vaccination indicator \(A\)\\[0.35cm]
-        Outcome & Binary 12-month pneumonia hospitalization \(Y\)\\[0.35cm]
-        Baseline \(W\) & Age, prior pneumonia, prior vaccination\\[0.35cm]
-        Time zero & Eligibility, treatment assignment, and follow-up aligned
+        Population & One row per eligible participant\\[0.22cm]
+        Treatment & Baseline vaccination indicator \(A\)\\[0.22cm]
+        Outcome & 12-month pneumonia hospitalization \(Y\)\\[0.22cm]
+        Baseline \(W\) & Age, prior pneumonia, prior vaccination\\[0.22cm]
+        Time zero & Eligibility, treatment, and follow-up aligned
       \end{tabular}
 
       \vspace{0.16cm}
       {\scriptsize\itshape\color{black!55}
-        Mapping check: Can every protocol element be operationalized without
+        Mapping check: Can each protocol element be represented without
         changing the question?}
     \end{column}
   \end{columns}
@@ -275,24 +275,25 @@
 
       {\scriptsize
         \decisionbox{Three-part audit}{
-          Choose the weakest assumption. Name the evidence you would seek and
-          one design change if it fails.}}
+          Choose the weakest assumption, evidence you would seek, and one
+          design change if it fails.}}
     \end{column}
     \begin{column}{0.65\textwidth}
       \footnotesize
-      \begin{tabular}{>{\bfseries}p{0.25\textwidth}p{0.29\textwidth}p{0.31\textwidth}}
-        Assumption & Data can inform & Still requires judgment\\
+      {\setlength{\tabcolsep}{3pt}%
+      \begin{tabular}{@{}>{\bfseries}L{0.27\linewidth}L{0.27\linewidth}L{0.38\linewidth}@{}}
+        Assumption & Data can inform & Requires judgment\\
         \midrule
-        Exchangeability & Covariate balance; proxies & Whether key common causes are measured\\[0.38cm]
-        Positivity & Fitted score range; support & Whether treatment is possible in every target stratum\\[0.38cm]
-        Consistency & Recorded treatment versions & Whether the intervention is well defined\\[0.38cm]
-        No interference & Cluster/context clues & Whether one person's treatment affects another
-      \end{tabular}
+        Exchangeability & Balance; proxies & Are key causes recorded?\\[0.18cm]
+        Positivity & Fitted scores; support & Is each target stratum supported?\\[0.18cm]
+        Consistency & Recorded versions & Is the intervention well defined?\\[0.18cm]
+        No interference & Cluster/context clues & Can one person's exposure affect another?
+      \end{tabular}}
 
       \vspace{0.16cm}
       {\scriptsize\itshape\color{black!55}
-        For this exercise the generator makes the assumptions explicit; the
-        observed data alone still cannot certify them.}
+        The generator states the assumptions for this exercise; observed data
+        alone cannot certify them.}
     \end{column}
   \end{columns}
   \note{This is the main participant activity: individual judgment, pair defense, then two examples in plenary.}
@@ -319,8 +320,7 @@
 
       {\scriptsize
         \decisionbox{Audit question}{
-          What changes if the population, outcome window, or censoring
-          intervention changes?}}
+          What changes if the population, outcome window, or censoring changes?}}
     \end{column}
     \begin{column}{0.60\textwidth}
       \centering
@@ -330,7 +330,7 @@
 \end{frame}
 
 % 36--39 minutes
-\begin{frame}{Step 6: choose an estimator for that target}
+\begin{frame}{Step 6: choose an estimator for the target}
   \frametag{TMLE bridge}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.43\textwidth}
@@ -351,33 +351,33 @@
     \end{column}
     \begin{column}{0.53\textwidth}
       \footnotesize
-      \evidencebox{Outcome-blind work actually completed}{
-        No repeated simulation, bias, or RMSE study is included. The adjusted
-        outcome result remains hidden until Steps 1--7 are locked.}
+      \evidencebox{Pre-result workflow}{
+        No repeated simulation or bias/RMSE study is included. The adjusted
+        outcome stays hidden until Steps 1--7 are locked.}
 
       \vspace{0.25cm}
       \evidencebox{Overlap diagnostic}{
-        Fitted parametric propensity scores range from 0.0765 to 0.9091.
-        This is a diagnostic---not proof of structural positivity.}
+        Fitted propensity scores range from 0.0765 to 0.9091. This diagnoses
+        overlap; it does not prove structural positivity.}
 
       \vspace{0.25cm}
       \evidencebox{Reproducibility convention}{
-        Report the version-sensitive TMLE result rounded to
-        \(-3.0\) points (95\% CI \(-4.6,-1.5\)).}
+        Report the version-sensitive TMLE result as \(-3.0\) points
+        (95\% CI \(-4.6,-1.5\)).}
     \end{column}
   \end{columns}
   \note{No repeated simulation or bias/RMSE study is included. Hold the adjusted result until Steps 1--7 are locked.}
 \end{frame}
 
 % 39--44 minutes
-\begin{frame}{Step 7: sensitivity is part of the design}
+\begin{frame}{Step 7: sensitivity belongs in the design}
   \frametag{Checkpoint 4}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.42\textwidth}
       {\large\bfseries
-        Prespecify the stress tests before the result.}
+        Prespecify stress tests before results.}
 
-      \vspace{0.18cm}
+      \vspace{0.22cm}
       \footnotesize
       \begin{itemize}
         \item unmeasured confounding
@@ -388,24 +388,24 @@
 
       {\scriptsize
         \decisionbox{Choose one gap}{
-          What analysis or new evidence would make that gap more transparent?}}
+          What analysis or evidence would clarify it?}}
     \end{column}
     \begin{column}{0.54\textwidth}
       \small
       \evidencebox{Sampling uncertainty}{
-        The influence-function interval quantifies uncertainty for the
-        statistical estimand under the fitted analysis.}
+        The influence-function CI quantifies sampling uncertainty for the
+        fitted statistical estimand.}
 
-      \vspace{0.28cm}
+      \vspace{0.24cm}
       \evidencebox{Causal uncertainty}{
-        Separate analyses must address unmeasured confounding, measurement,
-        selection, treatment versions, and interference.}
+        Separate analyses address hidden common causes, measurement, selection,
+        treatment versions, and interference.}
 
-      \vspace{0.28cm}
+      \vspace{0.24cm}
       {\footnotesize
         \decisionbox{Descriptive tipping point}{
-          A \(+3.0\)-point shift would move the TMLE point estimate to the null.
-          This is not a formal E-value.}}
+          A \(+3.0\)-point shift moves the TMLE estimate to the null; this is
+          not an E-value.}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -422,26 +422,29 @@
       \syntheticnote
     \end{column}
     \begin{column}{0.28\textwidth}
-      {\small\bfseries\color{resultred}Crude}\\[-2pt]
-      {\fontsize{25}{28}\selectfont\bfseries\color{resultred}\(+0.76\) pp}
+      {\small\bfseries\color{resultred}Crude\par}
+      \vspace{0.04cm}
+      {\fontsize{20}{23}\selectfont\bfseries\color{resultred}\(+0.76\) pp\par}
 
-      \vspace{0.35cm}
-      {\small\bfseries\color{resultgreen}TMLE}\\[-2pt]
-      {\fontsize{25}{28}\selectfont\bfseries\color{resultgreen}\(-3.0\) pp}
+      \vspace{0.30cm}
+      {\small\bfseries\color{resultgreen}TMLE\par}
+      \vspace{0.04cm}
+      {\fontsize{20}{23}\selectfont\bfseries\color{resultgreen}\(-3.0\) pp\par}
 
+      \vspace{0.08cm}
       {\small\color{black!55}95\% CI: \(-4.6\) to \(-1.5\) pp}
 
-      \vspace{0.28cm}
+      \vspace{0.24cm}
       {\footnotesize
         \decisionbox{What this shows}{
-          Adjusted analyses tell a different story under the stipulated model.
-          Agreement does not prove the assumptions.}}
+          Adjusted analyses reverse the crude sign under the stipulated model.
+          Agreement does not validate assumptions.}}
     \end{column}
   \end{columns}
 \end{frame}
 
 % 49--51 minutes
-\begin{frame}{Step 8: interpretation inherits every prior assumption}
+\begin{frame}{Step 8: interpretation inherits the assumptions}
   \frametag{Checkpoint 5}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.48\textwidth}
@@ -466,15 +469,15 @@
 
       \vspace{0.35cm}
       \evidencebox{Still unknown}{
-        Clinical effectiveness, safety, transportability, real EHR bias, and
-        population transmission effects.}
+        Clinical effectiveness, safety, use beyond this cohort, real EHR bias,
+        and transmission effects.}
     \end{column}
   \end{columns}
 
   \vspace{0.32cm}
   {\footnotesize
     \decisionbox{Accept, correct, or reject?}{
-      Cite one Step 4 assumption and one limitation when revising the conclusion.}}
+      Cite one Step 4 assumption and one limitation when revising the claim.}}
 \end{frame}
 
 % 51--54 minutes
@@ -498,7 +501,7 @@
       \vspace{0.18cm}
       {\footnotesize
         \decisionbox{Pair protocol}{
-          Accept, correct, or reject the entry. Compare reasoning before export.}}
+          Accept, correct, or reject the entry; compare reasoning, then export.}}
     \end{column}
     \begin{column}{0.42\textwidth}
       \footnotesize
@@ -509,8 +512,8 @@
         Reproducible analysis script}
 
       \vspace{0.3cm}
-      \evidencebox{Answer key---after the activity}{
-        Completed eight-step roadmap in Markdown}
+      \evidencebox{Answer key after the activity}{
+        Completed eight-step roadmap (Markdown)}
     \end{column}
   \end{columns}
 \end{frame}

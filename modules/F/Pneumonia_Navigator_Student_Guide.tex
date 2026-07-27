@@ -18,8 +18,8 @@
   \frametag{Workshop contract}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.52\textwidth}
-      {\Large\bfseries
-        The facilitator operates the Navigator. You co-author the audit.}
+      {\large\bfseries
+        The facilitator operates Navigator; you co-author the audit.}
 
       \vspace{0.35cm}
       \begin{enumerate}
@@ -31,13 +31,13 @@
     \end{column}
     \begin{column}{0.44\textwidth}
       \decisionbox{Your deliverable}{
-        One Navigator entry you can accept, correct, or reject with an
-        evidence-based explanation.}
+        One Navigator entry you can accept, correct, or reject---and defend
+        with evidence.}
 
-      \vspace{0.4cm}
-      \evidencebox{Manual route---no login required}{
-        \url{https://navigator.tao-rwd.com/}\\[3pt]
-        Export the completed record as Markdown at Step 8.}
+      \vspace{0.35cm}
+      \evidencebox{Manual route (no login)}{
+        \href{https://navigator.tao-rwd.com/}{navigator.tao-rwd.com}\\[3pt]
+        Export Markdown at Step 8.}
     \end{column}
   \end{columns}
 \end{frame}
@@ -55,14 +55,16 @@
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.52\textwidth}
       \evidencebox{Observed association}{
-        Vaccinated risk: \textcolor{resultred}{\textbf{7.19\%}} \qquad
-        Unvaccinated risk: \textbf{6.43\%}\\[3pt]
-        Crude risk difference: \textcolor{resultred}{\textbf{\(+0.76\) percentage points}}}
+        \begin{tabular}{@{}lr@{}}
+          Vaccinated risk & \textcolor{resultred}{\textbf{7.19\%}}\\
+          Unvaccinated risk & \textbf{6.43\%}\\
+          Crude risk difference & \textcolor{resultred}{\textbf{\(+0.76\) pp}}
+        \end{tabular}}
     \end{column}
     \begin{column}{0.44\textwidth}
       \decisionbox{Before interpreting it}{
-        Write the population, treatment, comparator, time zero, outcome
-        window, and causal contrast you need.}
+        Specify the population, treatment, comparator, time zero, outcome
+        window, and contrast.}
     \end{column}
   \end{columns}
 
@@ -73,11 +75,11 @@
 \begin{frame}{The Navigator is an eight-step spine}
   \frametag{Overview}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.68\textwidth}
+    \begin{column}{0.66\textwidth}
       \centering
-      \screensnap[0.64]{art/navigator-overview.png}
+      \screensnap[0.58]{art/navigator-overview.png}
     \end{column}
-    \begin{column}{0.28\textwidth}
+    \begin{column}{0.30\textwidth}
       \footnotesize
       \begin{enumerate}
         \item Question
@@ -91,12 +93,12 @@
       \end{enumerate}
       \vspace{0.1cm}
       {\scriptsize\itshape\color{black!55}
-        Each answer constrains the next.}
+        Each step constrains the next.}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Checkpoint 1: specify Step 1 before the reveal}
+\begin{frame}{Checkpoint 1: specify the causal question}
   \frametag{Question}
   \small
   \begin{tabular}{>{\bfseries\color{navorange}}p{0.21\textwidth}p{0.68\textwidth}}
@@ -116,7 +118,7 @@
 \begin{frame}{Checkpoint 2: map model to data}
   \frametag{Model + data}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.47\textwidth}
+    \begin{column}{0.46\textwidth}
       {\small\bfseries\color{navorange}BASELINE NODES}
       \begin{itemize}
         \item age
@@ -127,25 +129,24 @@
       \end{itemize}
 
       \decisionbox{Model decision}{
-        Draw or describe the arrows. Which baseline variables belong in the
-        adjustment set, and why?}
+        Draw the arrows. Which baseline variables belong in the adjustment set?
+        Why?}
     \end{column}
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.50\textwidth}
       {\small\bfseries\color{navorange}OBSERVED DATA}
 
       \vspace{0.18cm}
-      \begin{tabular}{>{\bfseries}lr}
+      \begin{tabular}{@{}>{\bfseries}lr@{}}
         People & 5,000\\
         Vaccinated & 1,627\\
         Pneumonia events & 334\\
         Missingness & none\\
-        Censoring & none in the fixed data
+        Censoring & none in fixed data
       \end{tabular}
 
-      \vspace{0.4cm}
+      \vspace{0.32cm}
       \decisionbox{Mapping decision}{
-        Can every Step 1 element be represented by a variable and measurement
-        window in these data?}
+        Can each Step 1 element map to a variable and time window?}
     \end{column}
   \end{columns}
 \end{frame}
@@ -171,7 +172,7 @@
 \begin{frame}{Checkpoint 4: target before method}
   \frametag{Target + method}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.52\textwidth}
       {\small\bfseries\color{navorange}CAUSAL TARGET}
       \[
         E[Y^{1}] - E[Y^{0}]
@@ -181,19 +182,19 @@
       {\small
       \[
         \begin{aligned}
-        E_W\big[&E(Y\mid A=1,W)\\
-                &-E(Y\mid A=0,W)\big]
+          \psi &= E_W\{Q(1,W)-Q(0,W)\},\\
+          Q(a,W) &= E(Y\mid A=a,W).
         \end{aligned}
       \]}
 
       \decisionbox{Link}{
-        Which Step 4 assumptions make these quantities coincide?}
+        Which Step 4 assumptions identify this target?}
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.44\textwidth}
       {\small\bfseries\color{navorange}PROPOSED ESTIMATOR}
 
       \vspace{0.1cm}
-      {\fontsize{30}{34}\selectfont\bfseries\color{resultgreen}TMLE}
+      {\fontsize{24}{28}\selectfont\bfseries\color{resultgreen}TMLE}
 
       \begin{itemize}
         \item \(\bar Q(A,W)\): outcome regression
@@ -202,35 +203,36 @@
       \end{itemize}
 
       \decisionbox{Boundary}{
-        Name one problem TMLE can reduce and one problem it cannot repair.}
+        What can TMLE reduce---and what can it not repair?}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Checkpoint 4 continued: plan how the conclusion could fail}
+\begin{frame}{Checkpoint 4: plan how the conclusion could fail}
   \frametag{Sensitivity}
   \small
-  \begin{tabular}{>{\bfseries\color{navorange}}p{0.28\textwidth}p{0.62\textwidth}}
+  {\setlength{\tabcolsep}{3pt}%
+  \begin{tabular}{@{}>{\bfseries\color{navorange}}L{0.24\linewidth}L{0.70\linewidth}@{}}
     Unmeasured confounding &
-      Could residual frailty or healthcare-seeking change the direction?\\[0.42cm]
-    \hline\\[-0.30cm]
+      Could residual frailty or care seeking reverse the direction?\\[0.26cm]
+    \hline\\[-0.26cm]
     Outcome error &
-      Would imperfect pneumonia coding change the direction or magnitude?\\[0.42cm]
-    \hline\\[-0.30cm]
+      Could pneumonia coding change direction or magnitude?\\[0.26cm]
+    \hline\\[-0.26cm]
     Selection &
-      What if death, disenrollment, or EHR capture is informative?\\[0.42cm]
-    \hline\\[-0.30cm]
+      Could death, disenrollment, or EHR capture be informative?\\[0.26cm]
+    \hline\\[-0.26cm]
     Estimation &
-      Do alternative learners or propensity truncation change the result?
-  \end{tabular}
+      Do learners or propensity truncation change the result?
+  \end{tabular}}
 
-  \vspace{0.3cm}
+  \vspace{0.28cm}
   \decisionbox{Choose one gap}{
-    Specify one sensitivity analysis or one new source of evidence.
-    A confidence interval does not measure these causal gaps.}
+    Specify one analysis or source of evidence. A confidence interval does not
+    measure these causal gaps.}
 \end{frame}
 
-\begin{frame}{Checkpoint 5: disciplined conclusion}
+\begin{frame}{Checkpoint 5: write a disciplined conclusion}
   \frametag{After result reveal}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.48\textwidth}
@@ -252,8 +254,8 @@
 
   \vspace{0.55cm}
   \decisionbox{Accept, correct, or reject}{
-    For each statement, cite one assumption or limitation. Rewrite the weaker
-    statement so it says no more than the design supports.}
+    For each claim, cite one assumption or limitation. Rewrite the weaker claim
+    so it says no more than the design supports.}
 \end{frame}
 
 \begin{frame}{Your turn: defend one Navigator entry}
@@ -274,9 +276,8 @@
 
   \vspace{0.4cm}
   \decisionbox{Use the answer key after the exercise}{
-    Compare your reasoning with
-    \texttt{causal-roadmap-pneumonia-worked-example.md}; do not substitute it
-    for your argument.}
+    Compare your reasoning with the completed worked example; do not substitute
+    it for your argument.}
 \end{frame}
 
 \end{document}
