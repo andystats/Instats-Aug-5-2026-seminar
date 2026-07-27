@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.68in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\definecolor{accent}{HTML}{4A9EFF}
+\definecolor{slate}{HTML}{23373B}
+\definecolor{navorange}{HTML}{EA700D}
+\definecolor{softgray}{HTML}{F3F6F7}
+
+\newcommand{\answerline}{%
+  \par\vspace{0.16in}\noindent\color{black!42}\rule{\linewidth}{0.55pt}\color{black}
+  \par\vspace{0.12in}}
+
+\newcommand{\field}[1]{%
+  {\color{slate}\bfseries #1}\answerline}
+
+\begin{document}
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[slate] (current page.north west) rectangle
+    ([yshift=-1.22in]current page.north east);
+  \fill[accent] (current page.north west) rectangle
+    ([xshift=0.10in,yshift=-1.22in]current page.north west);
+  \node[anchor=north east,fill=white,rounded corners=2pt,inner sep=4pt]
+    at ([xshift=-0.56in,yshift=-0.26in]current page.north east)
+    {\includegraphics[width=1.65in]{art/InStats_RWL.png}};
+  \node[
+    anchor=west,text=white,text width=5.7in,align=left,
+    font=\bfseries\fontsize{21}{25}\selectfont
+  ] at ([xshift=0.72in,yshift=-0.61in]current page.north west)
+    {Before Your Next Model Is Fit};
+\end{tikzpicture}
+
+\vspace*{0.82in}
+
+\begin{tikzpicture}
+  \node[
+    fill=softgray,draw=black!14,rounded corners=2pt,
+    text width=6.78in,align=left,inner sep=10pt
+  ] {%
+    {\color{accent}\small\bfseries RETURN TO THE OPENING QUESTION}\par
+    \vspace{0.06in}
+    {\large\itshape Which causal claim in your current work feels least
+      defensible?}
+  };
+\end{tikzpicture}
+
+\vspace{0.17in}
+{\color{navorange}\large\bfseries My commitment}
+\vspace{0.06in}
+
+\field{In this study:}
+
+{\color{slate}\bfseries Before I fit a model, I will:}
+\answerline
+\answerline
+
+{\color{slate}\bfseries The evidence or revision trigger I will record is:}
+\answerline
+\answerline
+
+\vspace{0.02in}
+{\color{navorange}\large\bfseries Keep the claim in view}
+\vspace{0.06in}
+
+\field{The claim I hope to make is:}
+\field{The most important limit I must keep visible is:}
+
+\vspace{0.02in}
+\begin{minipage}[t]{0.48\linewidth}
+  \field{First collaborator or reviewer:}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \field{Date I will begin:}
+\end{minipage}
+
+\vfill
+\begin{tikzpicture}
+  \node[
+    fill=slate,text=white,rounded corners=2pt,
+    text width=6.78in,align=center,inner sep=9pt
+  ] {%
+    \bfseries Data can deceive. Make every causal claim leave an audit trail.};
+\end{tikzpicture}
+
+\end{document}
