@@ -1,0 +1,17 @@
+dag {
+  A [exposure]
+  Y [outcome]
+  age
+  priorPneumonia
+  priorVaccine
+
+  age -> priorPneumonia
+  age -> priorVaccine
+  age -> A
+  age -> Y
+  priorPneumonia -> A
+  priorPneumonia -> Y
+  priorVaccine -> A
+  priorVaccine -> Y
+  A -> Y
+}
