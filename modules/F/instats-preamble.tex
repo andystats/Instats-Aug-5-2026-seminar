@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Shared Beamer styling for Module F.
+% Matches the established Module D visual system:
+% metropolis, slate title band, InStats blue accent, no footer.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric}
+
+\definecolor{accent}{HTML}{4A9EFF}
+\definecolor{slate}{HTML}{23373B}
+\definecolor{navorange}{HTML}{EA700D}
+\definecolor{resultgreen}{HTML}{1C8F6A}
+\definecolor{resultred}{HTML}{C95B5D}
+\definecolor{softgray}{HTML}{F3F6F7}
+
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{alerted text}{fg=accent}
+\setbeamercolor{progress bar}{fg=accent,bg=accent}
+\setbeamerfont{frametitle}{series=\bfseries}
+\metroset{progressbar=frametitle,block=fill}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{itemize item}{\color{navorange}\raise0.15ex\hbox{\scriptsize$\blacksquare$}}
+\setbeamertemplate{itemize subitem}{\color{navorange}\raise0.15ex\hbox{\tiny$\blacksquare$}}
+\makeatletter
+\setlength{\metropolis@progressinheadfoot@linewidth}{1.6pt}
+\makeatother
+
+\newcommand{\instatstitle}{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north east]
+        at ([xshift=-0.6cm,yshift=-0.5cm]current page.north east)
+        {\includegraphics[width=2.9cm]{art/InStats_RWL.png}};
+
+      \node[anchor=west,text=slate,text width=12.2cm,align=left,
+            font=\bfseries\fontsize{27}{31}\selectfont]
+        at ([xshift=1.4cm,yshift=1.55cm]current page.west)
+        {\inserttitle};
+      \node[anchor=west,text=accent,text width=11.8cm,align=left,
+            font=\fontsize{14.5}{18}\selectfont]
+        at ([xshift=1.42cm,yshift=0.68cm]current page.west)
+        {\insertsubtitle};
+
+      \draw[black!16,line width=0.5pt]
+        ([xshift=1.42cm,yshift=0.02cm]current page.west) --
+        ([xshift=7.6cm,yshift=0.02cm]current page.west);
+
+      \node[anchor=west,text=slate,
+            font=\bfseries\fontsize{10.5}{13}\selectfont]
+        at ([xshift=1.42cm,yshift=-0.62cm]current page.west)
+        {\insertinstitute};
+      \node[anchor=west,text=black!55,
+            font=\fontsize{9.5}{12}\selectfont]
+        at ([xshift=1.42cm,yshift=-1.18cm]current page.west)
+        {\insertdate};
+      \node[anchor=west,text=black!60,
+            font=\fontsize{9.5}{12}\selectfont]
+        at ([xshift=1.42cm,yshift=-2.35cm]current page.west)
+        {\insertauthor};
+    \end{tikzpicture}
+  \end{frame}}
+
+\newcommand{\frametag}[1]{%
+  \begin{textblock*}{2.7cm}(13.1cm,0.31cm)
+    \raggedleft\color{white!85}\scriptsize #1
+  \end{textblock*}}
+
+\newcommand{\stepbadge}[1]{%
+  \tikz[baseline=(n.base)]\node[
+    circle,fill=navorange,text=white,font=\bfseries\large,
+    minimum size=0.72cm,inner sep=0pt
+  ] (n) {#1};}
+
+\newcommand{\decisionbox}[2]{%
+  \begin{tikzpicture}
+    \node[
+      draw=navorange!70,fill=navorange!6,rounded corners=2pt,
+      text width=0.92\linewidth,align=left,inner sep=7pt
+    ] {\textcolor{navorange}{\bfseries #1}\\[-1pt]#2};
+  \end{tikzpicture}}
+
+\newcommand{\evidencebox}[2]{%
+  \begin{tikzpicture}
+    \node[
+      draw=black!16,fill=softgray,rounded corners=2pt,
+      text width=0.92\linewidth,align=left,inner sep=7pt
+    ] {\textcolor{navorange}{\bfseries #1}\\[-1pt]#2};
+  \end{tikzpicture}}
+
+\newcommand{\screensnap}[2][0.61]{%
+  \IfFileExists{#2}{%
+    \includegraphics[height=#1\textheight,keepaspectratio]{#2}%
+  }{%
+    \begin{tikzpicture}
+      \node[
+        draw=accent,dashed,very thick,rounded corners,fill=accent!6,
+        minimum width=0.88\linewidth,minimum height=#1\textheight,
+        align=center,text width=0.78\linewidth
+      ] {{\color{accent}\bfseries SCREENSHOT}\\[3pt]\texttt{#2}};
+    \end{tikzpicture}}}
+
+\newcommand{\syntheticnote}{%
+  {\scriptsize\itshape\color{black!50}Synthetic teaching result --- not clinical evidence.}}
+
+\newcommand{\riskbars}{%
+  \begin{tikzpicture}[x=1.65cm,y=0.72cm]
+    \foreach \y in {-4,-3,-2,-1,0,1} {
+      \draw[black!10] (-0.55,\y) -- (4.55,\y);
+      \node[anchor=east,text=black!55,font=\scriptsize] at (-0.62,\y) {\y.0};
+    }
+    \draw[black!35] (-0.55,0) -- (4.55,0);
+    \fill[resultred]  (-0.35,0) rectangle (0.35,0.76);
+    \fill[resultgreen] (0.65,0) rectangle (1.35,-3.28);
+    \fill[resultgreen] (1.65,0) rectangle (2.35,-2.94);
+    \fill[resultgreen] (2.65,0) rectangle (3.35,-3.04);
+    \node[font=\scriptsize\bfseries,text=slate] at (0,1.04) {$+0.76$};
+    \node[font=\scriptsize\bfseries,text=slate] at (1,-3.58) {$-3.28$};
+    \node[font=\scriptsize\bfseries,text=slate] at (2,-3.24) {$-2.94$};
+    \node[font=\scriptsize\bfseries,text=slate] at (3,-3.34) {$-3.0$};
+    \node[font=\scriptsize,align=center] at (0,-4.48) {Crude};
+    \node[font=\scriptsize,align=center] at (1,-4.48) {G-comp};
+    \node[font=\scriptsize,align=center] at (2,-4.48) {Hajek\\IPW};
+    \node[font=\scriptsize,align=center] at (3,-4.48) {TMLE};
+    \node[anchor=west,text=black!55,font=\scriptsize] at (-0.55,1.55)
+      {12-month risk difference (percentage points)};
+  \end{tikzpicture}}

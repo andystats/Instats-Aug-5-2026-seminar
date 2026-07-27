@@ -1,57 +1,99 @@
-# Module F — Live Navigator workshop
+# Module F — Live Causal Navigator workshop
 
-## Purpose
+Module F is the workshop's central participant activity. The facilitator
+operates the Causal Navigator while participants co-author an eight-step audit
+and defend one entry in a decision log.
 
-Module F is the standalone workshop that follows Module D's causal-roadmap
-introduction. It gives a very brief orientation to the current Causal Navigator,
-then carries the pneumonia-vaccine example through all eight steps using the
-no-login manual route.
+The example uses a fixed **synthetic teaching dataset** with 5,000 adults. Age
+is centered at 65; the cohort is not restricted to adults aged 65 or older.
+Nothing here is clinical evidence about pneumococcal-vaccine effectiveness.
 
-The example uses synthetic teaching data only. The cohort contains 5,000 adults
-whose age is centered at 65; it is not restricted to people aged 65 or older.
-Nothing in these materials is clinical evidence about vaccine effectiveness.
+## Participant start
 
-## Course-ready materials
+1. Open `Pneumonia_Navigator_Student_Guide.pdf`.
+2. Open <https://navigator.tao-rwd.com/> and choose the manual/no-login route.
+3. Make each decision before the prepared entry is revealed.
+4. At Step 8, export the completed Navigator record as Markdown.
+5. Use `causal-roadmap-pneumonia-worked-example.md` only after the activity.
 
-- `SegmentF_Live_Navigator.pptx` — editable 16-slide facilitator deck
-- `SegmentF_Live_Navigator.pdf` — course-site PDF of the facilitator deck
-- `Pneumonia_Navigator_Student_Guide.pptx` — editable 10-slide participant deck
-- `Pneumonia_Navigator_Student_Guide.pdf` — course-site participant PDF
-- `causal-roadmap-pneumonia-worked-example.md` — completed eight-step Navigator record
-- `pneumonia-navigator-student-guide.md` — concise written participant handout
-- `facilitator-live-demo.md` — 55-minute run-of-show, paste order, and recovery plan
+The participant deliverable is one Navigator entry they can accept, correct, or
+reject, supported by evidence, a revision trigger, and its downstream
+consequence.
+
+## Canonical workshop materials
+
+- `SegmentF_Live_Navigator.tex` — canonical 16-slide facilitator source
+- `SegmentF_Live_Navigator.pdf` — compiled facilitator deck
+- `Pneumonia_Navigator_Student_Guide.tex` — canonical participant workbook
+- `Pneumonia_Navigator_Student_Guide.pdf` — compiled participant workbook
+- `instats-preamble.tex` — shared Beamer styling
+- `facilitator-live-demo.md` — 55-minute run of show and recovery plan
+- `pneumonia-navigator-student-guide.md` — printable decision-log prompts
+- `causal-roadmap-pneumonia-worked-example.md` — gated answer key
+- `WORKSHOP_REVIEW.md` — conversion and workshop review
+- `REPRODUCIBILITY.md` — technical audit and known limitations
 - `pneumonia.dagitty.txt` — complete five-node, nine-edge DAGitty specification
-- `data/pneumonia_data.csv` — fixed synthetic workshop dataset
-- `code/pneumonia_navigator_tmle.R` — reproducible crude, g-computation, IPW, and TMLE analysis
-- `outputs/pneumonia_results.csv` — analysis results used in the decks
-- `outputs/pneumonia_diagnostics.csv` — counts, overlap diagnostics, and package versions
-- `art/` — tactical screenshots captured from the production Navigator on 2026-07-26
+- `data/pneumonia_data.csv` — fixed synthetic participant-level dataset
+- `code/pneumonia_navigator_tmle.R` — crude, g-computation, IPW, and TMLE analysis
+- `outputs/` — committed results and diagnostics
+- `art/` — normalized PNG screenshots used by the Beamer sources
 
-## Live route
+The two `.pptx` files are retained as source drafts from the original
+PowerPoint development. The `.tex` files are now canonical; do not hand-edit the
+compiled PDFs.
 
-Open <https://navigator.tao-rwd.com/>, choose **Causal Navigator**, and use the
-manual/no-login path. The facilitator guide contains the exact paste order. The
-completed Markdown record is the answer key and a fallback if the live site is
-unavailable.
+## Build the Beamer PDFs
 
-## Reproduce the worked result
+From this directory:
 
-From this directory, run:
-
-```powershell
-& 'C:\Program Files\R\R-4.5.2\bin\Rscript.exe' 'code/pneumonia_navigator_tmle.R'
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error SegmentF_Live_Navigator.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error Pneumonia_Navigator_Student_Guide.tex
 ```
 
-The seeded TMLE estimate is a 12-month risk difference of -0.0304 (95% CI
--0.0461 to -0.0147). The crude risk difference is +0.0076, illustrating the
-intended sign reversal from confounding by indication. The independent
-intervention simulation has a risk-difference truth of approximately -0.037.
+Both decks use a 16:9 layout and require a standard TeX Live installation with
+the Metropolis Beamer theme. Screenshots in `art/` are already normalized as
+PNG files.
 
-## Provenance and continuity
+## Reproduce the analysis
 
-The fixed dataset and data-generating process come from
-`ops/materials/sessions/Session 1a/R example/pneumonia_vaccine_example.Rmd`.
-Module F standardizes on this Session 1 example so the story, DAG, counts, and
-results remain consistent with Module D and the Module G TMLE handoff.
+With R and the packages `tmle`, `SuperLearner`, `glmnet`, and `ranger`
+installed:
+
+```bash
+Rscript code/pneumonia_navigator_tmle.R
+```
+
+The fixed-data results are:
+
+| Analysis | 12-month risk difference |
+| --- | ---: |
+| Crude association | +0.76 percentage points |
+| Parametric g-computation | -3.28 percentage points |
+| Hájek IPW | -2.94 percentage points |
+| TMLE | -3.0 percentage points (95% CI -4.6 to -1.5) |
+
+TMLE changes slightly across package versions, so teaching materials use the
+rounded result above and the script records package versions in the diagnostics
+file.
+
+## Interpretation limits
+
+- The data generator and a truth calculation have not yet been archived.
+  Therefore the materials do not claim a known finite-simulation truth or
+  exchangeability “by construction.”
+- The fixed dataset cannot certify exchangeability, consistency, positivity,
+  or no interference. These assumptions are stipulated for the exercise and
+  audited explicitly.
+- The fitted parametric propensity-score range (0.0765–0.9091) is an overlap
+  diagnostic, not proof of structural positivity.
+- No repeated simulation, estimator bias, or RMSE study is included.
+- The descriptive +3.0 percentage-point tipping point is not a formal E-value.
+- Module G currently uses a different simulation. Treat the Module G handoff as
+  planned work until its data and estimand are aligned with Module F.
+
+For a motivating open-access discussion of causal roadmaps and target-trial
+thinking, see [Dang and Balzer, DOI 10.1056/AIp2400727](https://doi.org/10.1056/AIp2400727).
+The publisher PDF is not redistributed here.
 
 [Return to the seminar overview](../../README.md)
