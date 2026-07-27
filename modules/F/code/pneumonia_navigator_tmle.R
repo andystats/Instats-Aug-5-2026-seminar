@@ -2,10 +2,10 @@
 
 # Fixed-data analysis for the Module F pneumonia teaching example.
 #
-# This script begins with the archived synthetic CSV in data/. It does not
-# generate that dataset, reconstruct a data-generating mechanism, or calculate
-# a known causal truth. It estimates the crude association, parametric
-# g-computation and Hajek IPW risk differences, and a TMLE risk difference.
+# This script begins with the archived synthetic CSV in data/. The companion
+# generator and model-implied benchmark are archived in Module G. This script
+# estimates the crude association, parametric g-computation and Hajek IPW risk
+# differences, and a TMLE risk difference for the same fixed cohort.
 #
 # The Super Learner seed improves repeatability within a fixed software
 # environment. Exact TMLE output can still change with R or package versions.
@@ -130,7 +130,9 @@ fit <- tmle::tmle(
   A = A,
   W = W,
   Q.SL.library = sl_library,
-  g.SL.library = sl_library
+  g.SL.library = sl_library,
+  V.Q = 3,
+  V.g = 3
 )
 
 ate <- fit$estimates$ATE
@@ -162,7 +164,8 @@ diagnostics <- data.frame(
     "propensity_min", "propensity_max",
     "tmle_standard_error", "tmle_p_value",
     "R_version", "tmle_version", "SuperLearner_version",
-    "glmnet_version", "ranger_version"
+    "glmnet_version", "ranger_version",
+    "superlearner_seed", "tmle_cv_folds"
   ),
   value = c(
     n, sum(A == 1), sum(A == 0), sum(Y == 1),
@@ -173,7 +176,8 @@ diagnostics <- data.frame(
     as.character(utils::packageVersion("tmle")),
     as.character(utils::packageVersion("SuperLearner")),
     as.character(utils::packageVersion("glmnet")),
-    as.character(utils::packageVersion("ranger"))
+    as.character(utils::packageVersion("ranger")),
+    2026, 3
   ),
   stringsAsFactors = FALSE
 )

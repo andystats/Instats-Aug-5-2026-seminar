@@ -33,7 +33,7 @@ The public participant page is:
 - `index.html` — student-facing participant-kit page
 - `art/InStats_RWL.png` — seminar logo used by the PDFs
 
-The participant-kit page links to the canonical Module D and F materials rather
+The participant-kit page links to the canonical Module D, F, and G materials rather
 than duplicating them. This avoids file drift and keeps the completed pneumonia
 roadmap clearly separated from the reusable blank templates.
 
@@ -52,14 +52,14 @@ packages.
 
 ## Delivery boundary
 
-The close is intentionally independent of Module G. It does not name Module
-G's dataset, numerical result, estimator, or notebook. The synthesis remains
-valid if that segment changes.
+The close remains intentionally estimator-agnostic, while the participant kit
+links the finalized Module G live walkthrough and optional technical supplement.
+The synthesis remains valid if the estimation segment changes.
 
-The pneumonia files linked from Module F use fixed synthetic teaching data.
-They are not clinical evidence. The archive does not contain the data generator
-or an intervention-level causal truth, so the kit does not claim estimator
-bias, RMSE, or recovery of a known truth.
+The pneumonia files use fixed synthetic teaching data and are not clinical
+evidence. Module G archives the generator and a model-implied frozen-cohort
+benchmark. The kit does not present that benchmark as an exact truth and does
+not claim estimator bias, RMSE, or real-world identification.
 
 ## Credits
 

@@ -1,27 +1,100 @@
-# Module G — TMLE
+# Module G - TMLE
 
-## Purpose
+Module G carries the study plan created in the Causal Navigator into estimation.
+The live and technical versions use the same fixed synthetic pneumonia cohort,
+treatment, outcome, adjustment set, estimand, learner library, and runtime
+settings as Module F.
 
-Compare crude, g-computation, IPW, and TMLE estimates using simulated teaching
-data. Review overlap, uncertainty, and what TMLE cannot repair.
+The materials are teaching examples, not clinical evidence about pneumococcal
+vaccination.
 
-## Walkthrough path
+## Start with the live version
 
-1. Understand the simulated data and causal structure.
-2. State the target estimand.
-3. Fit the outcome and treatment mechanisms.
-4. Perform the targeting step.
-5. Estimate the effect and uncertainty.
-6. Inspect overlap and other diagnostics.
-7. Translate the result back to the scientific question.
+- [Live Beamer deck](SegmentG_TMLE.pdf) - 15-slide workshop presentation
+- [Live Beamer source](SegmentG_TMLE.tex)
+- [Streamlined R example](pneumonia_tmle_example.R)
 
-## Materials planned here
+From the repository root:
 
-- `code/` — starter and completed R scripts
-- `data/` — simulated pneumonia data
-- `figures/` — overlap and result diagnostics
-- `notes/` — annotated walkthrough and interpretation
+```sh
+Rscript modules/G/pneumonia_tmle_example.R
+```
 
-**Status:** Working lab ready; analysis materials will be added next.
+The live script reports crude association, parametric g-computation, Hajek IPW,
+and TMLE on one risk-difference scale.
+
+## Optional technical supplement
+
+- [Technical supplement](SegmentG_TMLE_Technical_Supplement.pdf) - 32 slides
+- [Technical Beamer source](SegmentG_TMLE_Technical_Supplement.tex)
+- [Comprehensive R example](pneumonia_tmle_technical.R)
+
+The supplement opens the initial outcome regression, treatment mechanism,
+clever covariate, targeting update, plug-in contrast, efficient influence
+function, uncertainty calculation, and package implementation.
+
+```sh
+Rscript modules/G/pneumonia_tmle_technical.R
+```
+
+## Synthetic data and provenance
+
+- [Frozen teaching cohort](data/pneumonia_data.csv)
+- [Standalone `simcausal` generator](simulate_pneumonia_data.R)
+- [Model-implied benchmark](outputs/pneumonia_generator_benchmark.csv)
+
+Run the generator from the repository root:
+
+```sh
+Rscript modules/G/simulate_pneumonia_data.R
+```
+
+It writes `data/pneumonia_data_regenerated.csv` without overwriting the frozen
+cohort. That regenerated file is ignored by Git. The RNG advance reproduces the
+state of the original knitted notebook, in which DAG construction and rendering
+occurred after the seed was set.
+
+The generator also calculates a deterministic model-implied risk difference of
+-4.04 percentage points for the frozen cohort's covariate distribution. This is
+a teaching-DGP benchmark, not an observed quantity, an exact superpopulation
+truth, or evidence about a real study.
+
+## Reference results
+
+| Analysis | 12-month risk difference |
+| --- | ---: |
+| Crude association | +0.76 percentage points |
+| Parametric g-computation | -3.28 percentage points |
+| Hajek IPW | -2.94 percentage points |
+| TMLE | -3.05 percentage points (95% CI -4.60 to -1.50) |
+| Model-implied benchmark for the frozen cohort | -4.04 percentage points |
+
+The comprehensive script writes versioned results, diagnostics, session
+information, and the two figures used by the decks to `outputs/` and `art/`.
+
+## R requirements
+
+Use a current R installation with these packages:
+
+```r
+install.packages(c(
+  "tmle", "SuperLearner", "glmnet", "ranger", "ggplot2", "simcausal"
+))
+```
+
+The committed `outputs/session_info.txt` records the environment used for the
+reference technical run. Exact Super Learner results can still vary across
+software versions.
+
+## Build the Beamer PDFs
+
+From `modules/G`:
+
+```sh
+latexmk -pdf -interaction=nonstopmode -halt-on-error SegmentG_TMLE.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error SegmentG_TMLE_Technical_Supplement.tex
+```
+
+Both decks use a 16:9 Beamer layout and include a source note on every slide.
 
 [Return to the seminar overview](../../README.md)

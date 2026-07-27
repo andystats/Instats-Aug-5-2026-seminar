@@ -5,12 +5,11 @@ Facilitator answer key: release after the participant interpretation exercise.
 Worked example: pneumococcal vaccination and 12-month pneumonia
 hospitalization.
 
-> **Evidence status.** This module uses a fixed synthetic teaching dataset. It
-> is not clinical evidence. The module archives the CSV, DAG, analysis script,
-> and analysis outputs, but it does not archive the data generator or an
-> intervention-level causal truth. The causal model and identifying assumptions
-> below are stipulated for the exercise; they are not proven by the fixed
-> observed data.
+> **Evidence status.** This module uses a fixed synthetic teaching dataset and
+> is not clinical evidence. The CSV, DAG, analysis, and outputs are archived
+> here; the companion generator and model-implied benchmark are archived in
+> Module G. The generator makes the teaching construction auditable, but the
+> observed data do not prove the identifying assumptions for a real study.
 
 ## Step 1: Define Causal Question
 
@@ -64,11 +63,10 @@ Fixed synthetic point-treatment cohort framed as a target-trial emulation.
 
 ### Stipulated Baseline Common Causes \(W\)
 
-Age, prior pneumonia, and prior pneumococcal vaccination are treated as baseline
-common causes of current vaccination and pneumonia hospitalization for this
-exercise. This role is a teaching-model stipulation; the missing generator
-prevents independent verification that the fixed data were produced by exactly
-this causal structure.
+Age, prior pneumonia, and prior pneumococcal vaccination are baseline common
+causes of current vaccination and pneumonia hospitalization in the archived
+teaching generator. That verifies the synthetic construction, not the causal
+structure of a real health-system study.
 
 ### Potential Unmeasured Common Causes in Real Data
 
@@ -102,10 +100,10 @@ pneumonia, and prior vaccination.
 
 ### Data Source and Reproducibility Status
 
-`data/pneumonia_data.csv` is a fixed synthetic teaching dataset with one row per
-person. The module does not include the generator code, so the generation
-mechanism, generation seed, and intervention-level causal truth cannot be
-reproduced from this module alone.
+`data/pneumonia_data.csv` is the fixed synthetic teaching dataset with one row
+per person. Module G archives the generator, seed reconstruction, and a
+deterministic model-implied benchmark for this frozen covariate distribution.
+The fixed CSV remains the canonical observed dataset for the workshop.
 
 ### Data Structure
 
@@ -139,11 +137,11 @@ the baseline encounter.
 
 ### Exchangeability
 
-Conditional exchangeability given age, prior pneumonia, and prior vaccination
-is stipulated for the workshop. It is not testable from the fixed observed data,
-and the absent generator means it cannot be verified from the archived module.
-In real EHR data it would require substantive evidence and would remain
-uncertain.
+The teaching generator contains no common causes of vaccination and outcome
+outside age, prior pneumonia, and prior vaccination, so conditional
+exchangeability is part of the synthetic construction. It is not testable from
+the fixed observed data. In real EHR data it would require substantive evidence
+and would remain uncertain.
 
 ### Positivity
 
@@ -287,14 +285,15 @@ The agreement in direction illustrates the effect of connecting the causal
 question, model, assumptions, estimand, and estimator.
 
 Estimator agreement does not prove exchangeability, positivity, consistency, or
-no interference. It also does not establish that the stipulated DAG matches the
-unarchived generator.
+no interference in an applied study. The archived generator matches the
+teaching DAG by construction; that validates only the synthetic example.
 
 ### Limitations
 
-- fixed synthetic data;
-- generator and intervention-level causal truth not archived;
-- causal model and identifying assumptions stipulated rather than demonstrated;
+- one fixed synthetic sample;
+- a deliberately simplified generator and a frozen-cohort model benchmark, not
+  an exact superpopulation truth;
+- identifying assumptions that would still require evidence in a real study;
 - only three baseline adjustment variables;
 - no recorded missingness or censoring;
 - simplified treatment versions;
@@ -316,14 +315,13 @@ unarchived generator.
 | Complete teaching DAG | Archived at `pneumonia.dagitty.txt` |
 | Analysis script | Archived at `code/pneumonia_navigator_tmle.R` |
 | Numerical outputs | Archived in `outputs/` |
-| Data-generator code | Not archived in Module F |
-| Intervention-level causal truth | Not archived or independently verifiable in Module F |
+| Data-generator code | Archived at `../G/simulate_pneumonia_data.R` |
+| Model-implied frozen-cohort benchmark | Archived at `../G/outputs/pneumonia_generator_benchmark.csv` |
 
 ## Cross-module Handoff
 
-Do not state that Module G implements this exact worked example until Module G
-uses the same fixed dataset, variables, estimand, and numerical results. Until
-then, the safe handoff is:
+Module G directly implements this worked example with the same fixed dataset,
+variables, adjustment set, estimand, learner library, and reporting scale:
 
 > Estimation is downstream of the scientific question, causal model,
 > identification argument, and estimand developed here.

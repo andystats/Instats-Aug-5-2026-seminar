@@ -18,10 +18,10 @@ Keep these constraints visible throughout the session:
 
 - The supplied data are fixed, synthetic teaching data. They contain no patient
   data and are not evidence about clinical vaccine effectiveness.
-- The module archives the fixed CSV, analysis script, DAG, and analysis outputs.
-  It does **not** archive the data generator or an intervention-level causal
-  truth. Do not present a simulation truth or claim that an estimator recovered
-  it.
+- The fixed CSV, DAG, analysis, and outputs are archived here; Module G
+  archives the generator and a -4.04-point model-implied benchmark for the
+  frozen cohort. Do not call that benchmark an exact superpopulation truth or
+  claim that an estimator recovered it.
 - Exchangeability, consistency, and no interference are stipulated for the
   exercise; the fixed observed data cannot prove them.
 - The fitted parametric propensity-score range, approximately 0.0765 to 0.9091,
@@ -55,9 +55,8 @@ Keep these constraints visible throughout the session:
 6. Use the no-login manual route and do not open the AI panel.
 7. If browser state is not clean, use **Reset** and confirm the prompt.
 8. Rehearse the static fallback using the screenshots in `art/`.
-9. Check the Module G slides before promising a direct handoff. Module G must use
-   this same dataset, estimand, and results before the transition is presented as
-   continuous.
+9. Keep the Module G live deck ready for the direct handoff. It uses this same
+   dataset, estimand, adjustment set, and reporting scale.
 
 ## 55-minute co-authored flow
 
@@ -72,7 +71,7 @@ Keep these constraints visible throughout the session:
 | 39-44 min | Step 7: sensitivity | Choose one causal or measurement gap and specify an analysis or new evidence that would illuminate it | Separate sampling uncertainty from causal uncertainty |
 | 44-49 min | Result reveal | Record g-computation, IPW, and TMLE; compare direction and magnitude | Reveal the results together and emphasize that agreement does not validate the assumptions |
 | 49-54 min | Step 8: interpretation | Accept, correct, or reject a proposed conclusion; cite one assumption and one limitation | Release the completed worked example only after participants have committed to an interpretation |
-| 54-55 min | Export and close | Save the decision log and exported Markdown record | Export the study summary; use a generic estimator handoff unless Module G has been aligned |
+| 54-55 min | Export and close | Save the decision log and exported Markdown record | Export the study summary and hand off to the aligned Module G live example |
 
 ## Tactical Navigator sequence
 
@@ -132,7 +131,7 @@ Avoid:
 
 > The vaccine prevents pneumonia in real patients.
 
-Also avoid saying that the analysis recovered a known truth, proved
+Also avoid saying that the analysis recovered an exact truth, proved
 exchangeability, proved positivity, or demonstrated estimator bias or RMSE.
 
 ## Recovery plan
@@ -147,6 +146,5 @@ exchangeability, proved positivity, or demonstrated estimator bias or RMSE.
   interval of -4.6 to -1.5 and continue.
 - If time is lost, shorten the interface orientation and Step 3 typing. Preserve
   the Step 4 audit, Step 8 interpretation, and final decision defense.
-- If Module G is still numerically misaligned, close with “estimation is
-  downstream of the science” and do not claim that the next module implements
-  this exact worked example.
+- If time is short, close with “estimation is downstream of the science” and
+  point participants to the aligned Module G live deck for the full walkthrough.

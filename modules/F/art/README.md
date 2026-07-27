@@ -11,8 +11,7 @@ content. The canonical facilitator deck uses only the home, overview, Step 1,
 and Step 5 captures; it renders the audited model, identification discussion,
 estimator limits, sensitivity prompts, and results as native Beamer content.
 
-Use `outputs/pneumonia_results.csv`, the analysis script, and the rounded
-reporting convention in the Module F README for numerical results. The
-data-generating script and truth calculation have not yet been archived, so
-none of these screenshots should be used to support a claim of known simulation
-truth.
+Use outputs/pneumonia_results.csv, the analysis script, and the rounded
+reporting convention in the Module F README for numerical results. Module G
+archives the generator and model-implied frozen-cohort benchmark. These
+screenshots are interface records, not evidence of an exact causal truth.

@@ -18,7 +18,7 @@ on Module G's dataset, estimator, or numerical result.
 | ---: | --- | --- |
 | 0:00–0:45 | The roadmap is the work | Name the question-to-claim chain once. Say that AI can support drafting and challenge, while evidence and people decide. |
 | 0:45–2:00 | Before your next model | Return to Module A's exact opening prompt. Give 30 seconds to write a study, first action, and revision trigger. Invite one or two lines in chat if time permits. |
-| 2:00–3:00 | Keep the workflow | Open the Module H landing page. Point to the blank templates first and the completed pneumonia example second. Do not promise unfinished Module G files. |
+| 2:00–3:00 | Keep the workflow | Open the Module H landing page. Point to blank templates first, the completed roadmap second, and the optional Module G live/technical materials third. |
 | 3:00–4:10 | Before you go | Ask participants to post any one exit-ticket response: what they will use, what remains least defensible, or what the teaching team should improve. |
 | 4:10–4:20 | Final line | Read the sentence once, pause, and end. |
 

@@ -18,18 +18,20 @@ The student-facing course page is:
 | Module | Focus | Materials |
 | --- | --- | --- |
 | A | Welcome + Intro | [Open Module A](modules/A/) |
-| B | Example with Robert Platt | [Open Module B](modules/B/) |
-| C | Foundations | [Open Module C](modules/C/) |
+| B | Example with Robert Platt *(forthcoming)* | [Open Module B](modules/B/) |
+| C | Foundations *(forthcoming)* | [Open Module C](modules/C/) |
 | D | The Roadmap | [Open Module D](modules/D/) |
-| E | Audit-First AI | [Open Module E](modules/E/) |
+| E | Audit-First AI *(forthcoming)* | [Open Module E](modules/E/) |
 | F | Live Navigator workshop | [Open Module F](modules/F/) |
-| G | TMLE | [Open Module G](modules/G/) |
+| G | TMLE live walkthrough + technical supplement | [Open Module G](modules/G/) |
 | H | Wrap-up + participant kit | [Open Module H](modules/H/) |
 
 Module F is the central participant workshop: learners carry one synthetic
-pneumonia-vaccine study through all eight Causal Navigator steps. Module H
-closes the seminar with a next-study commitment, reusable roadmap and audit-log
-templates, and links to the completed workshop example.
+pneumonia-vaccine study through all eight Causal Navigator steps. Module G then
+uses the same cohort, estimand, and adjustment set for a live TMLE walkthrough
+and an optional technical supplement. Module H closes the seminar with a
+next-study commitment, reusable roadmap and audit-log templates, and links to
+the completed workshop example.
 
 ## Repository structure
 

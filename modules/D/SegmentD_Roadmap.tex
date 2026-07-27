@@ -106,7 +106,7 @@
 
 \section{Why a Roadmap?}
 
-\begin{frame}{Especially important to surface up assumptions}
+\begin{frame}{Surface assumptions before analysis}
 
 \begin{figure}
 	\centering
@@ -141,10 +141,10 @@
   \textbf{Question:} Does the pneumococcal vaccine reduce pneumonia risk (hospitalization for pneumonia)?
   \vspace{0.25em}
 
-  \textbf{Real-world facts:}
+  \textbf{Observed pattern in the teaching data:}
   \begin{itemize}
-    \item Older adults are more likely to be vaccinated
-    \item Older adults are more likely to get pneumonia
+    \item People with higher baseline risk are more likely to be vaccinated
+    \item Age and prior pneumonia predict hospitalization risk
   \end{itemize}
   \vspace{0.25em}
 
@@ -154,7 +154,7 @@
   \]
   \vspace{0.25em}
 
-  \textcolor{red}{\textbf{Na\"ive conclusion:}} The vaccine \emph{increases} pneumonia!
+  \textcolor{red}{\textbf{Interpretation error:}} Treating the observed association as causal.
   \vspace{0.25em}
 
   \textcolor{accent}{\textbf{What went wrong?}} Without a causal model, we confuse association with causation. We need the Causal Roadmap.
@@ -211,7 +211,7 @@
     \begin{column}{0.48\textwidth}
       \textbf{Target population:}
       \begin{itemize}
-        \item Adults aged 65+ in health system Y
+        \item Adults in health system Y; age centered near 65
       \end{itemize}
       \vspace{0.3em}
 
@@ -236,13 +236,13 @@
 
       \textbf{Context:}
       \begin{itemize}
-        \item Real-world EHR data
+        \item Fixed synthetic health-system cohort
       \end{itemize}
       \vspace{0.3em}
 
       \textbf{Decision context:}
       \begin{itemize}
-        \item Should clinicians recommend vaccination to older adults?
+        \item What would vaccination versus no vaccination change in this cohort?
       \end{itemize}
     \end{column}
   \end{columns}
@@ -285,12 +285,12 @@
     \begin{column}{0.55\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=1.0]
-          \node[draw, circle, fill=accent!20] (L) at (1.5,1.5) {$L$};
+          \node[draw, circle, fill=accent!20] (W) at (1.5,1.5) {$W$};
           \node[draw, circle, fill=green!20] (A) at (0,0) {$A$};
           \node[draw, circle, fill=orange!20] (Y) at (3,0) {$Y$};
 
-          \draw[->, thick] (L) -- (A);
-          \draw[->, thick] (L) -- (Y);
+          \draw[->, thick] (W) -- (A);
+          \draw[->, thick] (W) -- (Y);
           \draw[->, thick] (A) -- (Y);
         \end{tikzpicture}
       \end{center}
@@ -298,7 +298,7 @@
 
       \textbf{Variables:}
       \begin{itemize}
-        \item $L$: Age and comorbidities
+        \item $W$: Age, prior pneumonia, prior vaccination
         \item $A$: Vaccination status
         \item $Y$: Pneumonia hospitalization
       \end{itemize}
@@ -306,15 +306,15 @@
     \begin{column}{0.42\textwidth}
       \textbf{Backdoor path:}
       \[
-        A \leftarrow L \rightarrow Y
+        A \leftarrow W \rightarrow Y
       \]
       \vspace{0.3em}
 
       \textbf{Interpretation:}
       \begin{itemize}
-        \item Older/sicker adults more likely to be vaccinated
+        \item Baseline risk history predicts vaccination
         \item Same factors increase pneumonia risk
-        \item $L$ confounds the $A \to Y$ relationship
+        \item $W$ confounds the $A \to Y$ relationship
       \end{itemize}
     \end{column}
   \end{columns}
@@ -341,7 +341,7 @@
   \end{itemize}
   \vspace{0.5em}
 
-  \textcolor{accent}{\textbf{For our example:}} ATE = causal reduction in 1-year pneumonia risk due to vaccination, in adults 65+.
+  \textcolor{accent}{\textbf{For our example:}} ATE = causal reduction in 1-year pneumonia risk due to vaccination, in the synthetic adult cohort.
 \end{frame}
 
 \section{Phase 2: Connecting to Data (Steps 4--6)}
@@ -357,18 +357,18 @@
   \end{itemize}
   \vspace{0.25em}
 
-  \textbf{For the vaccine example (EHR data):}
+  \textbf{For the fixed synthetic vaccine example:}
   \begin{itemize}
-    \item $L$: Age and comorbidities (baseline confounders) --- reliably captured
-    \item $A$: Vaccination status --- structured EHR fields
-    \item $Y$: Pneumonia hospitalization --- ICD-coded
+    \item $W$: Age, prior pneumonia, and prior vaccination at baseline
+    \item $A$: Vaccination status at baseline
+    \item $Y$: Pneumonia hospitalization within 12 months
   \end{itemize}
   \vspace{0.2em}
 
-  \textbf{Data structure:} \quad $O = (L, A, Y)$ for each patient
+  \textbf{Data structure:} \quad $O = (W, A, Y)$ for each person
   \vspace{0.2em}
 
-  \textcolor{accent}{\textbf{Key question:}} Do we have all confounders in $L$? This determines identifiability.
+  \textcolor{accent}{\textbf{Key question:}} Do we have all common causes in $W$? This determines identifiability.
 \end{frame}
 
 % ----------------------------------------
@@ -380,12 +380,12 @@
   \textbf{Core assumptions required:}
   \begin{itemize}
     \item \textbf{Consistency:} Observed $Y$ equals $Y^{(a)}$ when $A=a$
-    \item \textbf{Exchangeability:} $Y^{(a)} \perp\!\!\!\perp A \mid L$ (no unmeasured confounding)
-    \item \textbf{Positivity:} $P(A=a \mid L) > 0$ for all $L$ and $a$
+    \item \textbf{Exchangeability:} $Y^{(a)} \perp\!\!\!\perp A \mid W$ (no unmeasured confounding)
+    \item \textbf{Positivity:} $P(A=a \mid W) > 0$ for all $W$ and $a$
   \end{itemize}
   \vspace{0.2em}
 
-  \textbf{For the vaccine example:} if $L$ (age, comorbidities) blocks all
+  \textbf{For the vaccine example:} if $W$ (age, prior pneumonia, prior vaccination) blocks all
   backdoor paths $\rightarrow$ \textbf{identifiable}; with unmeasured
   confounders $\rightarrow$ \textbf{not identifiable} without further
   assumptions.
@@ -405,13 +405,13 @@
 
   \textbf{Statistical estimand:}
   \[
-    \psi = \sum_{l} \left( E[Y \mid A=1, L=l] - E[Y \mid A=0, L=l] \right) P(L=l)
+    \psi = \sum_{w} \left( E[Y \mid A=1, W=w] - E[Y \mid A=0, W=w] \right) P(W=w)
   \]
 
   \textbf{Interpretation:}
   \begin{itemize}
-    \item For each covariate profile $l$, compare expected outcomes,
-      weighted by the population distribution of $L$
+    \item For each covariate profile $w$, compare expected outcomes,
+      weighted by the population distribution of $W$
     \item This is the \textbf{standardized} (G-computed) effect
   \end{itemize}
   \vspace{0.2em}
@@ -454,7 +454,7 @@
   (TMLE, AIPW).
   \vspace{0.4em}
 
-  \textcolor{accent}{\textbf{Module G}} will cover estimation in depth, with TMLE on this example.
+  \textcolor{accent}{\textbf{Module G}} continues this exact example with a live TMLE walkthrough and technical supplement.
 \end{frame}
 
 \begin{frame}{Preview TMLE}
@@ -609,7 +609,7 @@
   \end{columns}
   \vspace{0.2em}
   \centering
-  \url{https://roadmap.tao-rwd.com}
+  \url{https://navigator.tao-rwd.com/}
   \quad\textcolor{accent}{\textbf{Module F:}} live walkthrough with a prepared study.
 \end{frame}
 
