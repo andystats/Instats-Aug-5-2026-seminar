@@ -1,0 +1,547 @@
+% Module F: Live Causal Navigator workshop
+% INStats Causal Roadmaps with AI workshop
+% August 5, 2026 | 3:15--4:10 ET | Andy Wilson
+%
+% BUILD: latexmk -pdf SegmentF_Live_Navigator.tex
+\documentclass[aspectratio=169]{beamer}
+\input{instats-preamble}
+
+\title{Live Causal Navigator}
+\subtitle{Pneumococcal vaccination and pneumonia}
+\author{Andy Wilson}
+\institute{Module F \(\cdot\) Standalone workshop}
+\date{August 5, 2026 \(\cdot\) 3:15--4:10 ET}
+
+\begin{document}
+\instatstitle
+
+% 0--2 minutes
+\begin{frame}{The roadmap becomes a working record}
+  \frametag{Module F}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.31\textwidth}
+      {\footnotesize\bfseries\color{navorange}MODULE D \(\rightarrow\) MODULE F}
+
+      \vspace{0.28cm}
+      {\large\bfseries
+        Same causal logic. Now every decision is visible, revisable, and
+        exportable.}
+
+      \vspace{0.4cm}
+      {\footnotesize
+        \decisionbox{Workshop stance}{
+          The Navigator is documentation infrastructure---not an oracle.}}
+    \end{column}
+    \begin{column}{0.65\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{art/navigator-home.png}
+    \end{column}
+  \end{columns}
+  \note{Keep this introduction under two minutes. The tool records the roadmap participants already know.}
+\end{frame}
+
+% 2--4 minutes
+\begin{frame}{Eight steps, no login, one export}
+  \frametag{Orientation}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.64\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{art/navigator-overview.png}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Start at Step 1.} Use the manual route.
+        \item \textbf{Work in order.} Pause at design decisions.
+        \item \textbf{Export at Step 8.} Keep the Markdown audit trail.
+      \end{itemize}
+
+      {\scriptsize\itshape\color{black!55}
+        AI support is optional and is not used in this workshop.}
+
+      \vspace{0.28cm}
+      {\footnotesize\bfseries\color{accent}
+        \href{https://navigator.tao-rwd.com/}{navigator.tao-rwd.com}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 4--9 minutes
+\begin{frame}{The crude comparison tells the wrong story}
+  \frametag{Checkpoint 1}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      {\large\color{black!55}Observed 12-month pneumonia risk}
+
+      \vspace{0.25cm}
+      \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+          {\fontsize{31}{34}\selectfont\bfseries\color{resultred}7.19\%}\\[-2pt]
+          {\normalsize\color{black!55}vaccinated}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+          {\fontsize{31}{34}\selectfont\bfseries\color{slate}6.43\%}\\[-2pt]
+          {\normalsize\color{black!55}unvaccinated}
+        \end{column}
+      \end{columns}
+
+      \vspace{0.25cm}
+      \hrule
+      \vspace{0.15cm}
+      {\normalsize\bfseries\color{black!55}Crude RD}\\[-2pt]
+      {\fontsize{23}{26}\selectfont\bfseries\color{resultred}
+        \(+0.76\) percentage points}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      {\footnotesize
+        \decisionbox{Individual prediction \(\rightarrow\) pair check}{
+          Before seeing the prepared answer, name the population, time zero,
+          outcome window, and contrast needed to interpret this difference.}}
+
+      \vspace{0.25cm}
+      {\small\bfseries
+        Higher-risk adults are more likely to be vaccinated. The association
+        mixes baseline risk with the treatment effect.}
+    \end{column}
+  \end{columns}
+  \note{Give one quiet minute, then a one-minute pair check. Do not reveal the adjusted result.}
+\end{frame}
+
+% 9--12 minutes
+\begin{frame}{Lock the target trial before the result}
+  \frametag{Step 1 setup}
+  \small
+  \begin{tabular}{>{\bfseries\color{navorange}}p{0.18\textwidth}p{0.72\textwidth}}
+    Population & Synthetic adult cohort, \(N=5{,}000\); age centered at 65
+      (not restricted to age 65+) \\[0.30cm]
+    \hline\\[-0.28cm]
+    Treatment & Vaccination at baseline (\(A=1\)) \\[0.30cm]
+    \hline\\[-0.28cm]
+    Comparator & No vaccination at baseline (\(A=0\)) \\[0.30cm]
+    \hline\\[-0.28cm]
+    Outcome & Pneumonia hospitalization within 12 months \\[0.30cm]
+    \hline\\[-0.28cm]
+    Contrast & Average 12-month risk difference
+  \end{tabular}
+
+  \vspace{0.35cm}
+  {\footnotesize
+    \decisionbox{Time-zero rule}{
+      Eligibility, treatment assignment, and follow-up all begin at the same time zero.}}
+\end{frame}
+
+% 12--16 minutes
+\begin{frame}{Step 1: question-first means fully specified}
+  \frametag{Navigator}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.30\textwidth}
+      {\normalsize\stepbadge{1}\quad\bfseries Define the causal question}
+
+      \vspace{0.25cm}
+      \footnotesize
+      \begin{itemize}
+        \item intervention, comparator, and time zero
+        \item population and eligibility
+        \item outcome horizon
+        \item causal contrast
+      \end{itemize}
+
+      \vspace{0.08cm}
+      {\scriptsize
+        \decisionbox{Checkpoint}{
+          Which single phrase would most change the estimand?}}
+    \end{column}
+    \begin{column}{0.66\textwidth}
+      \centering
+      \screensnap[0.58]{art/navigator-step1-question.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 16--20 minutes
+\begin{frame}{Step 2: the DAG names the adjustment set}
+  \frametag{Checkpoint 2}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.40\textwidth}
+      {\footnotesize\bfseries\color{navorange}THE WORKSHOP VIEW}
+
+      \vspace{0.15cm}
+      {\large\bfseries
+        A compact model makes the confounding structure visible.}
+
+      \vspace{0.18cm}
+      \footnotesize
+      \begin{itemize}
+        \item Stipulated baseline set: age, prior pneumonia, and prior vaccination.
+        \item Do not adjust for post-baseline descendants.
+        \item The kit contains the full five-node, nine-edge DAG.
+      \end{itemize}
+
+      {\scriptsize
+        \decisionbox{Accept, correct, or reject?}{
+          Does this adjustment set follow from the DAG we are willing to defend?}}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \centering
+      \begin{tikzpicture}[>=Stealth,thick]
+        \node[
+          draw=navorange,fill=navorange!8,rounded corners,
+          minimum width=4.3cm,minimum height=1.1cm,align=center
+        ] (W) at (0,2.35)
+          {\Large\bfseries\color{navorange}W\\[-2pt]
+           \scriptsize\color{slate}age \(\cdot\) prior pneumonia \(\cdot\) prior vaccine};
+        \node[
+          draw=resultgreen,fill=resultgreen!9,rounded corners,
+          minimum width=2.7cm,minimum height=1.0cm,align=center
+        ] (A) at (-2.2,0)
+          {\Large\bfseries\color{resultgreen}A\\[-2pt]\scriptsize\color{slate}vaccination};
+        \node[
+          draw=resultred,fill=resultred!9,rounded corners,
+          minimum width=2.7cm,minimum height=1.0cm,align=center
+        ] (Y) at (2.2,0)
+          {\Large\bfseries\color{resultred}Y\\[-2pt]\scriptsize\color{slate}pneumonia};
+        \draw[->] (W) -- (A);
+        \draw[->] (W) -- (Y);
+        \draw[->] (A) -- (Y);
+      \end{tikzpicture}
+
+      \vspace{0.23cm}
+      {\footnotesize\itshape\color{black!55}
+        Collapsed discussion view; use the complete DAG for the audit.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 20--23 minutes
+\begin{frame}{Step 3: make the protocol computable}
+  \frametag{Observed data}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.26\textwidth}
+      {\normalsize\stepbadge{3}\quad\bfseries Map the data}
+
+      \vspace{0.30cm}
+      {\fontsize{25}{28}\selectfont\bfseries\color{slate}5,000}
+      {\small\color{black!55}\ people}
+
+      \vspace{0.18cm}
+      {\fontsize{23}{26}\selectfont\bfseries\color{navorange}1,627}
+      {\small\color{black!55}\ vaccinated}
+
+      \vspace{0.18cm}
+      {\fontsize{23}{26}\selectfont\bfseries\color{resultred}334}
+      {\small\color{black!55}\ events}
+
+      \vspace{0.25cm}
+      {\footnotesize
+        The fixed CSV has one row per person, complete baseline covariates,
+        treatment, and 12-month outcome.}
+    \end{column}
+    \begin{column}{0.70\textwidth}
+      \small
+      \begin{tabular}{>{\bfseries\color{navorange}}p{0.21\textwidth}p{0.66\textwidth}}
+        Protocol element & Observed-data mapping\\
+        \midrule
+        Population & One eligibility-defined row per participant\\[0.35cm]
+        Treatment & Binary baseline vaccination indicator \(A\)\\[0.35cm]
+        Outcome & Binary 12-month pneumonia hospitalization \(Y\)\\[0.35cm]
+        Baseline \(W\) & Age, prior pneumonia, prior vaccination\\[0.35cm]
+        Time zero & Eligibility, treatment assignment, and follow-up aligned
+      \end{tabular}
+
+      \vspace{0.16cm}
+      {\scriptsize\itshape\color{black!55}
+        Mapping check: Can every protocol element be operationalized without
+        changing the question?}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 23--33 minutes
+\begin{frame}{Step 4 is the audit gate}
+  \frametag{Checkpoint 3}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.31\textwidth}
+      {\large\bfseries
+        Can the observed data answer the causal question?}
+
+      \vspace{0.20cm}
+      \footnotesize
+      \begin{itemize}
+        \item exchangeability given \(W\)
+        \item practical positivity
+        \item consistency
+        \item no interference
+      \end{itemize}
+
+      {\scriptsize
+        \decisionbox{Three-part audit}{
+          Choose the weakest assumption. Name the evidence you would seek and
+          one design change if it fails.}}
+    \end{column}
+    \begin{column}{0.65\textwidth}
+      \footnotesize
+      \begin{tabular}{>{\bfseries}p{0.25\textwidth}p{0.29\textwidth}p{0.31\textwidth}}
+        Assumption & Data can inform & Still requires judgment\\
+        \midrule
+        Exchangeability & Covariate balance; proxies & Whether key common causes are measured\\[0.38cm]
+        Positivity & Fitted score range; support & Whether treatment is possible in every target stratum\\[0.38cm]
+        Consistency & Recorded treatment versions & Whether the intervention is well defined\\[0.38cm]
+        No interference & Cluster/context clues & Whether one person's treatment affects another
+      \end{tabular}
+
+      \vspace{0.16cm}
+      {\scriptsize\itshape\color{black!55}
+        For this exercise the assumptions are stipulated; the fixed dataset
+        cannot certify them, and the generator is not yet archived.}
+    \end{column}
+  \end{columns}
+  \note{This is the main participant activity: individual judgment, pair defense, then two examples in plenary.}
+\end{frame}
+
+% 33--36 minutes
+\begin{frame}{Step 5: translate the causal target exactly}
+  \frametag{Estimand}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.36\textwidth}
+      {\footnotesize\bfseries\color{navorange}CAUSAL TARGET}
+      \[
+        \psi = E[Y^{1}] - E[Y^{0}]
+      \]
+
+      {\footnotesize\bfseries\color{navorange}OBSERVED-DATA MAPPING}
+      {\scriptsize
+      \[
+        \begin{aligned}
+        E_W\big[&E(Y\mid A=1,W)\\
+                &-E(Y\mid A=0,W)\big]
+        \end{aligned}
+      \]}
+
+      {\scriptsize
+        \decisionbox{Audit question}{
+          What changes if the population, outcome window, or censoring
+          intervention changes?}}
+    \end{column}
+    \begin{column}{0.60\textwidth}
+      \centering
+      \screensnap[0.57]{art/navigator-step5-estimand.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 36--39 minutes
+\begin{frame}{Step 6: choose an estimator for that target}
+  \frametag{TMLE bridge}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.43\textwidth}
+      {\normalsize\stepbadge{6}\quad\bfseries Choose the estimator}
+
+      \vspace{0.25cm}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Primary:} TMLE for the risk difference
+        \item \(\bar Q(A,W)\): outcome regression
+        \item \(g(W)\): treatment mechanism
+        \item influence-function 95\% CI
+      \end{itemize}
+
+      {\scriptsize
+        \decisionbox{Boundary question}{
+          What can an estimator repair---and what can it never repair?}}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \footnotesize
+      \evidencebox{Outcome-blind work actually completed}{
+        No repeated simulation, bias, or RMSE study is included. The adjusted
+        outcome result remains hidden until Steps 1--7 are locked.}
+
+      \vspace{0.25cm}
+      \evidencebox{Overlap diagnostic}{
+        Fitted parametric propensity scores range from 0.0765 to 0.9091.
+        This is a diagnostic---not proof of structural positivity.}
+
+      \vspace{0.25cm}
+      \evidencebox{Reproducibility convention}{
+        Report the version-sensitive TMLE result rounded to
+        \(-3.0\) points (95\% CI \(-4.6,-1.5\)).}
+    \end{column}
+  \end{columns}
+  \note{No repeated simulation or bias/RMSE study is included. Hold the adjusted result until Steps 1--7 are locked.}
+\end{frame}
+
+% 39--44 minutes
+\begin{frame}{Step 7: sensitivity is part of the design}
+  \frametag{Checkpoint 4}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.42\textwidth}
+      {\large\bfseries
+        Prespecify the stress tests before the result.}
+
+      \vspace{0.18cm}
+      \footnotesize
+      \begin{itemize}
+        \item unmeasured confounding
+        \item outcome misclassification
+        \item selection and censoring
+        \item alternative learners and truncation
+      \end{itemize}
+
+      {\scriptsize
+        \decisionbox{Choose one gap}{
+          What analysis or new evidence would make that gap more transparent?}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \small
+      \evidencebox{Sampling uncertainty}{
+        The influence-function interval quantifies uncertainty for the
+        statistical estimand under the fitted analysis.}
+
+      \vspace{0.28cm}
+      \evidencebox{Causal uncertainty}{
+        Separate analyses must address unmeasured confounding, measurement,
+        selection, treatment versions, and interference.}
+
+      \vspace{0.28cm}
+      {\footnotesize
+        \decisionbox{Descriptive tipping point}{
+          A \(+3.0\)-point shift would move the TMLE point estimate to the null.
+          This is not a formal E-value.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 44--49 minutes
+\begin{frame}{Adjustment reverses the sign}
+  \frametag{Result reveal}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.68\textwidth}
+      \centering
+      \riskbars
+
+      \vspace{0.05cm}
+      \syntheticnote
+    \end{column}
+    \begin{column}{0.28\textwidth}
+      {\small\bfseries\color{resultred}Crude}\\[-2pt]
+      {\fontsize{25}{28}\selectfont\bfseries\color{resultred}\(+0.76\) pp}
+
+      \vspace{0.35cm}
+      {\small\bfseries\color{resultgreen}TMLE}\\[-2pt]
+      {\fontsize{25}{28}\selectfont\bfseries\color{resultgreen}\(-3.0\) pp}
+
+      {\small\color{black!55}95\% CI: \(-4.6\) to \(-1.5\) pp}
+
+      \vspace{0.28cm}
+      {\footnotesize
+        \decisionbox{What this shows}{
+          Adjusted analyses tell a different story under the stipulated model.
+          Agreement does not prove the assumptions.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 49--51 minutes
+\begin{frame}{Step 8: interpretation inherits every prior assumption}
+  \frametag{Checkpoint 5}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      {\small\bfseries\color{resultgreen}DEFENSIBLE}
+
+      \vspace{0.12cm}
+      {\large\bfseries\itshape
+        ``In this synthetic exercise, adjustment reverses the crude association
+        under the stipulated causal model.''}
+
+      \vspace{0.35cm}
+      \evidencebox{Supported claim}{
+        A statement about this workflow, this fixed dataset, and the assumptions
+        explicitly recorded in the roadmap.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      {\small\bfseries\color{resultred}NOT DEFENSIBLE}
+
+      \vspace{0.12cm}
+      {\large\bfseries\itshape\color{resultred}
+        ``The vaccine prevents pneumonia in real patients.''}
+
+      \vspace{0.35cm}
+      \evidencebox{Still unknown}{
+        Clinical effectiveness, safety, transportability, real EHR bias, and
+        population transmission effects.}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.32cm}
+  {\footnotesize
+    \decisionbox{Accept, correct, or reject?}{
+      Cite one Step 4 assumption and one limitation when revising the conclusion.}}
+\end{frame}
+
+% 51--54 minutes
+\begin{frame}{Defend one Navigator entry}
+  \frametag{Participant challenge}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      {\small\bfseries\color{navorange}YOUR DECISION LOG}
+
+      \vspace{0.2cm}
+      {\Large\bfseries Choose one field from Steps 1--8.}
+
+      \vspace{0.25cm}
+      \small
+      \begin{enumerate}
+        \item What evidence makes the entry defensible?
+        \item What would make you revise it?
+        \item Which downstream decision changes if you revise it?
+      \end{enumerate}
+
+      \vspace{0.18cm}
+      {\footnotesize
+        \decisionbox{Pair protocol}{
+          Accept, correct, or reject the entry. Compare reasoning before export.}}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \footnotesize
+      \evidencebox{Participant kit}{
+        Participant workbook PDF\\
+        Complete DAGitty specification\\
+        Fixed synthetic dataset\\
+        Reproducible analysis script}
+
+      \vspace{0.3cm}
+      \evidencebox{Answer key---after the activity}{
+        Completed eight-step roadmap in Markdown}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 54--55 minutes
+\begin{frame}{The estimator is downstream of the science}
+  \frametag{Handoff}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      {\large\color{black!55}Module F leaves us with:}
+      \begin{itemize}
+        \item a specified target trial
+        \item an explicit causal model
+        \item an identification argument
+        \item a statistical estimand
+        \item a prespecified estimator and sensitivity plan
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      {\large\bfseries\color{navorange}PLANNED MODULE G HANDOFF}
+
+      \vspace{0.3cm}
+      {\Large\bfseries
+        Implement the estimator only after Module G is aligned to this same
+        dataset and estimand.}
+
+      \vspace{0.45cm}
+      \decisionbox{Design first}{
+        Estimate second. Interpret last.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}

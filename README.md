@@ -22,11 +22,13 @@ The student-facing course page is:
 | C | Foundations | [Open Module C](modules/C/) |
 | D | The Roadmap | [Open Module D](modules/D/) |
 | E | Audit-First AI | [Open Module E](modules/E/) |
-| F | Live Navigator | [Open Module F](modules/F/) |
+| F | Live Navigator workshop | [Open Module F](modules/F/) |
 | G | TMLE | [Open Module G](modules/G/) |
 | H | Close + Kit | [Open Module H](modules/H/) |
 
-Modules G and H contain the TMLE walkthrough and participant workshop kit.
+Module F is the central participant workshop: learners carry one synthetic
+pneumonia-vaccine study through all eight Causal Navigator steps. Modules G and
+H then provide the TMLE walkthrough and participant workshop kit.
 
 ## Repository structure
 

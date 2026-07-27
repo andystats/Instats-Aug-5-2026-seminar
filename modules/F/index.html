@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Participant and facilitator materials for the Module F Causal Navigator workshop."
+    />
+    <meta name="theme-color" content="#0b3f63" />
+    <link
+      rel="canonical"
+      href="https://andystats.github.io/Instats-Aug-5-2026-seminar/modules/F/"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="INStats seminar materials" />
+    <meta property="og:title" content="Module F · Live Navigator workshop" />
+    <meta
+      property="og:description"
+      content="Carry one synthetic pneumonia-vaccine study through all eight Causal Navigator steps."
+    />
+    <meta
+      property="og:url"
+      content="https://andystats.github.io/Instats-Aug-5-2026-seminar/modules/F/"
+    />
+    <meta
+      property="og:image"
+      content="https://andystats.github.io/Instats-Aug-5-2026-seminar/assets/og.png"
+    />
+
+    <link rel="stylesheet" href="../../styles.css" />
+    <title>Module F · Live Navigator workshop | INStats</title>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="../../" aria-label="INStats seminar home">
+          <span class="brand-in">in</span><span class="brand-stats">stats</span>
+        </a>
+        <span class="header-label">Module F · Participant workshop</span>
+        <a
+          class="quiet-link"
+          href="https://github.com/andystats/Instats-Aug-5-2026-seminar/tree/main/modules/F"
+        >
+          View source files
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Module F · 55-minute participant workshop</p>
+            <h1>Live<br />Navigator</h1>
+            <p class="lede">
+              Carry one synthetic pneumonia-vaccine study through all eight
+              Causal Navigator steps, defend a decision, and leave with a
+              reviewable causal-roadmap artifact.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button button-primary"
+                href="Pneumonia_Navigator_Student_Guide.pdf"
+              >
+                Open participant guide
+              </a>
+              <a
+                class="button button-secondary"
+                href="https://navigator.tao-rwd.com/navigator/1"
+              >
+                Open Causal Navigator
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="roadmap" aria-label="Participant sequence">
+            <p class="roadmap-label">Your route through the workshop</p>
+            <ol>
+              <li>
+                <span class="roadmap-number">01</span>
+                <span>
+                  <strong>Frame</strong>
+                  Align the question, target trial, causal model, and data.
+                </span>
+              </li>
+              <li>
+                <span class="roadmap-number">02</span>
+                <span>
+                  <strong>Audit</strong>
+                  Challenge identification before selecting an estimator.
+                </span>
+              </li>
+              <li>
+                <span class="roadmap-number">03</span>
+                <span>
+                  <strong>Commit</strong>
+                  Lock the estimand, estimator, and sensitivity plan.
+                </span>
+              </li>
+              <li>
+                <span class="roadmap-number">04</span>
+                <span>
+                  <strong>Interpret</strong>
+                  Reconcile the crude paradox with the adjusted result.
+                </span>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="orientation" aria-labelledby="orientation-title">
+        <div class="shell orientation-grid">
+          <div>
+            <p class="section-kicker">Teaching example</p>
+            <h2 id="orientation-title">Synthetic data, real decisions</h2>
+          </div>
+          <p>
+            This activity uses a fixed dataset of 5,000 simulated adults. It
+            contains no patient data and is not clinical evidence about vaccine
+            effectiveness. The aim is to practice connecting a scientific
+            question, assumptions, estimand, estimator, and interpretation.
+          </p>
+        </div>
+      </section>
+
+      <section class="modules-section" id="start" aria-labelledby="start-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Participant start here</p>
+              <h2 id="start-title">Open these four resources</h2>
+            </div>
+            <p>
+              Begin with the guide. Keep the dataset and DAG nearby while you
+              work in the no-login manual route.
+            </p>
+          </div>
+
+          <div class="module-grid">
+            <a class="module-card module-card-featured" href="Pneumonia_Navigator_Student_Guide.pdf">
+              <span class="module-letter">01</span>
+              <span class="module-meta">Participant guide</span>
+              <h3>Follow the activity</h3>
+              <p>
+                Use the workshop prompts without revealing the completed answer
+                key.
+              </p>
+              <span class="card-link">Open PDF <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="module-card module-card-featured" href="https://navigator.tao-rwd.com/navigator/1">
+              <span class="module-letter">02</span>
+              <span class="module-meta">Workspace</span>
+              <h3>Causal Navigator</h3>
+              <p>
+                Choose Causal Navigator and use the manual, no-login path.
+              </p>
+              <span class="card-link">Open Navigator <span aria-hidden="true">↗</span></span>
+            </a>
+
+            <a class="module-card" href="data/pneumonia_data.csv" download>
+              <span class="module-letter">03</span>
+              <span class="module-meta">Synthetic data</span>
+              <h3>Pneumonia dataset</h3>
+              <p>
+                Download the fixed teaching cohort used for the worked result.
+              </p>
+              <span class="card-link">Download CSV <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="pneumonia.dagitty.txt" download>
+              <span class="module-letter">04</span>
+              <span class="module-meta">Causal model</span>
+              <h3>DAGitty specification</h3>
+              <p>
+                Import the five-node, nine-edge DAG during Navigator Step 2.
+              </p>
+              <span class="card-link">Download DAG <span aria-hidden="true">↓</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="orientation" aria-labelledby="flow-title">
+        <div class="shell orientation-grid">
+          <div>
+            <p class="section-kicker">Workshop flow</p>
+            <h2 id="flow-title">55 minutes, one connected roadmap</h2>
+          </div>
+          <div class="roadmap">
+            <ol>
+              <li>
+                <span class="roadmap-number">01</span>
+                <span><strong>0–4 min</strong>Orient to Navigator and the reviewable artifact.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">02</span>
+                <span><strong>4–9 min</strong>Reveal the crude paradox and predict what adjustment will do.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">03</span>
+                <span><strong>9–16 min</strong>Complete Step 1: define the causal question.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">04</span>
+                <span><strong>16–23 min</strong>Complete Steps 2–3: causal model and observed data.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">05</span>
+                <span><strong>23–33 min</strong>Pause at Step 4 and audit identification.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">06</span>
+                <span><strong>33–39 min</strong>Complete Steps 5–6: estimand and estimator.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">07</span>
+                <span><strong>39–44 min</strong>Complete Step 7: sensitivity analysis.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">08</span>
+                <span><strong>44–49 min</strong>Reveal and compare the Step 8 results.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">09</span>
+                <span><strong>49–54 min</strong>Defend or revise one Navigator entry.</span>
+              </li>
+              <li>
+                <span class="roadmap-number">10</span>
+                <span><strong>54–55 min</strong>Export the artifact and hand off to Module G.</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="answer-key-title">
+        <div class="shell closing-inner">
+          <p class="section-kicker">After the activity</p>
+          <h2 id="answer-key-title">Finish your decision before opening the answer key</h2>
+          <p>
+            First choose one Navigator field and record what evidence makes your
+            entry defensible and what would make you revise it. Then compare
+            your roadmap with the completed example.
+          </p>
+          <a class="text-link" href="causal-roadmap-pneumonia-worked-example.md">
+            Open the completed answer key
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="modules-section" aria-labelledby="facilitator-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Secondary resources</p>
+              <h2 id="facilitator-title">Facilitation and reproducibility</h2>
+            </div>
+            <p>
+              These materials support delivery, review, and reproduction of the
+              worked example.
+            </p>
+          </div>
+
+          <div class="module-grid">
+            <a class="module-card" href="SegmentF_Live_Navigator.pdf">
+              <span class="module-letter">F</span>
+              <span class="module-meta">Facilitator deck</span>
+              <h3>Live workshop slides</h3>
+              <p>Presentation deck for the guided 55-minute activity.</p>
+              <span class="card-link">Open PDF <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="module-card" href="facilitator-live-demo.md">
+              <span class="module-letter">G</span>
+              <span class="module-meta">Delivery guide</span>
+              <h3>Run of show</h3>
+              <p>Timing, paste order, discussion prompts, and recovery plan.</p>
+              <span class="card-link">Open guide <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="module-card" href="code/pneumonia_navigator_tmle.R" download>
+              <span class="module-letter">R</span>
+              <span class="module-meta">Analysis code</span>
+              <h3>Reproduce the estimates</h3>
+              <p>Run the crude, g-computation, IPW, and TMLE analyses.</p>
+              <span class="card-link">Download R script <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="outputs/pneumonia_results.csv" download>
+              <span class="module-letter">O</span>
+              <span class="module-meta">Primary output</span>
+              <h3>Analysis results</h3>
+              <p>Values used for the Step 8 result reveal.</p>
+              <span class="card-link">Download results <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="outputs/pneumonia_diagnostics.csv" download>
+              <span class="module-letter">D</span>
+              <span class="module-meta">Diagnostics</span>
+              <h3>Counts and overlap</h3>
+              <p>Sample counts, propensity range, and package versions.</p>
+              <span class="card-link">Download diagnostics <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="SegmentF_Live_Navigator.tex" download>
+              <span class="module-letter">T</span>
+              <span class="module-meta">Editable source</span>
+              <h3>Facilitator TeX</h3>
+              <p>Beamer source for the live workshop deck.</p>
+              <span class="card-link">Download TeX <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="Pneumonia_Navigator_Student_Guide.tex" download>
+              <span class="module-letter">T</span>
+              <span class="module-meta">Editable source</span>
+              <h3>Participant-guide TeX</h3>
+              <p>Beamer source for the participant activity guide.</p>
+              <span class="card-link">Download TeX <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="https://doi.org/10.1056/AIp2400727">
+              <span class="module-letter">P</span>
+              <span class="module-meta">Background reading</span>
+              <h3>Human-in-the-loop causal evidence</h3>
+              <p>
+                Petersen and colleagues’ perspective on human-in-the-loop causal
+                evidence generation.
+              </p>
+              <span class="card-link">Open publisher page <span aria-hidden="true">↗</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="orientation" aria-labelledby="handoff-title">
+        <div class="shell orientation-grid">
+          <div>
+            <p class="section-kicker">Next module</p>
+            <h2 id="handoff-title">Module G handoff</h2>
+          </div>
+          <p>
+            Module G will implement and examine the estimator selected here.
+            Its learner-facing handoff will be linked once the Module G example,
+            terminology, and numerical outputs are aligned with this workshop.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>
+          <a class="brand brand-small" href="../../" aria-label="INStats seminar home">
+            <span class="brand-in">in</span><span class="brand-stats">stats</span>
+          </a>
+          <span>Causal Roadmaps with AI · Module F</span>
+        </p>
+        <p>Synthetic teaching data · Not clinical evidence</p>
+      </div>
+    </footer>
+  </body>
+</html>

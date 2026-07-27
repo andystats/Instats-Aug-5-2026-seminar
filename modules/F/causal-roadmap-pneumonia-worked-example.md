@@ -1,150 +1,212 @@
-# Causal Roadmap Form Export
+# Module F completed Navigator record
 
-Worked example: pneumococcal vaccination and 12-month pneumonia hospitalization
+Facilitator answer key: release after the participant interpretation exercise.
 
-Teaching status: synthetic data only. This is not clinical evidence about vaccine effectiveness.
+Worked example: pneumococcal vaccination and 12-month pneumonia
+hospitalization.
+
+> **Evidence status.** This module uses a fixed synthetic teaching dataset. It
+> is not clinical evidence. The module archives the CSV, DAG, analysis script,
+> and analysis outputs, but it does not archive the data generator or an
+> intervention-level causal truth. The causal model and identifying assumptions
+> below are stipulated for the exercise; they are not proven by the fixed
+> observed data.
 
 ## Step 1: Define Causal Question
 
 ### Question Type
 
-Effect of an intervention; point-treatment average treatment effect.
+Effect of a point intervention; average treatment effect on the 12-month risk
+difference scale.
 
-### Motivation & Background
+### Motivation and Background
 
-Confounding by indication can make a protective vaccine appear harmful because higher-risk adults are preferentially vaccinated. The study asks whether current vaccination reduces 12-month pneumonia hospitalization risk.
+The teaching scenario is designed around confounding by indication: people at
+higher baseline risk may be more likely to receive vaccination. The exercise
+asks whether explicitly connecting the question, model, assumptions, estimand,
+and estimator changes the analysis and the strength of the interpretation.
 
-### Population / Eligibility Criteria
+### Population and Eligibility Criteria
 
-Synthetic health-system cohort of 5,000 adults eligible for pneumococcal vaccination at a baseline encounter. The age distribution is centered at 65 years; this is not a literal age-65-and-older cohort. Age and prior pneumonia/vaccination history are measured before treatment.
+Fixed synthetic health-system cohort of 5,000 adults eligible for pneumococcal
+vaccination at a baseline encounter. The age distribution is centered at 65
+years; this is **not** an age-65-and-older cohort. Age and prior
+pneumonia/vaccination history are recorded before treatment.
 
-### Treatment Strategies
+### Treatment Strategy
 
-A=1: receive the current pneumococcal vaccine at baseline.
+\(A=1\): receive the current pneumococcal vaccine at baseline.
 
-### Comparator
+### Comparator Strategy
 
-A=0: do not receive the current pneumococcal vaccine at baseline.
+\(A=0\): do not receive the current pneumococcal vaccine at baseline.
 
 ### Outcome
 
-Y=1: hospitalization with pneumonia within 12 months.
+\(Y=1\): hospitalization with pneumonia within 12 months.
 
-### Follow-up Period
+### Follow-up Period and Time Zero
 
-Time zero is the baseline vaccination decision. Follow from that date through 12 months. The teaching data have complete outcomes and no censoring.
+Time zero is the baseline eligibility and vaccination decision. Follow-up begins
+at that same point and continues for 12 months. The fixed teaching data contain
+complete outcomes and no recorded censoring.
 
-### Summary Measure (Causal Contrast)
+### Summary Measure
 
-Primary: 12-month average risk difference, E[Y^1] - E[Y^0]. Secondary: 12-month risk ratio.
+Primary causal contrast: 12-month average risk difference,
+\(E[Y^1]-E[Y^0]\).
 
 ## Step 2: Specify Causal Model
 
 ### Study Type
 
-Simulated retrospective cohort framed as a point-treatment target-trial emulation.
+Fixed synthetic point-treatment cohort framed as a target-trial emulation.
 
-### Measured Confounders (W)
+### Stipulated Baseline Common Causes \(W\)
 
-Age, prior pneumonia, and prior pneumococcal vaccination. Each is measured before A and affects both vaccination and pneumonia risk in this simulation.
+Age, prior pneumonia, and prior pneumococcal vaccination are treated as baseline
+common causes of current vaccination and pneumonia hospitalization for this
+exercise. This role is a teaching-model stipulation; the missing generator
+prevents independent verification that the fixed data were produced by exactly
+this causal structure.
 
-### Potential Unmeasured Confounders
+### Potential Unmeasured Common Causes in Real Data
 
-In real EHR data: frailty, smoking or COPD severity, healthcare-seeking, access, provider recommendation, and socioeconomic factors. These are absent by design in the simulation.
+Frailty, smoking or COPD severity, healthcare-seeking, access, provider
+recommendation, functional status, and socioeconomic factors.
 
-### Mediators / Colliders
+### Mediators and Colliders
 
-None are included in the baseline teaching model. Do not adjust for post-vaccination immune response, subsequent infections, or post-baseline healthcare use when targeting the total effect.
+No mediator or collider is included in the baseline teaching model. Do not
+adjust automatically for post-vaccination immune response, subsequent
+infections, or post-baseline healthcare use when targeting the total effect.
 
 ### Censoring Mechanism
 
-None in the simulated data. A real study would address death, disenrollment, and loss of observable follow-up.
+No censoring is recorded in the fixed dataset. A real study would need to
+address death, disenrollment, and loss of observable follow-up.
 
-### DAG Status
+### DAG
 
-Formal DAGitty specification prepared in `pneumonia.dagitty.txt`.
+The complete teaching DAG is stored in `pneumonia.dagitty.txt`:
 
-### DAG Description
+- \(A \rightarrow Y\);
+- age points to prior pneumonia, prior vaccination, \(A\), and \(Y\);
+- prior pneumonia points to \(A\) and \(Y\); and
+- prior vaccination points to \(A\) and \(Y\).
 
-A -> Y. Age, priorPneumonia, and priorVaccine each cause A and Y. Age also causes both prior-history variables. The sufficient baseline adjustment set is age, priorPneumonia, and priorVaccine.
+Under this stipulated DAG, the proposed baseline adjustment set is age, prior
+pneumonia, and prior vaccination.
 
 ## Step 3: Consider Observed Data
 
-### Data Source
+### Data Source and Reproducibility Status
 
-`data/pneumonia_data.csv`; simulated with simcausal using seed 2026; one row per person; no real patient data.
+`data/pneumonia_data.csv` is a fixed synthetic teaching dataset with one row per
+person. The module does not include the generator code, so the generation
+mechanism, generation seed, and intervention-level causal truth cannot be
+reproduced from this module alone.
 
 ### Data Structure
 
-Point-treatment cohort with baseline W, binary treatment A, and a fixed 12-month binary outcome Y.
+Point-treatment cohort with baseline \(W\), binary treatment \(A\), and a fixed
+12-month binary outcome \(Y\).
 
-### Sample Size
+### Sample
 
-N=5,000; 1,627 vaccinated; 3,373 unvaccinated; 334 pneumonia hospitalizations.
+- \(N=5{,}000\);
+- 1,627 vaccinated;
+- 3,373 unvaccinated; and
+- 334 pneumonia hospitalizations.
 
-### Sample Size Assessment Method
+The sample is fixed for teaching and was not selected through a formal power
+calculation.
 
-Teaching sample fixed at 5,000 for a stable demonstration; not selected by a formal power calculation.
+### Exposure, Outcome, and Covariates
 
-### Exposure Definition
+- \(A\): binary current vaccination at baseline.
+- \(Y\): binary pneumonia hospitalization within 12 months.
+- \(W\): age in years, prior pneumonia, and prior vaccination, all recorded
+  before time zero.
+- No missing values are recorded in these variables.
 
-A is binary current vaccination at baseline, generated from age and prior-history variables.
+### Time-zero Mapping
 
-### Outcome Definition
-
-Y is binary pneumonia hospitalization within 12 months, simulated without measurement error.
-
-### Covariate Measurement
-
-Age in years; priorPneumonia and priorVaccine are binary and measured before time zero; no missing values.
-
-### Time Zero Definition
-
-The date eligibility is assessed, vaccination status is assigned, and outcome follow-up begins.
+Eligibility assessment, treatment assignment, and outcome follow-up begin at
+the baseline encounter.
 
 ## Step 4: Assess Identifiability
 
-### Exchangeability (No Unmeasured Confounding)
+### Exchangeability
 
-Known to hold conditional on age, priorPneumonia, and priorVaccine in this simulation. It would remain uncertain in real EHR data.
+Conditional exchangeability given age, prior pneumonia, and prior vaccination
+is stipulated for the workshop. It is not testable from the fixed observed data,
+and the absent generator means it cannot be verified from the archived module.
+In real EHR data it would require substantive evidence and would remain
+uncertain.
 
-### Positivity (Overlap)
+### Positivity
 
-Model-based treatment propensities range approximately 0.08 to 0.91, with none below 0.05 or above 0.95. Practical overlap should still be checked before estimation.
+A fitted parametric treatment model gives propensity scores from approximately
+0.0765 to 0.9091 in the observed covariate distribution. This is a useful
+diagnostic for obvious fitted-model overlap problems. It does not prove
+structural positivity, establish that both strategies are possible in every
+target stratum, or validate the treatment model.
 
-### Consistency (Well-defined Intervention)
+### Consistency
 
-The simulated intervention is a single baseline vaccination decision. Real studies must distinguish product, dose, timing, and prior immunization history.
+The exercise stipulates a single baseline vaccination decision. Real studies
+must distinguish product, dose, timing, prior immunization history, adherence,
+and other treatment versions.
 
-### No Interference (SUTVA)
+### No Interference
 
-Assumed in the teaching example. Transmission-mediated population effects could violate this assumption in a real vaccine study.
+No interference is stipulated for the exercise. Vaccination can have
+transmission-mediated population effects, so the assumption would require
+careful justification in a real study.
 
-### Assessment of Causal Gap
+### Causal Gap
 
-Small and known in the simulation after adjustment; potentially material in real data because of residual confounding, selection, and measurement error.
+The remaining causal gap is not identified or quantified by the fixed data.
+Potential real-data gaps include residual confounding, measurement error,
+selection, treatment versions, and interference.
 
-### Modifications to Reduce Gap
+### Design Responses
 
-Align eligibility, treatment assignment, and follow-up at time zero; enrich baseline confounders; validate treatment and outcome capture; restrict to common support; prespecify negative controls and quantitative bias analyses.
+Align eligibility, treatment assignment, and follow-up at time zero; enrich
+baseline common-cause measurement; validate treatment and outcome capture;
+restrict to defensible common support; consider active comparators; and
+prespecify negative controls and quantitative bias analyses.
 
 ## Step 5: Define Statistical Estimand
 
 ### Causal Estimand
 
-psi = E[Y^1] - E[Y^0], the average 12-month risk difference under vaccination versus no vaccination.
+\[
+\psi = E[Y^1]-E[Y^0],
+\]
 
-### Statistical Estimand
+the average 12-month risk difference under baseline vaccination versus no
+baseline vaccination.
 
-psi(P) = E_W{E(Y | A=1,W) - E(Y | A=0,W)}.
+### Observed-data Statistical Estimand
 
-### Link to Causal Under Identification
+\[
+\psi(P)
+=E_W\left\{E(Y\mid A=1,W)-E(Y\mid A=0,W)\right\}.
+\]
 
-The statistical and causal estimands coincide under consistency, conditional exchangeability given W, positivity, and no interference.
+### Link to the Causal Estimand
+
+The statistical estimand can be interpreted as the causal estimand under the
+stipulated consistency, conditional exchangeability, positivity, and no
+interference assumptions.
 
 ### Censoring Adjustment
 
-None is needed in the complete teaching data. A real analysis would add inverse-probability-of-censoring adjustment or longitudinal TMLE.
+None is used because the fixed dataset contains complete 12-month outcomes. A
+real analysis could require inverse-probability-of-censoring adjustment or a
+longitudinal estimand and estimator.
 
 ## Step 6: Choose Estimator
 
@@ -152,82 +214,116 @@ None is needed in the complete teaching data. A real analysis would add inverse-
 
 TMLE for the 12-month average risk difference.
 
-### Nuisance Model Specification
+### Nuisance-model Specification
 
-Estimate Q(A,W)=E(Y | A,W) and g(W)=P(A=1 | W) with Super Learner using SL.glm, SL.glmnet, and SL.ranger.
+Estimate \(\bar Q(A,W)=E(Y\mid A,W)\) and \(g(W)=P(A=1\mid W)\) with Super
+Learner using `SL.glm`, `SL.glmnet`, and `SL.ranger`.
 
-### Variable Selection Strategy
+### Variable-selection Strategy
 
-Select W from the causal model, not by treatment-outcome p-values. Do not include post-baseline variables.
+Select \(W\) from the stipulated causal model, not from treatment-outcome
+p-values. Do not include post-baseline variables when targeting the total
+effect.
 
-### Outcome-Blind Simulation Results
+### Work Completed Before the Adjusted-result Reveal
 
-No formal repeated estimator simulation was performed. Feasibility diagnostics show adequate treatment overlap and no extreme propensity scores.
+The question, stipulated model, adjustment set, estimand, estimator, and
+sensitivity topics are fixed before revealing the adjusted estimate. The crude
+association is intentionally shown at the start as the teaching paradox.
 
-### Confidence Interval Method
+No repeated estimator simulation, bias comparison, or RMSE study was performed.
+
+### Confidence-interval Method
 
 Efficient-influence-function standard error and Wald 95% confidence interval.
 
 ### Prespecification Status
 
-Teaching analysis plan fixed before inspecting the adjusted treatment-outcome estimate; not externally registered.
+Teaching analysis plan fixed before the adjusted-result reveal; not externally
+registered.
 
 ## Step 7: Sensitivity Analysis
 
-### Primary Sensitivity Analysis Approach
+### Priority Areas
 
-Quantitative bias analysis for unmeasured confounding, plus alternative nuisance learners and propensity truncation checks.
+- quantitative bias analysis for unmeasured confounding;
+- outcome-misclassification analyses that vary sensitivity and specificity;
+- selection analyses for death, disenrollment, or incomplete EHR capture in a
+  real study;
+- alternative nuisance learners and propensity-score handling; and
+- assessment of treatment versions and interference.
 
-### Sensitivity to Unmeasured Confounding
+### Descriptive Shift-to-null Check
 
-Assess whether residual confounding could shift the risk difference upward by approximately three percentage points.
+An upward shift of approximately 3.0 percentage points would move the rounded
+TMLE point estimate to the null. This is only a descriptive scale check, not a
+completed sensitivity analysis.
 
-### Sensitivity to Outcome Misclassification
+### Negative Controls
 
-Vary pneumonia-outcome sensitivity and specificity, including differential recording by vaccination status.
+No negative control is available in the fixed synthetic dataset. A real study
+could prespecify an unrelated outcome or exposure with a similar confounding
+structure.
 
-### Sensitivity to Selection Bias
+## Step 8: Results and Interpretation
 
-Not present in the simulation. In real data, vary assumptions about death, disenrollment, and incomplete EHR capture.
+### Course-facing Results
 
-### G-value (or E-value)
+| Analysis | 12-month risk difference |
+| --- | ---: |
+| Crude association | +0.76 percentage points |
+| Parametric g-computation | -3.28 percentage points |
+| Hajek IPW | -2.94 percentage points |
+| TMLE | -3.0 percentage points (95% CI -4.6 to -1.5) |
 
-A bias of approximately +0.030 on the risk-difference scale would move the TMLE point estimate to the null. This is a descriptive robustness threshold, not a formal E-value.
+The archived CSV output contains additional digits. The rounded values above are
+the publication and live-presentation convention.
 
-### Negative Control Analyses
+### Interpretation
 
-None are available in the simulated dataset. A real study should prespecify an unrelated outcome and/or exposure with a similar confounding structure.
+In this fixed synthetic dataset, the crude association is positive while all
+three adjusted estimators are negative under the stipulated adjustment plan.
+The agreement in direction illustrates the effect of connecting the causal
+question, model, assumptions, estimand, and estimator.
 
-## Step 8: Results & Interpretation
+Estimator agreement does not prove exchangeability, positivity, consistency, or
+no interference. It also does not establish that the stipulated DAG matches the
+unarchived generator.
 
-### Primary Result
+### Limitations
 
-TMLE risk difference = -0.0304; 95% CI -0.0461 to -0.0147.
+- fixed synthetic data;
+- generator and intervention-level causal truth not archived;
+- causal model and identifying assumptions stipulated rather than demonstrated;
+- only three baseline adjustment variables;
+- no recorded missingness or censoring;
+- simplified treatment versions;
+- no population transmission effects represented in the analysis; and
+- no repeated estimator simulation, bias comparison, or RMSE assessment.
 
-### Unadjusted Result (for comparison)
+### Defensible Conclusion
 
-Vaccinated risk 0.0719 versus unvaccinated risk 0.0643; crude risk difference +0.00758 and risk ratio 1.118, falsely suggesting harm.
+> In this fixed synthetic teaching dataset, roadmap-guided adjustment changes
+> the estimated risk difference from positive to negative under the stipulated
+> causal model. The exercise supports a conclusion about the workflow, not a
+> clinical conclusion about vaccination.
 
-### Interpretation Level
+## Archived Reproducibility Components
 
-In the known simulation, adjustment recovers the protective direction and approaches the causal truth. A real-data causal interpretation would remain conditional on the identification assumptions.
+| Component | Status |
+| --- | --- |
+| Fixed dataset | Archived at `data/pneumonia_data.csv` |
+| Complete teaching DAG | Archived at `pneumonia.dagitty.txt` |
+| Analysis script | Archived at `code/pneumonia_navigator_tmle.R` |
+| Numerical outputs | Archived in `outputs/` |
+| Data-generator code | Not archived in Module F |
+| Intervention-level causal truth | Not archived or independently verifiable in Module F |
 
-### Comparison to Alternative Designs
+## Cross-module Handoff
 
-Parametric g-computation risk difference -0.0328; Hajek IPW risk difference -0.0294; TMLE risk difference -0.0304; finite-simulation truth approximately -0.037. A randomized trial would remove baseline confounding, while an active-comparator/new-user design could improve exchangeability observationally.
+Do not state that Module G implements this exact worked example until Module G
+uses the same fixed dataset, variables, estimand, and numerical results. Until
+then, the safe handoff is:
 
-### Key Limitations
-
-Synthetic data, only three measured baseline variables, perfect measurement, no missingness or censoring, simplified treatment versions, and no population transmission effects.
-
-### Conclusions
-
-The crude association reverses the vaccine's true effect because higher-risk adults are preferentially vaccinated. After roadmap-guided adjustment, vaccination reduces 12-month pneumonia hospitalization risk by about three percentage points in this teaching simulation.
-
-## Source lineage
-
-- `../D/SegmentD_Roadmap.tex`
-- `../../../../ops/materials/sessions/Session 1a/R example/pneumonia_vaccine_example.Rmd`
-- `data/pneumonia_data.csv`
-- `code/pneumonia_navigator_tmle.R`
-- Causal Navigator, https://navigator.tao-rwd.com/
+> Estimation is downstream of the scientific question, causal model,
+> identification argument, and estimand developed here.
