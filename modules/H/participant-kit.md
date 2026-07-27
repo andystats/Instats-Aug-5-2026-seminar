@@ -27,10 +27,15 @@ Complete your own decision before opening the finished example.
 - [Reproducible R analysis](../F/code/pneumonia_navigator_tmle.R)
 - [Versioned results](../F/outputs/pneumonia_results.csv)
 - [Versioned diagnostics](../F/outputs/pneumonia_diagnostics.csv)
+- [Live TMLE walkthrough](../G/SegmentG_TMLE.pdf)
+- [Technical TMLE supplement](../G/SegmentG_TMLE_Technical_Supplement.pdf)
+- [Standalone data generator](../G/simulate_pneumonia_data.R)
+- [Model-implied frozen-cohort benchmark](../G/outputs/pneumonia_generator_benchmark.csv)
 
 The example is synthetic teaching material, not clinical evidence. The archived
-files do not include the data generator or an intervention-level causal truth;
-do not use them to claim estimator bias, RMSE, or recovery of a known truth.
+generator provides a model-implied benchmark for the frozen cohort, not an exact
+superpopulation truth. Do not use it to claim estimator bias, RMSE, or real-world
+identification.
 
 ## Keep working
 

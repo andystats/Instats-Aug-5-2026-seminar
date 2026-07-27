@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Live TMLE walkthrough and technical supplement for the INStats Causal Roadmaps with AI seminar."
+    />
+    <meta name="theme-color" content="#0b3f63" />
+    <link
+      rel="canonical"
+      href="https://andystats.github.io/Instats-Aug-5-2026-seminar/modules/G/"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <title>Module G: TMLE | INStats</title>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="../../" aria-label="INStats seminar home">
+          <span class="brand-in">in</span><span class="brand-stats">stats</span>
+        </a>
+        <span class="header-label">Module G · TMLE</span>
+        <a
+          class="quiet-link"
+          href="https://github.com/andystats/Instats-Aug-5-2026-seminar/tree/main/modules/G"
+        >
+          View source
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Navigator plan · estimation · interpretation</p>
+            <h1>From the roadmap<br />to a TMLE estimate</h1>
+            <p class="lede">
+              Carry the same synthetic pneumonia-vaccine study from Module F
+              through crude, g-computation, IPW, and TMLE analyses.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="SegmentG_TMLE.pdf">
+                Open the live deck
+              </a>
+              <a
+                class="button button-secondary"
+                href="SegmentG_TMLE_Technical_Supplement.pdf"
+              >
+                Open the supplement
+              </a>
+            </div>
+          </div>
+
+          <aside class="roadmap" aria-label="Two ways to use Module G">
+            <p class="roadmap-label">Choose your depth</p>
+            <ol>
+              <li>
+                <span class="roadmap-number">01</span>
+                <span>
+                  <strong>Live walkthrough</strong>
+                  A compact, presentation-ready path from estimand to result.
+                </span>
+              </li>
+              <li>
+                <span class="roadmap-number">02</span>
+                <span>
+                  <strong>Technical supplement</strong>
+                  Open the nuisance fits, targeting step, and influence function.
+                </span>
+              </li>
+              <li>
+                <span class="roadmap-number">03</span>
+                <span>
+                  <strong>Reproducibility</strong>
+                  Audit the fixed cohort, generator, outputs, and software record.
+                </span>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="orientation" aria-labelledby="boundary-title">
+        <div class="shell orientation-grid">
+          <div>
+            <p class="section-kicker">Teaching boundary</p>
+            <h2 id="boundary-title">One aligned synthetic example</h2>
+          </div>
+          <p>
+            These files use synthetic teaching data and are not clinical
+            evidence. The model-implied benchmark is available only because the
+            teaching data-generating process is known.
+          </p>
+        </div>
+      </section>
+
+      <section class="modules-section" aria-labelledby="resources-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Module G materials</p>
+              <h2 id="resources-title">Present, run, or inspect</h2>
+            </div>
+            <p>Start with the live pair; use the technical files as an optional follow-up.</p>
+          </div>
+
+          <div class="module-grid">
+            <a class="module-card module-card-featured" href="SegmentG_TMLE.pdf">
+              <span class="module-letter">L</span>
+              <span class="module-meta">Live deck</span>
+              <h3>Teach the aligned example</h3>
+              <p>Fifteen slides from the Navigator plan to interpretation.</p>
+              <span class="card-link">Open PDF <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="module-card module-card-featured" href="pneumonia_tmle_example.R" download>
+              <span class="module-letter">R</span>
+              <span class="module-meta">Live code</span>
+              <h3>Run the compact analysis</h3>
+              <p>Compare all four estimators with minimal setup.</p>
+              <span class="card-link">Download R script <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="SegmentG_TMLE_Technical_Supplement.pdf">
+              <span class="module-letter">T</span>
+              <span class="module-meta">Technical supplement</span>
+              <h3>Open the TMLE machinery</h3>
+              <p>Thirty-two slides on targeting, inference, and diagnostics.</p>
+              <span class="card-link">Open PDF <span aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="module-card" href="pneumonia_tmle_technical.R" download>
+              <span class="module-letter">R</span>
+              <span class="module-meta">Technical code</span>
+              <h3>Reproduce each component</h3>
+              <p>Manual decomposition, package TMLE, outputs, and figures.</p>
+              <span class="card-link">Download R script <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="simulate_pneumonia_data.R" download>
+              <span class="module-letter">S</span>
+              <span class="module-meta">Data provenance</span>
+              <h3>Audit the generator</h3>
+              <p>Reproduce the cohort and its model-implied benchmark.</p>
+              <span class="card-link">Download generator <span aria-hidden="true">↓</span></span>
+            </a>
+
+            <a class="module-card" href="data/pneumonia_data.csv" download>
+              <span class="module-letter">D</span>
+              <span class="module-meta">Synthetic data</span>
+              <h3>Use the frozen cohort</h3>
+              <p>The same participant-level CSV used in Modules F and G.</p>
+              <span class="card-link">Download CSV <span aria-hidden="true">↓</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="continue-title">
+        <div class="shell closing-inner">
+          <p class="section-kicker">Continue the workshop</p>
+          <h2 id="continue-title">Keep the question, target, and assumptions visible</h2>
+          <a class="text-link" href="../F/">
+            Return to the Navigator workshop
+            <span aria-hidden="true">←</span>
+          </a>
+          <a class="text-link" href="../H/">
+            Open the participant kit
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>
+          <a class="brand brand-small" href="../../" aria-label="INStats seminar home">
+            <span class="brand-in">in</span><span class="brand-stats">stats</span>
+          </a>
+          <span>Causal Roadmaps with AI · Module G</span>
+        </p>
+        <p>Synthetic teaching data · Not clinical evidence</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+Presenter biographical copy used in Module A
+Workshop date: 5 August 2026
+
+Kathryn Morrison, PhD, PStat
+Co-founder and President, Precision Analytics. Accredited statistician whose
+consulting spans genomics, forensics, clinical research, and statistical
+technology.
+
+Andy Wilson, PhD, MStat
+Adjunct Professor, University of Utah. Teaches causal methods in public health
+and co-develops the open-source Causal Navigator through Tao of RWD.
+
+Robert Platt, PhD
+Professor of Biostatistics, McGill University. Co-lead of the Canadian Network
+for Observational Drug Effect Studies, with a focus on pharmacoepidemiology
+using claims and electronic health-record data.
+
+Auriane Journet
+McGill University MScPH student with interests in pharmacovigilance,
+real-world evidence, and causal inference. Supports the workshop's live
+delivery.
+
+Source: presenter-supplied biographical copy reviewed for the seminar.

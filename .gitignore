@@ -1,0 +1,23 @@
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# R session and regenerated teaching data
+.RData
+.Rhistory
+modules/G/data/pneumonia_data_regenerated.csv
+
+# Local render and audit directories
+$out/
+render_*/
+.tmp_*/

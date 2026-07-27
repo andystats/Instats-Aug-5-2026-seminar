@@ -17,8 +17,8 @@ Open the manual, no-login route at
 
 > **Synthetic teaching data only.** The fixed dataset contains no patient data
 > and provides no evidence about real vaccine effectiveness, safety, or policy.
-> The data generator and an intervention-level causal truth are not included in
-> the module.
+> The generator and model-implied benchmark are available in Module G after
+> the activity; they are not used to answer the pre-result checkpoints.
 
 ## Opening case
 
@@ -197,8 +197,9 @@ Do not complete this table until the facilitator reveals the adjusted results.
 | Hajek IPW |  |  |
 | TMLE with 95% confidence interval |  |  |
 
-There is no archived intervention-level truth for this module. Compare the
-estimators with one another, not with an unverified truth benchmark.
+First compare the estimators with one another. The optional Module G supplement
+then provides a -4.04-point model-implied benchmark for the frozen cohort; it
+is not an observed result or evidence about a real study.
 
 ## Workshop deliverable
 
