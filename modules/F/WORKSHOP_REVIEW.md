@@ -43,7 +43,7 @@ Archived and reviewable materials now include:
 - the five-node, nine-edge DAG specification;
 - the standalone `simcausal` generator and seed reconstruction;
 - the Module F and G R analyses;
-- crude, g-computation, Hajek IPW, manual TMLE, and package TMLE outputs;
+- crude, g-computation, IPTW, manual TMLE, and package TMLE outputs;
 - fitted treatment-model diagnostics and package versions; and
 - the -4.04-point model-implied benchmark for the frozen cohort.
 
@@ -60,7 +60,7 @@ The aligned course-facing values are:
 | --- | ---: |
 | Crude association | +0.76 percentage points |
 | Parametric g-computation | -3.28 percentage points |
-| Hajek IPW | -2.94 percentage points |
+| IPTW | -2.94 percentage points |
 | TMLE | -3.05 percentage points (95% CI -4.60 to -1.50) |
 | Model-implied benchmark for the frozen cohort | -4.04 percentage points |
 

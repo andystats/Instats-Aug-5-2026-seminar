@@ -34,7 +34,7 @@ Keep these constraints visible throughout the session:
 - Report the course-facing TMLE result as a risk difference of **-3.0 percentage
   points** with a 95% confidence interval of **-4.6 to -1.5 percentage points**.
   The comparison estimates are g-computation **-3.28 percentage points** and
-  Hajek IPW **-2.94 percentage points**.
+  IPTW **-2.94 percentage points**.
 
 ## Before the session
 
@@ -69,7 +69,7 @@ Keep these constraints visible throughout the session:
 | 23-33 min | Step 4: identification | Choose the weakest assumption, name evidence that would support it, and propose one design response if it fails | Treat this as the main workshop activity; take two defended examples in plenary |
 | 33-39 min | Steps 5-6: estimand and estimator | Explain which assumptions link the causal target to the observed-data estimand; state one problem TMLE cannot repair | Lock the estimand and estimator without showing the adjusted result |
 | 39-44 min | Step 7: sensitivity | Choose one causal or measurement gap and specify an analysis or new evidence that would illuminate it | Separate sampling uncertainty from causal uncertainty |
-| 44-49 min | Result reveal | Record g-computation, IPW, and TMLE; compare direction and magnitude | Reveal the results together and emphasize that agreement does not validate the assumptions |
+| 44-49 min | Result reveal | Record g-computation, IPTW, and TMLE; compare direction and magnitude | Reveal the results together and emphasize that agreement does not validate the assumptions |
 | 49-54 min | Step 8: interpretation | Accept, correct, or reject a proposed conclusion; cite one assumption and one limitation | Release the completed worked example only after participants have committed to an interpretation |
 | 54-55 min | Export and close | Save the decision log and exported Markdown record | Export the study summary and hand off to the aligned Module G live example |
 
@@ -98,7 +98,7 @@ Keep these constraints visible throughout the session:
    | --- | ---: |
    | Crude association | +0.76 percentage points |
    | Parametric g-computation | -3.28 percentage points |
-   | Hajek IPW | -2.94 percentage points |
+   | IPTW | -2.94 percentage points |
    | TMLE | -3.0 percentage points (95% CI -4.6 to -1.5) |
 
 9. Ask participants to accept, correct, or reject the proposed interpretation.
@@ -123,7 +123,7 @@ Keep these constraints visible throughout the session:
 Recommended:
 
 > In this fixed synthetic teaching dataset, the crude association is positive,
-> while g-computation, IPW, and TMLE estimates are negative under the stipulated
+> while g-computation, IPTW, and TMLE estimates are negative under the stipulated
 > adjustment plan. This illustrates how an explicit causal roadmap can change
 > the analysis and interpretation.
 

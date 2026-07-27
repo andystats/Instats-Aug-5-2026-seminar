@@ -1,245 +1,99 @@
-% Segment H: five-minute close | Kathryn Morrison and Andy Wilson
+% Module H: five-minute wrap-up | Kathryn Morrison and Andy Wilson
 \documentclass[aspectratio=169,10pt]{beamer}
 \input{instats-preamble}
 
-\title{The Roadmap You Keep}
+\title{Module H: Wrap-up}
+\subtitle{A short recap, resources, and thanks}
 \author{Kathryn Morrison \(\cdot\) Andy Wilson}
-\institute{Causal Roadmaps with AI \(\cdot\) INStats}
-\date{August 5, 2026}
+\institute{Data Can Deceive: Causal Roadmaps with (and without) AI}
+\date{August 5, 2026 \(\cdot\) 4:55--5:00 PM ET}
 
 \begin{document}
 
-% 0:00--0:45 | Synthesize the workshop without depending on Module G results.
-\begin{frame}[t]{The roadmap is the work}
-  \frametag{SYNTHESIZE \(\cdot\) 45 SEC}
-  \vspace*{0.30cm}
+% 0:00--0:25 | Use the same title treatment as the other course modules.
+\instatstitle
 
-  \begin{center}
-    \begin{tikzpicture}[
-      node distance=0.18cm,
-      >={Latex[length=2.0mm]},
-      phase/.style={
-        rounded corners=2pt,
-        minimum width=2.05cm,
-        minimum height=1.45cm,
-        text width=1.68cm,
-        align=center,
-        inner sep=4pt,
-        font=\small
-      }
-    ]
-      \node[phase,draw=accent!65,fill=accent!7,text=accent] (question)
-        {\bfseries Question\\[-1pt]\scriptsize\color{slate}target trial};
-      \node[phase,draw=accent!65,fill=accent!7,text=accent,right=of question] (design)
-        {\bfseries Design\\[-1pt]\scriptsize\color{slate}model + data};
-      \node[phase,draw=navorange!65,fill=navorange!7,text=navorange,right=of design] (assumptions)
-        {\bfseries Assumptions\\[-1pt]\scriptsize\color{slate}identification};
-      \node[phase,draw=navorange!65,fill=navorange!7,text=navorange,right=of assumptions] (estimand)
-        {\bfseries Estimand\\[-1pt]\scriptsize\color{slate}target quantity};
-      \node[phase,draw=resultgreen!65,fill=resultgreen!7,text=resultgreen,right=of estimand] (estimate)
-        {\bfseries Estimate\\[-1pt]\scriptsize\color{slate}method + checks};
-      \node[phase,draw=slate!65,fill=slate!6,text=slate,right=of estimate] (claim)
-        {\bfseries Claim\\[-1pt]\scriptsize\color{slate}meaning + limits};
-
-      \draw[->,black!35,line width=0.8pt] (question.east) -- (design.west);
-      \draw[->,black!35,line width=0.8pt] (design.east) -- (assumptions.west);
-      \draw[->,black!35,line width=0.8pt] (assumptions.east) -- (estimand.west);
-      \draw[->,black!35,line width=0.8pt] (estimand.east) -- (estimate.west);
-      \draw[->,black!35,line width=0.8pt] (estimate.east) -- (claim.west);
-    \end{tikzpicture}
-  \end{center}
-
-  \vspace{0.62cm}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.485\textwidth}
-      \begin{tikzpicture}
-        \node[
-          fill=accent!8,draw=accent!48,rounded corners=2pt,
-          text width=6.15cm,align=left,inner sep=9pt
-        ] {%
-          {\color{accent}\bfseries AI can support the work}\par
-          \small Draft \(\cdot\) translate \(\cdot\) challenge \(\cdot\) document
-        };
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.485\textwidth}
-      \begin{tikzpicture}
-        \node[
-          fill=navorange!7,draw=navorange!52,rounded corners=2pt,
-          text width=6.15cm,align=left,inner sep=9pt
-        ] {%
-          {\color{navorange}\bfseries Evidence and people decide}\par
-          \small Judge \(\cdot\) justify \(\cdot\) revise \(\cdot\) take responsibility
-        };
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-
-  \vfill
-  \begin{center}
-    {\small\color{black!58}
-      The estimator comes downstream of the science.}
-  \end{center}
-  \note{One question stayed connected from protocol to interpretation. AI
-    accelerated drafting and challenge; it did not inherit scientific
-    accountability. This recap is estimator-agnostic so it remains valid if
-    Module G changes.}
-\end{frame}
-
-% 0:45--2:00 | Close the loop with Module A's opening chat prompt.
-\begin{frame}[t]{Before your next model}
-  \frametag{COMMIT \(\cdot\) 75 SEC}
-  \vspace*{0.32cm}
-
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.38\textwidth}
-      \begin{tikzpicture}
-        \node[
-          fill=slate,text=white,rounded corners=2pt,
-          text width=4.60cm,minimum height=4.45cm,
-          align=left,inner sep=13pt
-        ] {%
-          {\color{accent}\scriptsize\bfseries OPENING CHAT PROMPT}\par
-          \vspace{0.40cm}
-          {\fontsize{15.5}{20}\selectfont\itshape
-            Which causal claim\\
-            in your current work\\
-            feels least defensible?}\par
-          \vspace{0.55cm}
-          {\small\color{white!72}Revisit it now.}
-        };
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.60\textwidth}
-      \vspace*{0.10cm}
-      {\color{slate}\bfseries Complete these two lines:}
-
-      \vspace{0.42cm}
-      \begin{tikzpicture}
-        \node[
-          fill=softgray,draw=black!16,rounded corners=2pt,
-          text width=7.20cm,align=left,inner sep=10pt
-        ] {%
-          \textbf{In} \rule{2.35cm}{0.45pt},
-          \textbf{before I fit a model, I will}\\[4pt]
-          \rule{6.75cm}{0.45pt}.
-        };
-      \end{tikzpicture}
-
-      \vspace{0.42cm}
-      \begin{tikzpicture}
-        \node[
-          fill=navorange!7,draw=navorange!52,rounded corners=2pt,
-          text width=7.20cm,align=left,inner sep=10pt
-        ] {%
-          \textbf{Evidence or revision trigger:}\\[4pt]
-          \rule{6.75cm}{0.45pt}.
-        };
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-
-  \vspace{0.18cm}
-  \begin{center}
-    {\bfseries\color{slate}
-      Write it down. If useful, post one line in the chat.}
-  \end{center}
-  \note{Give participants 30 seconds to write. Invite one or two commitments
-    into the chat. The sentence should name a study, a first changed action,
-    and evidence that would trigger revision.}
-\end{frame}
-
-% 2:00--3:00 | One durable page; link to existing assets rather than duplicate them.
-\begin{frame}[t]{Keep the workflow}
-  \frametag{TAKE-HOME KIT \(\cdot\) 60 SEC}
+% 0:25--2:25 | Recap the course spine without reopening technical detail.
+\begin{frame}[t]{One question, one defensible chain}
   \vspace*{0.28cm}
 
+  \begin{enumerate}
+    \setlength{\itemsep}{0.26cm}
+    \item \textbf{Start with the causal question and target trial.}\\
+      Define the population, strategies, outcome, time zero, follow-up, and
+      contrast before choosing a model.
+    \item \textbf{Make the assumptions visible.}\\
+      Connect the causal model and data to identification conditions and the
+      adjustment strategy.
+    \item \textbf{Match the estimand, estimator, and diagnostics.}\\
+      Estimate the quantity you defined; inspect positivity, model behavior,
+      uncertainty, and sensitivity.
+    \item \textbf{Keep the interpretation inside the evidence.}\\
+      State what the estimate supports, what it does not, and the evidence that
+      would make you revise the claim.
+  \end{enumerate}
+
+  \vspace{0.04cm}
   \begin{center}
-    \href{https://andystats.github.io/Instats-Aug-5-2026-seminar/modules/H/}
-      {\color{accent}\bfseries\large
-       andystats.github.io/Instats-Aug-5-2026-seminar/modules/H/}
+    {\scriptsize\color{accent}\bfseries AI can assist with drafting and challenge;
+    people remain responsible for the science and the claim.}
   \end{center}
-
-  \vspace{0.50cm}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.245\textwidth}
-      \centering
-      \kitcard{accent}{01}{%
-        Repeat\par\vspace{0.15cm}
-        {\small Blank roadmap and next-study prompts}}
-    \end{column}
-    \begin{column}{0.245\textwidth}
-      \centering
-      \kitcard{navorange}{02}{%
-        Audit\par\vspace{0.15cm}
-        {\small Accept, correct, or reject with evidence}}
-    \end{column}
-    \begin{column}{0.245\textwidth}
-      \centering
-      \kitcard{resultgreen}{03}{%
-        Reproduce\par\vspace{0.15cm}
-        {\small Data, DAG, code, results + checks}}
-    \end{column}
-    \begin{column}{0.245\textwidth}
-      \centering
-      \kitcard{slate}{04}{%
-        Compare\par\vspace{0.15cm}
-        {\small Completed roadmap after your own attempt}}
-    \end{column}
-  \end{columns}
-
-  \note{Open the Module H landing page. It points to the finalized Module F
-    participant guide and completed roadmap, the aligned Module G live and
-    technical materials, and reusable blank templates in Module H.}
+  \note{Recap the four links once. Avoid reopening estimator details. Emphasize
+    that the roadmap is a connected decision record, not a checklist completed
+    after the analysis.}
 \end{frame}
 
-% 3:00--4:10 | No feedback form is archived; use chat as the exit ticket.
-\begin{frame}[t]{Before you go}
-  \frametag{EXIT TICKET \(\cdot\) 70 SEC}
-  \vspace*{0.38cm}
-
-  \begin{center}
-    {\fontsize{18}{23}\selectfont\bfseries\color{slate}
-      One-minute feedback in the chat\par}
-  \end{center}
-
-  \vspace{0.38cm}
+% 2:25--3:55 | Point participants to the two continuing resources and contacts.
+\begin{frame}[t]{Resources and contact}
+  \vspace*{0.28cm}
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.32\textwidth}
-      \centering
-      \kitcard{accent}{01}{%
-        Use\par\vspace{0.15cm}
-        {\small What will you try first?}}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Course materials}
+        \href{https://andystats.github.io/Instats-Aug-5-2026-seminar/}
+          {\color{accent}\bfseries
+           andystats.github.io/\\
+           Instats-Aug-5-2026-seminar/}
+
+        \vspace{0.20cm}
+        \small Slides, synthetic teaching data, code, diagnostics, and reusable
+        roadmap templates.
+      \end{block}
+
+      \vspace{0.22cm}
+      \begin{block}{Causal Navigator}
+        \href{https://navigator.tao-rwd.com/}
+          {\color{accent}\bfseries navigator.tao-rwd.com}
+
+        \vspace{0.20cm}
+        \small Start a new question-to-claim decision record.
+      \end{block}
     \end{column}
-    \begin{column}{0.32\textwidth}
-      \centering
-      \kitcard{navorange}{02}{%
-        Question\par\vspace{0.15cm}
-        {\small What still feels least defensible?}}
-    \end{column}
-    \begin{column}{0.32\textwidth}
-      \centering
-      \kitcard{resultgreen}{03}{%
-        Improve\par\vspace{0.15cm}
-        {\small What should we change?}}
+
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Kathryn Morrison}
+        Founder and President, Precision Analytics
+
+        \vspace{0.18cm}
+        \href{https://www.precision-analytics.ca/}
+          {\color{accent}\bfseries precision-analytics.ca}
+      \end{block}
+
+      \vspace{0.22cm}
+      \begin{block}{Andy Wilson}
+        Causal methods and real-world data
+
+        \vspace{0.18cm}
+        \href{mailto:wilson.stats@gmail.com}
+          {\color{accent}\bfseries wilson.stats@gmail.com}
+      \end{block}
     \end{column}
   \end{columns}
-
-  \vfill
-  \begin{center}
-    {\color{slate}\bfseries
-      Thank you for doing the hard part: making the assumptions visible.}\par
-    \vspace{0.08cm}
-    {\scriptsize\color{black!55}
-      Kathryn Morrison \(\cdot\) Andy Wilson\\[2pt]
-      With thanks to Robert Platt (guest case) and Auriane Journet (live-delivery support).}
-  \end{center}
-  \note{There is no verified feedback-form URL in the archived materials, so
-    use the chat as the exit ticket. Ask for any one of the three responses.
-    Capture the chat after the session if permitted by the seminar host.}
+  \note{Leave this slide visible long enough for participants to capture the
+    links. Kathryn's public company page is used as her contact destination;
+    Andy's workshop email is printed directly.}
 \end{frame}
 
-% 4:10--4:20 | End on the governing principle; leave 40 seconds of buffer.
+% 3:55--4:30 | Thank the participants and close with the course principle.
 \begin{frame}[plain]
   \begin{tikzpicture}[remember picture,overlay]
     \fill[slate] (current page.south west) rectangle (current page.north east);
@@ -249,15 +103,33 @@
     \node[anchor=north east,fill=white,rounded corners=2pt,inner sep=4pt]
       at ([xshift=-0.65cm,yshift=-0.50cm]current page.north east)
       {\includegraphics[width=2.70cm]{art/InStats_RWL.png}};
+
     \node[
-      text=white,text width=12.7cm,align=left,
-      font=\bfseries\fontsize{29}{36}\selectfont
-    ] at ([xshift=0.42cm,yshift=-0.05cm]current page.center)
-      {Data can deceive.\\[5pt]
-       \textcolor{accent}{Make every causal claim}\\
-       leave an audit trail.};
+      anchor=west,text=white,text width=10.8cm,align=left,
+      font=\bfseries\fontsize{31}{37}\selectfont
+    ] at ([xshift=1.30cm,yshift=1.20cm]current page.west)
+      {Thank you.};
+
+    \node[
+      anchor=west,text=white!92,text width=12.5cm,align=left,
+      font=\fontsize{15}{20}\selectfont
+    ] at ([xshift=1.32cm,yshift=0.22cm]current page.west)
+      {Kathryn Morrison \(\cdot\) Andy Wilson};
+
+    \node[
+      anchor=west,text=white!70,text width=12.5cm,align=left,
+      font=\fontsize{9.5}{13}\selectfont
+    ] at ([xshift=1.32cm,yshift=-0.65cm]current page.west)
+      {With thanks to Robert Platt and Auriane Journet.};
+
+    \node[
+      anchor=west,text=accent,text width=12.5cm,align=left,
+      font=\bfseries\fontsize{16}{21}\selectfont
+    ] at ([xshift=1.32cm,yshift=-1.72cm]current page.west)
+      {Make every causal claim leave an audit trail.};
   \end{tikzpicture}
-  \note{Pause, read the final line once, and end.}
+  \note{Thank the participants and contributors, read the final line once, and
+    end. The remaining time is buffer.}
 \end{frame}
 
 \end{document}

@@ -19,8 +19,10 @@ It is distributed as an open-access article under the
 [CC BY-NC-ND 4.0 license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 The deck presents the nine-step literature version of the roadmap while noting
-that the Causal Navigator groups the workflow into eight steps. All workshop
-times are shown in Eastern Time.
+that the Causal Navigator groups the workflow into eight operational steps.
+Navigator Step 1 records the research question and causal contrast together;
+the remaining literature-roadmap labels then shift by one. All workshop times
+are shown in Eastern Time.
 
 To rebuild the Beamer slides, run `latexmk -pdf SegmentD_Roadmap.tex` from this
 folder. The included TikZ overlays require multiple LaTeX passes; `latexmk`

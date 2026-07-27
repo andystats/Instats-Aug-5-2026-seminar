@@ -162,13 +162,14 @@ w1 <- A / parametric_g_hat
 w0 <- (1 - A) / (1 - parametric_g_hat)
 
 parametric_gcomp_rd <- mean(parametric_Q1 - parametric_Q0)
-ipw_rd <- sum(w1 * Y) / sum(w1) - sum(w0 * Y) / sum(w0)
+# IPTW uses ratio normalization within each treatment arm.
+iptw_rd <- sum(w1 * Y) / sum(w1) - sum(w0 * Y) / sum(w0)
 
 results <- data.frame(
   estimator = c(
     "Crude association",
     "Parametric g-computation",
-    "Hajek IPW",
+    "IPTW",
     "Manual TMLE decomposition",
     "tmle package",
     "Model-implied DGP benchmark"
@@ -176,7 +177,7 @@ results <- data.frame(
   risk_difference = c(
     crude_rd,
     parametric_gcomp_rd,
-    ipw_rd,
+    iptw_rd,
     manual_tmle_rd,
     package_tmle_rd,
     generator_benchmark_rd
@@ -190,9 +191,11 @@ diagnostics <- data.frame(
     "N",
     "vaccinated_n",
     "events_n",
-    "raw_propensity_min",
-    "raw_propensity_max",
-    "share_raw_propensity_outside_0.025_0.975",
+    "parametric_glm_propensity_min",
+    "parametric_glm_propensity_max",
+    "tmle_superlearner_propensity_min",
+    "tmle_superlearner_propensity_max",
+    "share_tmle_superlearner_propensity_outside_0.025_0.975",
     "targeting_epsilon",
     "mean_eif",
     "initial_sl_gcomp_rd",
@@ -204,6 +207,8 @@ diagnostics <- data.frame(
     n,
     sum(A == 1),
     sum(Y == 1),
+    min(parametric_g_hat),
+    max(parametric_g_hat),
     min(g_raw),
     max(g_raw),
     mean(g_raw < 0.025 | g_raw > 0.975),
@@ -233,12 +238,13 @@ writeLines(
   useBytes = TRUE
 )
 
-# Figures used by both decks.
+# Figures used by both decks. The overlap figure is the parametric-GLM
+# propensity-score comparator diagnostic, not the Super Learner g fit used by TMLE.
 plot_results <- transform(
   results[results$estimator %in% c(
     "Crude association",
     "Parametric g-computation",
-    "Hajek IPW",
+    "IPTW",
     "tmle package"
   ), ],
   estimator = factor(
@@ -246,7 +252,7 @@ plot_results <- transform(
     levels = rev(c(
       "Crude association",
       "Parametric g-computation",
-      "Hajek IPW",
+      "IPTW",
       "tmle package"
     ))
   ),
@@ -334,7 +340,7 @@ p_overlap <- ggplot(
   ) +
   scale_x_continuous(breaks = seq(0, 1, by = 0.2), limits = c(0, 1)) +
   labs(
-    x = "Estimated P(vaccinated | W)",
+    x = "Parametric-GLM P(vaccinated | W)",
     y = "Density",
     fill = NULL,
     color = NULL
@@ -362,7 +368,12 @@ print(results, row.names = FALSE, digits = 4)
 cat(sprintf("\nTargeting epsilon: %.6f\n", epsilon))
 cat(sprintf("Mean efficient influence function: %.3e\n", mean(eif)))
 cat(sprintf(
-  "Raw propensity range: %.3f to %.3f\n",
+  "Parametric-GLM comparator propensity range: %.3f to %.3f\n",
+  min(parametric_g_hat),
+  max(parametric_g_hat)
+))
+cat(sprintf(
+  "TMLE Super Learner propensity range: %.3f to %.3f\n",
   min(g_raw),
   max(g_raw)
 ))

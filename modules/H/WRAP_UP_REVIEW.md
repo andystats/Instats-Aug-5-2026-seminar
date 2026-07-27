@@ -1,63 +1,54 @@
-# Segment H wrap-up review
+# Module H wrap-up review
 
 ## Publication assessment
 
-Segment H is ready to serve as a five-minute workshop close once the canonical
-Beamer PDF, participant landing page, and templates in this directory are
-published together.
+Module H now follows the same basic presentation pattern as the other course
+modules: a branded title slide, a low-density content recap, a practical
+resources slide, and a closing slide. The projected close is intentionally
+shorter and simpler than the earlier participant-commitment version.
 
-The final close is intentionally independent of Module G. It does not name an
-estimator, dataset, numerical result, or notebook from the estimation segment.
+## Revision summary
 
-## Changes from the seed
-
-- Replaced the standalone title with five low-density content slides so the
-  five-minute segment has time for participant action.
-- Returned to Module A's exact opening prompt.
-- Reframed the take-home kit as a repeatable workflow rather than a list of
-  promised files.
-- Added a study-specific commitment and evidence/revision trigger.
-- Added a chat-based exit ticket because no verified feedback form is archived.
-- Replaced the long, wrapping footer with a separate acknowledgement and a
-  ten-second closing line.
-- Removed unfinished or unavailable optional resources from the projected
-  close.
-- Corrected the acknowledgement: Auriane Journet is credited for live-delivery
-  support, not as the creator of the Navigator.
+- Reduced the live close from five activity-oriented slides to four
+  conventional slides.
+- Added the standard module title treatment and full public course title.
+- Replaced the commitment and exit-ticket activities with a concise recap.
+- Added a dedicated resources/contact slide.
+- Uses Kathryn Morrison's public Precision Analytics page as her contact
+  destination and Andy Wilson's published workshop email.
+- Retained the course principle and contributor acknowledgements on a simple
+  thank-you slide.
+- Kept the reusable participant kit on the Module H landing page as optional
+  follow-up material.
 
 ## Resource and claim audit
 
-The Module H page links to canonical Module F and G files rather than duplicating them:
-participant workbook, completed roadmap, fixed synthetic CSV, DAG, live and
-technical R scripts, results, diagnostics, generator, and benchmark.
+The close links to the course site and the current Causal Navigator. The Module
+H page continues to link to canonical Module F and G materials rather than
+duplicating them.
 
-The page also links to the current Causal Navigator and its verified
-right-heart-catheterization example. Legacy or unavailable apps are not part of
-the core kit.
-
-The pneumonia example remains labeled as synthetic teaching material. The kit labels the frozen-cohort benchmark as
-model-implied; neither the close nor the kit claims an exact causal truth, bias,
+The pneumonia example remains labeled as fixed synthetic teaching material.
+Neither the close nor the kit claims an exact causal truth, estimator bias,
 RMSE, or proof of real-world identification assumptions.
 
 ## Timing
 
 | Slide | Planned time |
 | --- | ---: |
-| The roadmap is the work | 45 seconds |
-| Before your next model | 75 seconds |
-| Keep the workflow | 60 seconds |
-| Before you go | 70 seconds |
-| Final line | 10 seconds |
-| Buffer | 40 seconds |
+| Module H: Wrap-up | 25 seconds |
+| One question, one defensible chain | 120 seconds |
+| Resources and contact | 90 seconds |
+| Thank you | 35 seconds |
+| Buffer | 30 seconds |
 
-## QA completed
+## QA checklist
 
 - [x] Beamer source compiles with `latexmk`.
-- [x] PDF contains five 16:9 pages.
-- [x] Every page rendered to PNG and received individual visual inspection.
+- [x] PDF contains four 16:9 pages.
+- [x] Every page is rendered to PNG and individually inspected.
 - [x] No audience-facing content is clipped or overlapped.
 - [x] PDF text is searchable.
-- [x] The Module H URL is an explicit clickable hyperlink.
-- [x] The closing content remains valid if Module G changes.
-- [x] Participant-kit links use canonical Module D/F/G files.
-- [x] Box and GitHub packages contain the same canonical files.
+- [x] Course, Navigator, company, and email links are clickable.
+- [x] Contact information matches a public source.
+- [x] Closing content remains valid if Module G changes.
+- [x] Participant-kit links continue to use canonical Module D/F/G files.

@@ -2,16 +2,29 @@
 
 ## Purpose
 
-Introduce association versus intervention, counterfactual contrasts, causal
-structures, target-trial protocols, and time-zero alignment.
+Move from association to intervention, distinguish confounders, mediators, and
+colliders, and show why target-trial design and time-zero alignment must precede
+model fitting.
 
-## Materials planned here
+## Materials
 
-- Foundations slides
-- Counterfactual and causal-structure examples
-- Target-trial protocol
-- Pneumonia-vaccine example
+- [Compiled Beamer slides](Segment_C_Foundations.pdf)
+- [Editable LaTeX source](Segment_C_Foundations.tex)
+- [Slide artwork](art/)
 
-**Status:** Structure ready; materials are being assembled.
+The 21-slide deck includes four participant poll/solution sequences and an
+explicit handoff into Module D.
+
+## Rebuild
+
+From this folder, run:
+
+```sh
+latexmk -pdf Segment_C_Foundations.tex
+```
+
+`latexmk` handles the multiple LaTeX passes required by the TikZ diagrams. To
+remove auxiliary build files afterward, run
+`latexmk -c Segment_C_Foundations.tex`.
 
 [Return to the seminar overview](../../README.md)

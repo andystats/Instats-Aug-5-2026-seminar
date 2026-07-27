@@ -194,7 +194,7 @@ Do not complete this table until the facilitator reveals the adjusted results.
 | --- | ---: | --- |
 | Crude association | +0.76 percentage points |  |
 | Parametric g-computation |  |  |
-| Hajek IPW |  |  |
+| IPTW |  |  |
 | TMLE with 95% confidence interval |  |  |
 
 First compare the estimators with one another. The optional Module G supplement
