@@ -271,7 +271,7 @@ structure.
 | --- | ---: |
 | Crude association | +0.76 percentage points |
 | Parametric g-computation | -3.28 percentage points |
-| Hajek IPW | -2.94 percentage points |
+| IPTW | -2.94 percentage points |
 | TMLE | -3.0 percentage points (95% CI -4.6 to -1.5) |
 
 The archived CSV output contains additional digits. The rounded values above are

@@ -2,9 +2,11 @@
 "N",5000
 "vaccinated_n",1627
 "events_n",334
-"raw_propensity_min",0.0920109201070111
-"raw_propensity_max",0.893750052707255
-"share_raw_propensity_outside_0.025_0.975",0
+"parametric_glm_propensity_min",0.0765242065485929
+"parametric_glm_propensity_max",0.909121998932483
+"tmle_superlearner_propensity_min",0.0920109201070111
+"tmle_superlearner_propensity_max",0.893750052707255
+"share_tmle_superlearner_propensity_outside_0.025_0.975",0
 "targeting_epsilon",0.00850335472391953
 "mean_eif",-8.78532019342752e-13
 "initial_sl_gcomp_rd",-0.0324924164628909

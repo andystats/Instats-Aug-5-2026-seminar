@@ -1,4 +1,4 @@
-# Causal Roadmaps with AI
+# Data Can Deceive: Causal Roadmaps with (and without) AI
 
 Companion materials for the **INStats online seminar on 5 August 2026**.
 
@@ -19,19 +19,24 @@ The student-facing course page is:
 | --- | --- | --- |
 | A | Welcome + Intro | [Open Module A](modules/A/) |
 | B | Example with Robert Platt *(forthcoming)* | [Open Module B](modules/B/) |
-| C | Foundations *(forthcoming)* | [Open Module C](modules/C/) |
+| C | Foundations | [Open Module C](modules/C/) |
 | D | The Roadmap | [Open Module D](modules/D/) |
-| E | Audit-First AI *(forthcoming)* | [Open Module E](modules/E/) |
+| E | Audit-First AI | [Open Module E](modules/E/) |
 | F | Live Navigator workshop | [Open Module F](modules/F/) |
 | G | TMLE live walkthrough + technical supplement | [Open Module G](modules/G/) |
-| H | Wrap-up + participant kit | [Open Module H](modules/H/) |
+| H | Recap, resources + thanks | [Open Module H](modules/H/) |
+
+The seminar teaches the nine-step literature version of the causal roadmap and
+maps it to the Causal Navigator's eight operational steps. Navigator Step 1
+records the research question and causal contrast together; the remaining
+roadmap labels then shift by one.
 
 Module F is the central participant workshop: learners carry one synthetic
-pneumonia-vaccine study through all eight Causal Navigator steps. Module G then
+pneumonia-vaccine study through those eight Navigator steps. Module G then
 uses the same cohort, estimand, and adjustment set for a live TMLE walkthrough
-and an optional technical supplement. Module H closes the seminar with a
-next-study commitment, reusable roadmap and audit-log templates, and links to
-the completed workshop example.
+and an optional technical supplement. Module H closes with a concise recap,
+resources, contact information, and thanks; its landing page also keeps the
+reusable roadmap and audit-log templates available for follow-up.
 
 ## Repository structure
 

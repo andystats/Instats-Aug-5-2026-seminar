@@ -4,7 +4,7 @@
 #
 # This script begins with the archived synthetic CSV in data/. The companion
 # generator and model-implied benchmark are archived in Module G. This script
-# estimates the crude association, parametric g-computation and Hajek IPW risk
+# estimates the crude association, parametric g-computation and IPTW risk
 # differences, and a TMLE risk difference for the same fixed cohort.
 #
 # The Super Learner seed improves repeatability within a fixed software
@@ -114,12 +114,12 @@ q1 <- predict(q_fit, newdata = d1, type = "response")
 q0 <- predict(q_fit, newdata = d0, type = "response")
 gcomp_rd <- mean(q1) - mean(q0)
 
-# Hajek IPW standardizes each weighted mean by its own total weight.
+# IPTW standardizes each weighted mean by its own total weight.
 w1 <- A / g
 w0 <- (1 - A) / (1 - g)
-ipw_risk_1 <- sum(w1 * Y) / sum(w1)
-ipw_risk_0 <- sum(w0 * Y) / sum(w0)
-ipw_rd <- ipw_risk_1 - ipw_risk_0
+iptw_risk_1 <- sum(w1 * Y) / sum(w1)
+iptw_risk_0 <- sum(w0 * Y) / sum(w0)
+iptw_rd <- iptw_risk_1 - iptw_risk_0
 
 # The seed controls stochastic Super Learner fitting; it is not a data-
 # generation seed. Package versions remain part of the computational result.
@@ -145,10 +145,10 @@ results <- data.frame(
   analysis = c(
     "Crude association",
     "Parametric g-computation",
-    "Hajek IPW",
+    "IPTW",
     "TMLE"
   ),
-  risk_difference = c(crude_rd, gcomp_rd, ipw_rd, tmle_rd),
+  risk_difference = c(crude_rd, gcomp_rd, iptw_rd, tmle_rd),
   ci_lower = c(NA_real_, NA_real_, NA_real_, tmle_lower),
   ci_upper = c(NA_real_, NA_real_, NA_real_, tmle_upper),
   stringsAsFactors = FALSE
@@ -197,7 +197,7 @@ cat("\nPneumonia vaccine fixed-data teaching analysis\n")
 cat("---------------------------------------------\n")
 cat(sprintf("Crude RD: %+.6f\n", crude_rd))
 cat(sprintf("G-computation RD: %+.6f\n", gcomp_rd))
-cat(sprintf("Hajek IPW RD: %+.6f\n", ipw_rd))
+cat(sprintf("IPTW RD: %+.6f\n", iptw_rd))
 cat(sprintf(
   "TMLE RD: %+.6f (95%% CI %+.6f to %+.6f)\n",
   tmle_rd, tmle_lower, tmle_upper

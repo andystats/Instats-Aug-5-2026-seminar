@@ -13,6 +13,7 @@ vaccination.
 - [Live Beamer deck](SegmentG_TMLE.pdf) - 15-slide workshop presentation
 - [Live Beamer source](SegmentG_TMLE.tex)
 - [Streamlined R example](pneumonia_tmle_example.R)
+- [Live run of show and recovery plan](facilitator-live.md)
 
 From the repository root:
 
@@ -20,7 +21,7 @@ From the repository root:
 Rscript modules/G/pneumonia_tmle_example.R
 ```
 
-The live script reports crude association, parametric g-computation, Hajek IPW,
+The live script reports crude association, parametric g-computation, IPTW (normalized/Hájek form),
 and TMLE on one risk-difference scale.
 
 ## Optional technical supplement
@@ -65,9 +66,16 @@ truth, or evidence about a real study.
 | --- | ---: |
 | Crude association | +0.76 percentage points |
 | Parametric g-computation | -3.28 percentage points |
-| Hajek IPW | -2.94 percentage points |
-| TMLE | -3.05 percentage points (95% CI -4.60 to -1.50) |
+| IPTW | -2.94 percentage points |
+| TMLE | about -3.0 percentage points (95% CI about -4.6 to -1.5) |
 | Model-implied benchmark for the frozen cohort | -4.04 percentage points |
+
+The participant-facing live result uses a stable one-decimal convention. The
+archived CSV retains full precision for the recorded reference environment.
+
+The overlap figure shows the parametric-GLM propensity-score comparator
+diagnostic (0.077 to 0.909). The archived TMLE Super Learner (g) range is
+0.092 to 0.894; both are fitted-data diagnostics, not proof of positivity.
 
 The comprehensive script writes versioned results, diagnostics, session
 information, and the two figures used by the decks to `outputs/` and `art/`.

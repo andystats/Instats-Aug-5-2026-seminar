@@ -1,41 +1,40 @@
-# Module H — Wrap-up + participant kit
+# Module H — Wrap-up
 
-Module H closes the seminar by reconnecting the question, design, assumptions,
-estimand, estimate, and claim. Participants make one commitment for their next
-study and leave with reusable roadmap and audit-log templates.
+Module H closes the seminar with a short, conventional four-slide sequence:
+title, recap, resources/contact, and thanks. It restates the course spine without
+reopening technical details or adding a new participant activity.
 
-The public participant page is:
+The public participant page remains available at:
 
 **[andystats.github.io/Instats-Aug-5-2026-seminar/modules/H](https://andystats.github.io/Instats-Aug-5-2026-seminar/modules/H/)**
 
-## Participant start
+## Closing deck
 
-1. Open `Next_Study_Commitment.pdf`.
-2. Return to the causal claim you named at the start of the seminar.
-3. Record one action you will take before fitting your next model.
-4. Add the evidence or revision trigger that will make the decision reviewable.
-5. Use the blank roadmap and audit log on that study.
-
-## Canonical materials
-
-- `SegmentH_Close.tex` — canonical five-slide 16:9 Beamer source
+- `SegmentH_Close.tex` — canonical four-slide 16:9 Beamer source
 - `SegmentH_Close.pdf` — compiled five-minute close
 - `instats-preamble.tex` — shared Beamer styling
-- `Next_Study_Commitment.tex` — printable one-page action-card source
-- `Next_Study_Commitment.pdf` — printable participant action card
-- `next-study-commitment.md` — editable version of the action card
-- `causal-roadmap-worksheet.md` — reusable nine-step worksheet with the
-  eight-step Navigator mapping
-- `audit-log-template.md` — accept/correct/reject evidence log
-- `participant-kit.md` — concise kit manifest
-- `facilitator-close.md` — 4:20 run of show with recovery options
-- `WRAP_UP_REVIEW.md` — publication, claim, resource, timing, and QA record
-- `index.html` — student-facing participant-kit page
+- `facilitator-close.md` — concise run of show with recovery options
+- `WRAP_UP_REVIEW.md` — publication, contact, timing, and QA record
 - `art/InStats_RWL.png` — seminar logo used by the PDFs
 
-The participant-kit page links to the canonical Module D, F, and G materials rather
-than duplicating them. This avoids file drift and keeps the completed pneumonia
-roadmap clearly separated from the reusable blank templates.
+The close uses the same Metropolis theme, seminar palette, title treatment, and
+terminology as the other modules. It is intentionally estimator-agnostic so the
+summary remains valid if the live analysis changes.
+
+## Optional participant kit
+
+The reusable templates remain available on the Module H participant page, but
+they are no longer the organizing structure of the projected close:
+
+- `Next_Study_Commitment.pdf` and `Next_Study_Commitment.tex`
+- `next-study-commitment.md`
+- `causal-roadmap-worksheet.md`
+- `audit-log-template.md`
+- `participant-kit.md`
+
+The page links to the canonical Module D, F, and G materials instead of
+duplicating them. The pneumonia example remains labeled as fixed synthetic
+teaching data, not clinical evidence.
 
 ## Build the PDFs
 
@@ -47,23 +46,13 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error Next_Study_Commitment.tex
 ```
 
 The closing deck requires a standard TeX Live installation with the Metropolis
-Beamer theme. The action card uses standard article, TikZ, and graphics
-packages.
+Beamer theme.
 
-## Delivery boundary
+## Contact and credits
 
-The close remains intentionally estimator-agnostic, while the participant kit
-links the finalized Module G live walkthrough and optional technical supplement.
-The synthesis remains valid if the estimation segment changes.
+- Kathryn Morrison — [Precision Analytics](https://www.precision-analytics.ca/)
+- Andy Wilson — [wilson.stats@gmail.com](mailto:wilson.stats@gmail.com)
 
-The pneumonia files use fixed synthetic teaching data and are not clinical
-evidence. Module G archives the generator and a model-implied frozen-cohort
-benchmark. The kit does not present that benchmark as an exact truth and does
-not claim estimator bias, RMSE, or real-world identification.
-
-## Credits
-
-Presenters: Kathryn Morrison and Andy Wilson. With thanks to Robert Platt for
-the guest case and Auriane Journet for live-delivery support.
+With thanks to Robert Platt and Auriane Journet.
 
 [Return to the seminar overview](../../README.md)

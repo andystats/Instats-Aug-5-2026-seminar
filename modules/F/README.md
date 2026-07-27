@@ -36,7 +36,7 @@ consequence.
 - `REPRODUCIBILITY.md` - technical audit and reproducibility boundary
 - `pneumonia.dagitty.txt` - complete five-node, nine-edge DAGitty specification
 - `data/pneumonia_data.csv` - fixed synthetic participant-level dataset
-- `code/pneumonia_navigator_tmle.R` - aligned crude, g-computation, IPW, and TMLE analysis
+- `code/pneumonia_navigator_tmle.R` - aligned crude, g-computation, IPTW (normalized/Hájek form), and TMLE analysis
 - `outputs/` - committed results and diagnostics
 - `art/` - normalized Navigator screenshots used by the Beamer sources
 
@@ -73,7 +73,7 @@ reference results are:
 | --- | ---: |
 | Crude association | +0.76 percentage points |
 | Parametric g-computation | -3.28 percentage points |
-| Hajek IPW | -2.94 percentage points |
+| IPTW | -2.94 percentage points |
 | TMLE | -3.05 percentage points (95% CI -4.60 to -1.50) |
 
 Teaching slides round the TMLE result to -3.0 percentage points with a 95%

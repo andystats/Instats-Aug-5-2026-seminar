@@ -1,5 +1,5 @@
 % Module D: The Roadmap
-% INStats Causal Roadmaps with AI workshop
+% INStats Data Can Deceive: Causal Roadmaps with (and without) AI workshop
 % August 5, 2026 | 1:35--2:20 ET | Andy Wilson
 %
 % BUILD: compile TWICE (or latexmk -pdf). This deck uses tikz
@@ -64,7 +64,7 @@
       {The Causal Roadmap};
     \node[anchor=west, text=accent, font=\fontsize{14.5}{18}\selectfont]
       at ([xshift=1.42cm,yshift=0.72cm]current page.west)
-      {Data Can Deceive \(\cdot\) Causal Roadmaps with (and without) AI};
+      {Data Can Deceive: Causal Roadmaps with (and without) AI};
 
     \draw[black!16, line width=0.5pt]
       ([xshift=1.42cm,yshift=0.05cm]current page.west) --
@@ -89,10 +89,10 @@
   \small
   \textbf{This module covers:}
   \begin{itemize}
-    \item The 9-step Causal Roadmap framework
+    \item A target-trial protocol that fixes the question and time zero
+    \item The 9-step literature version of the Causal Roadmap
     \item A worked example: pneumococcal vaccine and pneumonia
-    \item How Target Trial Emulation structures observational studies
-    \item Introduction to the interactive Causal Roadmap tool (Causal Navigator)
+    \item How nine literature steps map to eight Causal Navigator steps
   \end{itemize}
   \vspace{0.4em}
   \textbf{Key takeaway:} The roadmap surfaces assumptions \textbf{before}
@@ -100,8 +100,8 @@
 
   \vspace{0.4em}
   {\scriptsize\color{black!55}Step counts vary across the literature
-  (7--9 depending on grouping); the Causal Navigator uses eight.
-  Same workflow --- we use 9 for clarity.\par}
+  (7--9 depending on grouping). We teach the nine-step literature sequence,
+  then show how Navigator groups the same work into eight operational steps.\par}
 \end{frame}
 
 \section{Why a Roadmap?}
@@ -110,7 +110,7 @@
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.55\linewidth]{art/iceberg}
+	\includegraphics[height=0.75\textheight,keepaspectratio]{art/iceberg}
 \end{figure}
 
 
@@ -160,6 +160,46 @@
   \textcolor{accent}{\textbf{What went wrong?}} Without a causal model, we confuse association with causation. We need the Causal Roadmap.
 \end{frame}
 
+\section{Target Trial Emulation}
+
+% ----------------------------------------
+\begin{frame}{Target Trial Emulation: Thinking Like an Experimenter}
+  \small
+  \textbf{Key insight:} Design observational studies as if planning an RCT (Hern{\'a}n \& Robins, 2016)
+  \vspace{0.5em}
+
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \textbf{Target Trial Protocol:}
+      \begin{itemize}
+        \item Eligibility criteria
+        \item Treatment strategies
+        \item Treatment assignment
+        \item Outcome definition
+        \item Follow-up period
+        \item Causal contrast
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{Emulation in RWD:}
+      \begin{itemize}
+        \item Define inclusion/exclusion
+        \item Specify interventions
+        \item Identify time zero
+        \item Operationalize outcome
+        \item Set observation window
+        \item Choose effect measure
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.5em}
+
+  \textcolor{red}{\textbf{Critical:}} Align \textbf{eligibility}, \textbf{treatment assignment}, and \textbf{follow-up start} at time zero.
+  \vspace{0.3em}
+
+  {\footnotesize Misalignment causes immortal time bias, selection bias, and other systematic errors.}
+\end{frame}
+
 \begin{frame}{The Causal Roadmap: A 9-Step Framework}
 
 \begin{figure}
@@ -183,7 +223,7 @@
     \end{column}
     \begin{column}{0.66\textwidth}
       \centering
-      \includegraphics[height=0.85\textheight]{art/roadmap9.png}
+      \includegraphics[height=0.70\textheight,keepaspectratio]{art/roadmap9.png}
     \end{column}
   \end{columns}
 \end{frame}
@@ -321,7 +361,7 @@
 \end{frame}
 
 % ----------------------------------------
-\begin{frame}{Step 3: Define the Causal Parameter}
+\begin{frame}{Step 3: Define the Causal Estimand}
   \small
   \textbf{Translate the question into a formal causal estimand:}
   \vspace{0.5em}
@@ -333,7 +373,7 @@
   where $Y^{(1)}$ and $Y^{(0)}$ are potential outcomes under vaccination vs.\ no vaccination.
   \vspace{0.5em}
 
-  \textbf{Other common causal parameters:}
+  \textbf{Other common causal estimands:}
   \begin{itemize}
     \item Risk ratio, odds ratio, hazard ratio
     \item Subgroup-specific effects (CATE)
@@ -391,15 +431,16 @@
   assumptions.
   \vspace{0.2em}
 
-  \textcolor{accent}{\textbf{The causal gap:}} distance between what we
-  want and what we can estimate --- Step 5 quantifies this gap.
+  \textcolor{accent}{\textbf{The identification gap:}} Step 5 characterizes
+  the assumptions connecting the causal question to an estimable
+  observed-data quantity; it does not quantify bias.
 \end{frame}
 
 % ----------------------------------------
 \begin{frame}{Step 6: Define the Statistical Estimand}
   \small
   \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
-  \textbf{Under identifiability, express the causal parameter as observed data:}
+  \textbf{Under identifiability, express the causal estimand in observed data:}
 
   \textbf{Causal estimand:} $\psi = E[Y^{(1)}] - E[Y^{(0)}]$
 
@@ -424,7 +465,7 @@
 % ----------------------------------------
 \begin{frame}{Step 7: Choose and Implement an Estimator}
   \small
-  \textbf{Select a method to estimate the statistical parameter:}
+  \textbf{Select a method to estimate the statistical estimand:}
   \vspace{0.3em}
 
   \begin{columns}[T]
@@ -432,7 +473,7 @@
       \textbf{Common estimators:}
       \begin{itemize}
         \item Outcome regression (G-computation)
-        \item Propensity score methods (IPW, matching)
+        \item Propensity score methods (IPTW, matching)
         \item Doubly-robust: TMLE, AIPW
         \item Machine learning + causal inference
       \end{itemize}
@@ -449,12 +490,15 @@
   \end{columns}
   \vspace{0.6em}
 
-  \textbf{Best practice:} use \textbf{outcome-blind} model selection
-  (don't peek at $A \to Y$!); prefer \textbf{doubly-robust} methods
-  (TMLE, AIPW).
-  \vspace{0.4em}
+  \textbf{Best practice:} prespecify the causal question, adjustment set,
+  estimator, and sensitivity plan. Outcome-model fitting and tuning may use
+  \(Y\); do not choose the analysis based on the observed treatment-effect
+  result.
+  \vspace{0.25em}
 
-  \textcolor{accent}{\textbf{Module G}} continues this exact example with a live TMLE walkthrough and technical supplement.
+  \textcolor{accent}{\textbf{Estimation:}} When appropriate, prefer
+  doubly-robust methods (TMLE, AIPW). \textcolor{accent}{\textbf{Module G}}
+  continues this example with a live TMLE walkthrough.
 \end{frame}
 
 \begin{frame}{Preview TMLE}
@@ -515,44 +559,40 @@
   \textcolor{accent}{\textbf{Honesty matters:}} Overstating causal claims undermines credibility.
 \end{frame}
 
-\section{Target Trial Emulation}
+\begin{frame}{Nine Literature Steps Map to Eight Navigator Steps}
+  \scriptsize
+  Navigator groups the work; it does not remove a scientific decision.
+  \vspace{0.25em}
 
-% ----------------------------------------
-\begin{frame}{Target Trial Emulation: Thinking Like an Experimenter}
-  \small
-  \textbf{Key insight:} Design observational studies as if planning an RCT (Hern{\'a}n \& Robins, 2016)
-  \vspace{0.5em}
+  \renewcommand{\arraystretch}{1.18}
+  \begin{center}
+    \begin{tabular}{@{}p{0.41\textwidth}p{0.49\textwidth}@{}}
+      \textbf{Nine-step literature roadmap} &
+      \textbf{Eight-step Causal Navigator} \\
+      \hline
+      1.\ Research question + 3.\ causal estimand &
+      1.\ Define the causal question + contrast \\
+      2.\ Causal model &
+      2.\ Specify the causal model \\
+      4.\ Observed data &
+      3.\ Consider the observed data \\
+      5.\ Identifiability &
+      4.\ Assess identifiability \\
+      6.\ Statistical estimand &
+      5.\ Define the statistical estimand \\
+      7.\ Estimator &
+      6.\ Choose the estimator \\
+      8.\ Sensitivity analysis &
+      7.\ Plan sensitivity analyses \\
+      9.\ Interpretation &
+      8.\ Record results and interpretation \\
+    \end{tabular}
+  \end{center}
 
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \textbf{Target Trial Protocol:}
-      \begin{itemize}
-        \item Eligibility criteria
-        \item Treatment strategies
-        \item Treatment assignment
-        \item Outcome definition
-        \item Follow-up period
-        \item Causal contrast
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \textbf{Emulation in RWD:}
-      \begin{itemize}
-        \item Define inclusion/exclusion
-        \item Specify interventions
-        \item Identify time zero
-        \item Operationalize outcome
-        \item Set observation window
-        \item Choose effect measure
-      \end{itemize}
-    \end{column}
-  \end{columns}
-  \vspace{0.5em}
-
-  \textcolor{red}{\textbf{Critical:}} Align \textbf{eligibility}, \textbf{treatment assignment}, and \textbf{follow-up start} at time zero.
-  \vspace{0.3em}
-
-  {\footnotesize Misalignment causes immortal time bias, selection bias, and other systematic errors.}
+  \vspace{0.25em}
+  \textcolor{accent}{\textbf{Module F uses Navigator numbering:}}
+  question and causal contrast are recorded together in Step 1; later labels
+  shift by one.
 \end{frame}
 
 \section{The Interactive Tool}
@@ -571,7 +611,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.75\linewidth]{art/navigator}
+		\includegraphics[height=0.68\textheight,keepaspectratio]{art/navigator}
 	\end{figure}
 
 
@@ -657,7 +697,7 @@
   \begin{enumerate}
     \item \textbf{Research question} --- population, exposure, outcome, timing
     \item \textbf{Causal model} --- DAG representing assumptions
-    \item \textbf{Causal parameter} --- formal estimand ($E[Y^{(1)}] - E[Y^{(0)}]$)
+    \item \textbf{Causal estimand} --- formal target quantity ($E[Y^{(1)}] - E[Y^{(0)}]$)
     \item \textbf{Observed data} --- what's measured and how
     \item \textbf{Identifiability} --- can we answer the question?
     \item \textbf{Statistical estimand} --- observable quantity equal to causal effect

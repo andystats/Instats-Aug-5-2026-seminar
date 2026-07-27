@@ -1,7 +1,7 @@
 "estimator","risk_difference","ci_lower","ci_upper"
 "Crude association",0.00757707314913197,NA,NA
 "Parametric g-computation",-0.0327629625657175,NA,NA
-"Hajek IPW",-0.0293576160195639,NA,NA
+"IPTW",-0.0293576160195639,NA,NA
 "Manual TMLE decomposition",-0.0299896206584231,-0.0457088806285488,-0.0142703606882974
 "tmle package",-0.0305235555022229,-0.0460220828311262,-0.0150250281733197
 "Model-implied DGP benchmark",-0.0403511902638755,NA,NA

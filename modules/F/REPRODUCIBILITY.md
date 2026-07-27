@@ -7,7 +7,7 @@ Module F starts with the fixed synthetic dataset in
 
 1. crude association;
 2. parametric g-computation;
-3. Hajek inverse-probability weighting; and
+3. IPTW; and
 4. targeted maximum likelihood estimation.
 
 Module G archives the companion `simcausal` generator, its seed reconstruction,
@@ -54,7 +54,7 @@ The transparent estimators are:
 | --- | ---: |
 | Crude association | `0.00757707314913197` |
 | Parametric g-computation | `-0.0327629625657175` |
-| Hajek IPW | `-0.0293576160195639` |
+| IPTW | `-0.0293576160195639` |
 
 The generator reproduces every discrete value exactly in the checked Windows
 environment. The maximum cross-platform age difference is below `5e-13` years.
