@@ -40,10 +40,10 @@ letter when it moved after the Roadmap to fit Robert's schedule.
 | Module | Focus | Materials |
 | --- | --- | --- |
 | A | Welcome + Intro | [Open Module A](modules/A/) |
-| C | Foundations *(identification-assumptions slides ready; full deck forthcoming)* | [Open Module C](modules/C/) |
+| C | Foundations | [Open Module C](modules/C/) |
 | D | The Roadmap | [Open Module D](modules/D/) |
 | B | Example with Robert Platt *(forthcoming)* | [Open Module B](modules/B/) |
-| E | Audit-First AI *(forthcoming)* | [Open Module E](modules/E/) |
+| E | Audit-First AI | [Open Module E](modules/E/) |
 | F | Live Navigator workshop | [Open Module F](modules/F/) |
 | G | TMLE live walkthrough + technical supplement | [Open Module G](modules/G/) |
 | H | Wrap-up + participant kit | [Open Module H](modules/H/) |

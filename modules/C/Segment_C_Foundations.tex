@@ -51,6 +51,9 @@
   spur/.style={{Stealth[length=1.8mm]}-{Stealth[length=1.8mm]}, dashed, brick, thick},
 }
 
+% Counterfactual independence symbol for the identification slides
+\newcommand{\indep}{\perp\!\!\!\perp}
+
 \begin{document}
 
 % ======================================================================
@@ -345,6 +348,117 @@
   \end{block}
 \end{frame}
 
+
+% ======================================================================
+% Slide 8b - Identification: the three assumptions
+% ======================================================================
+\begin{frame}{What Would Let Us Claim Causality?}
+  \small
+  The causal question is a contrast of \textbf{counterfactuals}:
+  \[
+    \Psi \;=\; E\big[Y^{(1)}\big] - E\big[Y^{(0)}\big]
+  \]
+  but each patient shows us only the outcome under the exposure they
+  actually had. No sample size fills in the missing half.
+  \vspace{0.5em}
+
+  \begin{block}{Identification: the bridge from data to counterfactuals}
+    Three assumptions let an observed-data quantity stand in for the
+    counterfactual contrast: \textbf{exchangeability},
+    \textbf{positivity}, and \textbf{consistency}.
+  \end{block}
+  \vspace{0.4em}
+
+  \textcolor{accent}{\textbf{Why it matters here:}} these are
+  \emph{design} claims, argued before any model is fit --- the roadmap
+  (Module D) is where each one is declared and defended.
+\end{frame}
+
+% ======================================================================
+% Slide 8c - Exchangeability
+% ======================================================================
+\begin{frame}{Exchangeability --- No Unmeasured Confounding}
+  \small
+  \textbf{Within strata of the measured covariates \(W\), exposure is as
+  good as random:}
+  \[
+    Y^{(a)} \indep A \mid W \qquad \text{for } a \in \{0,1\}
+  \]
+  \begin{itemize}
+    \item In the paradox: baseline frailty drives both vaccination and
+      pneumonia risk. Exchangeability holds only if \(W\) captures that
+      difference.
+    \item The DAG carries the argument: the adjustment set \(W\) must
+      block every backdoor path.
+  \end{itemize}
+  \vspace{0.4em}
+
+  \begin{block}{\textcolor{brick}{Not checkable from the data}}
+    No statistical test can confirm exchangeability. It rests on the
+    causal model, and its failure is probed only by sensitivity
+    analysis.
+  \end{block}
+\end{frame}
+
+% ======================================================================
+% Slide 8d - Positivity
+% ======================================================================
+\begin{frame}{Positivity --- Everyone Could Get Either Exposure}
+  \small
+  \textbf{Every kind of patient has a real chance of each exposure level:}
+  \[
+    0 < P(A = 1 \mid W = w) < 1
+    \qquad \text{for every } w \text{ with } P(W=w) > 0
+  \]
+  \begin{itemize}
+    \item \textbf{Structural violation:} a subgroup never receives one
+      level --- e.g.\ every long-term-care resident is vaccinated by
+      policy. Restrict the population or change the question.
+    \item \textbf{Random violation:} a sparse stratum is empty in one
+      arm by chance.
+  \end{itemize}
+  \vspace{0.4em}
+
+  \begin{block}{\textcolor{good}{Checkable from the data}}
+    Propensity-score overlap diagnostics make positivity visible --- the
+    TMLE walkthrough (Module G) inspects overlap directly.
+  \end{block}
+\end{frame}
+
+% ======================================================================
+% Slide 8e - Consistency and the identification payoff
+% ======================================================================
+\begin{frame}{Consistency --- and What the Three Buy Us}
+  \small
+  \textbf{A well-defined intervention:} if \(A = a\), the observed
+  outcome \emph{is} the counterfactual one, \(Y = Y^{(a)}\) ---
+  ``vaccinated'' must mean one thing (which product, when, what
+  schedule). The target-trial protocol makes this concrete.
+  \vspace{0.4em}
+
+  \begin{block}{Together they identify the effect from observable data}
+    \vspace{-0.6em}
+    \[
+      E\big[Y^{(a)}\big] = \sum_{w} E[Y \mid A=a, W=w]\, P(W=w)
+    \]
+  \end{block}
+  \vspace{0.3em}
+
+  \begin{center}
+    \begin{tabular}{@{}lll@{}}
+      \toprule
+      \textbf{Assumption} & \textbf{Checkable?} & \textbf{Defended by} \\
+      \midrule
+      Exchangeability & \textcolor{brick}{no} & DAG + sensitivity analysis \\
+      Positivity & \textcolor{good}{yes} & overlap diagnostics \\
+      Consistency & \textcolor{brick}{no} & target-trial protocol \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.3em}
+  \textcolor{accent}{\textbf{Why it matters here:}} no estimator ---
+  however modern --- can rescue a failed assumption.
+\end{frame}
 
 % ======================================================================
 % Slide 9 - Handoff
