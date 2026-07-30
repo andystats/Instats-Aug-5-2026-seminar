@@ -311,7 +311,9 @@
     \node[key,right=0.75cm of g] (t) {\(\widehat Q^*\)\\targeting update};
     \node[box,right=0.75cm of t] (p) {\(\widehat\Psi\)\\plug-in contrast};
     \node[box,right=0.75cm of p] (e) {\(\widehat D^*\)\\SE and CI};
-    \draw[-{Latex[length=2.2mm]},black!45] (q) -- (t);
+    % Route the outcome-regression arrow over the treatment-mechanism
+    % box: both nuisance models feed the targeting step in parallel.
+    \draw[-{Latex[length=2.2mm]},black!45] (q.north) -- ++(0,0.42cm) -| (t.north);
     \draw[-{Latex[length=2.2mm]},black!45] (g) -- (t);
     \draw[-{Latex[length=2.2mm]},accent,thick] (t) -- (p);
     \draw[-{Latex[length=2.2mm]},black!45] (p) -- (e);

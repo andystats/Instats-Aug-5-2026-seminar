@@ -361,7 +361,9 @@
     \node[box,right=1.0cm of q] (g) {\(\widehat g(W)\)\\treatment fit};
     \node[key,right=1.0cm of g] (target) {targeting\\update};
     \node[box,right=1.0cm of target] (psi) {\(\widehat\Psi\) and CI\\risk difference};
-    \draw[-{Latex[length=2.4mm]},thick,black!45] (q) -- (target);
+    % Route the outcome-fit arrow over the treatment-fit box: both
+    % nuisance models feed the targeting step in parallel.
+    \draw[-{Latex[length=2.4mm]},thick,black!45] (q.north) -- ++(0,0.48cm) -| (target.north);
     \draw[-{Latex[length=2.4mm]},thick,black!45] (g) -- (target);
     \draw[-{Latex[length=2.4mm]},thick,accent] (target) -- (psi);
   \end{tikzpicture}
