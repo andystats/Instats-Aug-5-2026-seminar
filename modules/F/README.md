@@ -17,6 +17,9 @@ here is clinical evidence about pneumococcal-vaccine effectiveness.
 5. Use the [completed worked example](causal-roadmap-pneumonia-worked-example.md)
    only after the activity.
 6. Continue to [Module G](../G/) for the aligned estimation walkthrough.
+7. If you want AI assistance during breaks or afterward, create a free
+   account at <https://navigator.tao-rwd.com/>, open API Keys from the menu,
+   and switch on the Community Claude key toggle.
 
 The participant deliverable is one Navigator entry they can accept, correct, or
 reject, supported by evidence, a revision trigger, and its downstream

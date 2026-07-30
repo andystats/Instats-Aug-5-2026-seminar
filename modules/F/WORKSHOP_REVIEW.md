@@ -98,6 +98,8 @@ points with a 95% confidence interval of -4.6 to -1.5.
 - [x] GitHub Pages links point to the live G landing page and participant kit.
 - [x] R scripts parse and run from the repository root.
 - [x] Final PDFs were rebuilt, rendered, and visually inspected.
+- [x] The optional AI-copilot callout appears in the rebuilt workbook, the
+      Markdown guides, and the module web pages with consistent instructions.
 
 Module B remains explicitly labeled as forthcoming on the public seminar
 page; the Module C Foundations and Module E Audit-First AI decks are

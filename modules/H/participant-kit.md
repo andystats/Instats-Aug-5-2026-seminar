@@ -40,10 +40,17 @@ identification.
 ## Keep working
 
 - [Causal Navigator](https://navigator.tao-rwd.com/) — begin a new roadmap.
+- [Worked pneumonia vaccination study](https://navigator.tao-rwd.com/example/pneumonia-vaccine)
+  — revisit the seminar example inside the Navigator.
 - [Worked right-heart catheterization study](https://navigator.tao-rwd.com/example/right-heart-catheterization)
   — inspect a second worked application.
 - [Module D roadmap slides](../D/SegmentD_Roadmap.pdf)
 - [Dang and Balzer open-access commentary](../D/material/target%20trial%20then%20roadmap.pdf)
+
+> **Optional: AI copilot access.** The live session uses the manual, no-login
+> route. For AI assistance on your own studies, create a free account at
+> <https://navigator.tao-rwd.com/>, open API Keys from the menu, and switch on
+> the Community Claude key toggle. No key of your own is needed.
 
 The seminar landing page is
 <https://andystats.github.io/Instats-Aug-5-2026-seminar/>.

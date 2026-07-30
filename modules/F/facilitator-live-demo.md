@@ -12,6 +12,10 @@ Use the manual, no-login route at
 <https://navigator.tao-rwd.com/navigator/1>. AI support is not used in this
 workshop.
 
+Some participants may hold free accounts with the Community Claude key toggle
+switched on; that is the optional AI track for breaks and self-paced work. If
+asked, confirm it exists and keep this session on the manual route.
+
 ## Evidence and language contract
 
 Keep these constraints visible throughout the session:

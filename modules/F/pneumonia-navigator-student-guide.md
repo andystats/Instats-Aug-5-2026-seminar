@@ -20,6 +20,11 @@ Open the manual, no-login route at
 > The generator and model-implied benchmark are available in Module G after
 > the activity; they are not used to answer the pre-result checkpoints.
 
+> **Optional AI copilot access.** The live session uses the manual, no-login
+> route. If you want AI assistance during breaks or afterward, create a free
+> account at <https://navigator.tao-rwd.com/>, open API Keys from the menu,
+> and switch on the Community Claude key toggle. No key of your own is needed.
+
 ## Opening case
 
 Scientific question:
