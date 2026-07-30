@@ -120,7 +120,7 @@
     \begin{column}{0.50\textwidth}
       \begin{block}{Technical version}
         \begin{itemize}
-          \item Data generator and provenance check
+          \item Data generator and cohort verification
           \item Super Learner fits for \(Q\) and \(g\)
           \item Clever covariate and targeting regression
           \item Efficient influence function and interval
@@ -263,41 +263,38 @@
 
   \vspace{0.55cm}
   The observational treatment groups therefore differ before vaccination.
-  \slidesource{Coefficients reproduced from the authoritative Session 1
-    notebook in \sourcefile{simulate_pneumonia_data.R}.}
+  \slidesource{Coefficients from the archived generator
+    \sourcefile{simulate_pneumonia_data.R}.}
 \end{frame}
 
-\begin{frame}{The Fixed Cohort Has a Reproducible Provenance Check}
+\begin{frame}{The Teaching Cohort Is Fixed and Verifiable}
   \small
   \begin{columns}[T]
     \begin{column}{0.54\textwidth}
-      \textbf{Canonical teaching data}
+      \textbf{One frozen synthetic cohort}
       \begin{itemize}
-        \item 5,000 observations
-        \item 1,627 vaccinated
-        \item 334 hospitalizations
-        \item SHA-256:
-          \scriptsize\codeword{1AAD6E3AA297183890FFD3FB4275F30B}\\
-          \scriptsize\codeword{B416FFFBAC5CEDF461E76FBCE2928535}
+        \item 5,000 adults
+        \item 1,627 vaccinated (32.5\%)
+        \item 334 hospitalizations (6.7\%)
+        \item Shared unchanged by Modules F and G
       \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
-      \textbf{Legacy RNG detail}
+      \textbf{Why freeze the data?}
       \begin{itemize}
-        \item The original notebook set the seed before DAG plotting.
-        \item Those setup steps advanced the RNG before \codeword{sim()}.
-        \item The standalone generator reproduces that state and checks every
-          row against the frozen CSV.
+        \item Everyone analyzes the same rows.
+        \item Results on these slides match what you will reproduce.
+        \item The archived generator script rebuilds the cohort and
+          verifies it row by row.
       \end{itemize}
     \end{column}
   \end{columns}
 
   \vspace{0.45cm}
-  Cross-platform age values agree within \(4.55\times10^{-13}\) years; all
-  discrete variables match exactly.
-  \slidesource{Verification performed by
-    \sourcefile{simulate_pneumonia_data.R}; canonical file
-    \sourcefile{data/pneumonia_data.csv}.}
+  Integrity details --- the file checksum and the generator's
+  verification steps --- are documented with the repository materials.
+  \slidesource{Generator \sourcefile{simulate_pneumonia_data.R}; frozen
+    file \sourcefile{data/pneumonia_data.csv}.}
 \end{frame}
 
 \begin{frame}{TMLE Uses Two Nuisance Functions and One Targeting Step}
@@ -865,7 +862,8 @@ Q1_updated <- fit$Qstar[, "Q1W"]
     \sourcefile{data/pneumonia_data.csv} &
       Frozen cohort used throughout the Navigator and Segment G \\
     \sourcefile{simulate_pneumonia_data.R} &
-      Structural equations, legacy-state reproduction, and value check \\
+      Structural equations, cohort regeneration, and row-by-row
+      verification \\
     \sourcefile{pneumonia_tmle_example.R} &
       Short live analysis \\
     \sourcefile{pneumonia_tmle_technical.R} &
