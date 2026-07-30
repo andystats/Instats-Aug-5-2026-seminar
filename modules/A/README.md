@@ -2,8 +2,9 @@
 
 ## Purpose
 
-Introduce the workshop team, preview the journey through Modules A–H, and ask
-which part of a current study feels least defensible.
+Introduce the workshop team, preview the day's journey through the modules
+(run of day: A, C, D, B, E, F, G, H), and ask which part of a current study
+feels least defensible.
 
 ## Materials
 

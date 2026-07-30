@@ -37,7 +37,7 @@
 \makeatother
 
 % Right-aligned module/time tag inside the header band.
-% Set per frame with \bandtag{Module B \(\cdot\) 12:20--12:45 ET};
+% Set per frame with \bandtag{Module C \(\cdot\) 12:20--1:05 ET};
 % the value persists until the next \bandtag.
 \makeatletter
 \def\intro@bandtag{}
@@ -287,13 +287,10 @@
       \vspace{0.35cm}
       \textcolor{slate}{Aspiring public health scientist with interests in pharmacovigilance, real-world evidence, and causal inference. Intern at Precision Analytics and President of UAEM McGill}
 
-      \vspace{1.5cm}
-      {\color{black!65}
-      Auriane supports today's workshop's live delivery.\par}
-
-    %  \vspace{0.6cm}
-   %   \textcolor{slate}{\textbf{Today:}} {\color{black!65}screen share
-    %  and production support, including the live Navigator session.}
+      \vspace{0.9cm}
+      \textcolor{slate}{\textbf{Today:}} {\color{black!65} co-leads
+      Audit-First AI with Kathryn, plus screen share and production
+      support for the live Navigator session.}
     \end{column}
   \end{columns}
   \note{[Sources]\par
@@ -310,54 +307,38 @@
     % Export replacement art at 16:9 (e.g. 1920x1080) to fill the page.
     \node at (current page.center)
       {\includegraphics[width=\paperwidth,height=\paperheight,
-        keepaspectratio]{art/river-journey.png}};
+        keepaspectratio]{art/river-journey2.png}};
   \end{tikzpicture}
-  \note{Use the river for a quick orientation to Modules A--H.\par
+  \note{Use the river for a quick orientation to Modules A--H. The
+    dashed arrow shows the updated flow: Robert's examples (B) hop
+    downstream to the X, right after the Roadmap, because Robert joins
+    at 2:00 ET. Today runs A, C, D, B, E, F, G, H; a redrawn river
+    will follow.\par
     [Sources]\par
-    \texttt{\detokenize{art/river-journey.png}}\par
+    \texttt{\detokenize{art/river-journey2.png}}\par
     \texttt{\detokenize{../../README.md}}}
 \end{frame}
 
 % --------------------------------------------------------------------
 % Section intros: outline left, framing image right.
 % Module + time live in the header band (\bandtag).
+% Frames follow the run of day: C, D, B, E, F, G, H
+% (Robert joins at 2:00 ET, so Module B runs after the Roadmap).
 % Drop each image at art/preview-<Letter>.png to fill the porthole.
 % --------------------------------------------------------------------
-\bandtag{Module B \(\cdot\) 12:20--12:45 ET}
-\begin{frame}[t]{Example with Robert Platt}
-  \vspace*{0.45cm}
-  \begin{columns}[T]
-    \begin{column}{0.47\textwidth}
-      \vspace*{0.55cm}
-      \begin{itemize}\setlength{\itemsep}{0.42cm}
-        \item The research question
-        \item Why the result looked persuasive
-        \item What went wrong---and the consequence
-        \item The roadmap safeguard
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.49\textwidth}
-      \centering
-      \vspace*{0.3cm}
-      \biopic[2.45]{intros/Robert Platt.jpg}
-    \end{column}
-  \end{columns}
-  \note{[Sources]\par
-    \texttt{\detokenize{../../README.md}}\par
-    \texttt{\detokenize{intros/bios.txt}}\par
-    \texttt{\detokenize{intros/Robert Platt.jpg}}}
-\end{frame}
-
-\bandtag{Module C \(\cdot\) 12:45--1:25 ET}
+\bandtag{Module C \(\cdot\) 12:20--1:05 ET}
 \begin{frame}[t]{Foundations}
   \vspace*{0.45cm}
   \begin{columns}[T]
     \begin{column}{0.47\textwidth}
-      \vspace*{0.55cm}
-      \begin{itemize}\setlength{\itemsep}{0.42cm}
+      \vspace*{0.25cm}
+      % 0.30cm itemsep (not the usual 0.42cm): this outline runs five
+      % bullets, and the footer rule sits at 0.60cm.
+      \begin{itemize}\setlength{\itemsep}{0.30cm}
         \item Association versus intervention
         \item Confounders, mediators, and colliders
         \item Target-trial protocol and time zero
+        \item Exchangeability, positivity, consistency
         \item The pneumonia-vaccine paradox
       \end{itemize}
     \end{column}
@@ -372,7 +353,7 @@
     \texttt{\detokenize{art/iceberg.png}}}
 \end{frame}
 
-\bandtag{Module D \(\cdot\) 1:35--2:20 ET}
+\bandtag{Module D \(\cdot\) 1:15--2:00 ET}
 \begin{frame}[t]{The Roadmap}
   \vspace*{0.45cm}
   \begin{columns}[T]
@@ -396,7 +377,34 @@
     \texttt{\detokenize{art/roadmap.png}}}
 \end{frame}
 
-\bandtag{Module E \(\cdot\) 2:20--2:45 ET}
+\bandtag{Module B \(\cdot\) 2:00--2:25 ET}
+\begin{frame}[t]{Example with Robert Platt}
+  \vspace*{0.45cm}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \vspace*{0.55cm}
+      \begin{itemize}\setlength{\itemsep}{0.42cm}
+        \item The research question
+        \item Why the result looked persuasive
+        \item What went wrong---and the consequence
+        \item The roadmap safeguard
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \centering
+      \vspace*{0.3cm}
+      \biopic[2.45]{intros/Robert Platt.jpg}
+    \end{column}
+  \end{columns}
+  \note{Robert joins at 2:00 ET, directly after the Roadmap---his
+    examples show the roadmap catching a persuasive analysis.\par
+    [Sources]\par
+    \texttt{\detokenize{../../README.md}}\par
+    \texttt{\detokenize{intros/bios.txt}}\par
+    \texttt{\detokenize{intros/Robert Platt.jpg}}}
+\end{frame}
+
+\bandtag{Module E \(\cdot\) 2:25--2:45 ET}
 \begin{frame}[t]{Audit-First AI}
   \vspace*{0.45cm}
   \begin{columns}[T]
@@ -493,7 +501,7 @@
 \end{frame}
 
 % --------------------------------------------------------------------
-% Closing prompt: segue from the intro into Module B
+% Closing prompt: segue from the intro into Module C (Foundations)
 % --------------------------------------------------------------------
 \bandtag{Module A \(\cdot\) 12:00--12:20 ET}
 \begin{frame}[t]{Before we set off}
@@ -511,9 +519,10 @@
       come back to it at the close.\par}
   \end{center}
   \vfill
-  \note{Segue: Robert opens with what happens when a claim like this
-    goes unexamined. Collect several answers and return to them in
-    Module H.\par
+  \note{Segue: Kathryn opens Foundations---the concepts that decide
+    whether a claim like this can be defended. Robert's examples follow
+    the Roadmap at 2:00 ET. Collect several answers and return to them
+    in Module H.\par
     [Sources]\par
     \texttt{\detokenize{../../README.md}}}
 \end{frame}

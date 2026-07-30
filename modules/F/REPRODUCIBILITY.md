@@ -13,6 +13,8 @@ Module F starts with the fixed synthetic dataset in
 Module G archives the companion `simcausal` generator, its seed reconstruction,
 and the model-implied benchmark for the frozen cohort. The fixed CSV is shared
 byte-for-byte across Modules F and G (SHA-256
+`1AAD6E3AA297183890FFD3FB4275F30BB416FFFBAC5CEDF461E76FBCE2928535` for the
+committed LF file; a CRLF checkout, as on Windows with `autocrlf`, hashes to
 `F020D8880321F3BF9E8D0AEB9319E1964408D00BB7657B677E02A0A27A5FD2BA`).
 
 ## Requirements and commands

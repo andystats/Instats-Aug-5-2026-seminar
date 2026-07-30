@@ -99,5 +99,7 @@ points with a 95% confidence interval of -4.6 to -1.5.
 - [x] R scripts parse and run from the repository root.
 - [x] Final PDFs were rebuilt, rendered, and visually inspected.
 
-Modules B, C, and E remain explicitly labeled as forthcoming on the public
-seminar page; their absent teaching files are not represented as complete.
+Modules B and E remain explicitly labeled as forthcoming on the public
+seminar page; Module C's identification-assumptions slides are published with
+the full Foundations deck still forthcoming. Absent teaching files are not
+represented as complete.

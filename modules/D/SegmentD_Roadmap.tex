@@ -1,6 +1,6 @@
 % Module D: The Roadmap
 % INStats Causal Roadmaps with AI workshop
-% August 5, 2026 | 1:35--2:20 ET | Andy Wilson
+% August 5, 2026 | 1:15--2:00 ET | Andy Wilson
 %
 % BUILD: compile TWICE (or latexmk -pdf). This deck uses tikz
 % [remember picture] overlays; a single fresh pass misplaces the
@@ -45,7 +45,7 @@
 \subtitle{Data Can Deceive: Causal Roadmaps with (and without) AI}
 \author{Andy Wilson}
 \institute{Module D: The Roadmap}
-\date{August 5, 2026 \quad $\cdot$ \quad 1:35--2:20 ET}
+\date{August 5, 2026 \quad $\cdot$ \quad 1:15--2:00 ET}
 
 \begin{document}
 
@@ -76,7 +76,7 @@
       {Module D \(\cdot\) The Roadmap};
     \node[anchor=west, text=black!55, font=\fontsize{9.5}{12}\selectfont]
       at ([xshift=1.42cm,yshift=-1.18cm]current page.west)
-      {August 5, 2026 \(\cdot\) 1:35--2:20 ET};
+      {August 5, 2026 \(\cdot\) 1:15--2:00 ET};
 
     \node[anchor=west, text=black!60, font=\fontsize{9.5}{12}\selectfont]
       at ([xshift=1.42cm,yshift=-2.35cm]current page.west)
@@ -110,7 +110,7 @@
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.55\linewidth]{art/iceberg}
+	\includegraphics[width=0.55\linewidth,height=0.72\textheight,keepaspectratio]{art/iceberg}
 \end{figure}
 
 
@@ -401,11 +401,11 @@
   \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
   \textbf{Under identifiability, express the causal parameter as observed data:}
 
-  \textbf{Causal estimand:} $\psi = E[Y^{(1)}] - E[Y^{(0)}]$
+  \textbf{Causal estimand:} $\Psi = E[Y^{(1)}] - E[Y^{(0)}]$
 
   \textbf{Statistical estimand:}
   \[
-    \psi = \sum_{w} \left( E[Y \mid A=1, W=w] - E[Y \mid A=0, W=w] \right) P(W=w)
+    \Psi = \sum_{w} \left( E[Y \mid A=1, W=w] - E[Y \mid A=0, W=w] \right) P(W=w)
   \]
 
   \textbf{Interpretation:}
@@ -667,7 +667,7 @@
   \end{enumerate}
   \vspace{0.3em}
 
-  \textcolor{accent}{\textbf{Next:}} Module E --- Audit-First AI
+  \textcolor{accent}{\textbf{Next:}} Module B --- Example with Robert Platt
 \end{frame}
 
 % ----------------------------------------
@@ -680,12 +680,12 @@
   \vspace{2em}
 
   \normalsize
-  Next module: \textbf{Audit-First AI}
+  Next module: \textbf{Example with Robert Platt}
 
   \vspace{1em}
 
   \small
-  Auditing an AI-generated roadmap field: accept, correct, or reject
+  A persuasive analysis, what went wrong, and where the roadmap catches it
   \vfill
 \end{frame}
 

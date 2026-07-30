@@ -1,0 +1,193 @@
+% Segment C insert: identification assumptions | Kathryn Morrison
+% Drop-in slides for the Foundations segment (12:20--1:05 ET).
+% Merge into the full Foundations deck when it lands, or present
+% standalone after target trials and time zero.
+\documentclass[aspectratio=169,10pt]{beamer}
+\input{instats-preamble}
+
+% Counterfactual independence symbol
+\newcommand{\indep}{\perp\!\!\!\perp}
+
+\title{What Lets Data Answer\\a Causal Question?}
+\author{Kathryn Morrison}
+\institute{Module C: Foundations \(\cdot\) identification assumptions}
+\date{August 5, 2026 \(\cdot\) 12:20--1:05 ET}
+
+\begin{document}
+
+\instatstitle
+
+% ----------------------------------------
+% Bridge: the estimand lives in counterfactuals; data do not.
+\begin{frame}[t]{From counterfactuals to observed data}
+  \frametag{THE BRIDGE}
+  \vspace*{0.35cm}
+
+  \textbf{The causal estimand is defined on outcomes we never fully see:}
+  \[
+    \Psi = E\!\left[Y^{(1)}\right] - E\!\left[Y^{(0)}\right]
+  \]
+
+  \vspace{0.3em}
+  \begin{itemize}
+    \item Each person contributes one outcome---under the exposure they
+      actually had
+    \item The other counterfactual is missing for everyone
+    \item No sample size fixes this: it is a design problem, not a
+      precision problem
+  \end{itemize}
+
+  \vspace{0.6em}
+  \begin{center}
+    \decisionbox{Identification assumptions are the bridge}{%
+      Three assumptions let an observed-data quantity stand in for the
+      counterfactual contrast: \textbf{exchangeability},
+      \textbf{positivity}, and \textbf{consistency}.}
+  \end{center}
+  \note{Frame the move: the estimand is a statement about counterfactuals,
+    and the data alone cannot reach it. The three assumptions are the
+    explicit bridge; the Roadmap (Module D) is where they get declared
+    and defended.}
+\end{frame}
+
+% ----------------------------------------
+\begin{frame}[t]{Exchangeability --- no unmeasured confounding}
+  \frametag{ASSUMPTION 1 OF 3}
+  \vspace*{0.35cm}
+
+  \[
+    Y^{(a)} \indep A \mid W
+    \qquad \text{for } a \in \{0, 1\}
+  \]
+
+  \vspace{0.3em}
+  \begin{itemize}
+    \item Within strata of the measured covariates \(W\), the exposed and
+      unexposed are comparable---exposure is as good as random
+    \item Pneumonia example: age and prior pneumonia drive both
+      vaccination and pneumonia risk; conditioning on them restores the
+      comparison
+    \item The DAG is the argument: the adjustment set \(W\) must block
+      every backdoor path
+  \end{itemize}
+
+  \vspace{0.6em}
+  \begin{center}
+    \evidencebox{Not checkable from the data}{%
+      No test can confirm exchangeability. It rests on the causal model,
+      and its failure is quantified only by sensitivity analysis.}
+  \end{center}
+  \note{Emphasize that this is the assumption people mean by ``no
+    unmeasured confounding.'' The data cannot certify it; the DAG and
+    subject-matter knowledge carry the argument, and sensitivity analysis
+    probes what happens if it fails.}
+\end{frame}
+
+% ----------------------------------------
+\begin{frame}[t]{Positivity --- both exposures occur everywhere}
+  \frametag{ASSUMPTION 2 OF 3}
+  \vspace*{0.35cm}
+
+  \[
+    0 < P(A = 1 \mid W = w) < 1
+    \qquad \text{for every } w \text{ with } P(W = w) > 0
+  \]
+
+  \vspace{0.3em}
+  \begin{itemize}
+    \item Every kind of person in the study could have received either
+      exposure level
+    \item \textbf{Structural violation}: a subgroup never receives one
+      level---e.g.\ every long-term-care resident is vaccinated by policy
+    \item \textbf{Random violation}: a covariate stratum is so sparse
+      that one arm is empty by chance
+  \end{itemize}
+
+  \vspace{0.6em}
+  \begin{center}
+    \evidencebox{Checkable from the data}{%
+      Propensity-score overlap diagnostics make positivity visible---the
+      TMLE walkthrough (Module G) inspects overlap directly.}
+  \end{center}
+  \note{Contrast with exchangeability: positivity is the one assumption
+    the data can show you. Structural violations call for changing the
+    question (restrict the population or redefine the exposure), not for
+    extrapolation.}
+\end{frame}
+
+% ----------------------------------------
+\begin{frame}[t]{Consistency --- well-defined interventions}
+  \frametag{ASSUMPTION 3 OF 3}
+  \vspace*{0.35cm}
+
+  \[
+    A = a \;\Rightarrow\; Y = Y^{(a)}
+  \]
+
+  \vspace{0.3em}
+  \begin{itemize}
+    \item The observed outcome under exposure \(a\) equals the
+      counterfactual outcome for that exposure
+    \item Requires a well-defined exposure: ``vaccinated'' with which
+      product, at what time, under what schedule?
+    \item This is why the target-trial protocol pins down the treatment
+      strategies before any analysis
+    \item Companion condition (no interference): one person's exposure
+      does not change another person's outcome
+  \end{itemize}
+
+  \vspace{0.2em}
+  \begin{center}
+    \decisionbox{Vague interventions break the bridge}{%
+      If the intervention is not specified well enough to imagine
+      assigning it, the counterfactual---and the causal question---is
+      not defined.}
+  \end{center}
+  \note{Tie back to the target trial from earlier in Foundations: the
+    protocol's treatment-strategy column is the consistency assumption
+    made concrete. Mention interference briefly; it matters for vaccines
+    but the teaching example treats outcomes as independent.}
+\end{frame}
+
+% ----------------------------------------
+\begin{frame}[t]{What the three assumptions buy}
+  \frametag{IDENTIFICATION}
+  \vspace*{0.35cm}
+
+  \textbf{Together they identify the causal effect from observable data:}
+  \[
+    E\!\left[Y^{(a)}\right]
+    = \sum_{w} E\!\left[Y \mid A = a, W = w\right] P(W = w)
+  \]
+
+  \vspace{0.5em}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}llll@{}}
+      \toprule
+      \textbf{Assumption} & \textbf{In words} & \textbf{Checkable?} &
+        \textbf{Defended by} \\
+      \midrule
+      Exchangeability & no unmeasured confounding & no &
+        DAG + sensitivity analysis \\
+      Positivity & both exposures occur everywhere & yes &
+        overlap diagnostics \\
+      Consistency & well-defined intervention & no &
+        target-trial protocol \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \vspace{0.7em}
+  \begin{itemize}
+    \item The Roadmap (Module D) is where each assumption is declared,
+      defended, and revisited
+    \item No estimator---however modern---can rescue a failed
+      assumption: TMLE estimates the identified quantity, nothing more
+  \end{itemize}
+  \note{Land the segue: the g-formula is the payoff, and the Roadmap
+    makes the assumptions auditable. This is the last conceptual piece
+    before Andy builds the roadmap step by step in Module D.}
+\end{frame}
+
+\end{document}
