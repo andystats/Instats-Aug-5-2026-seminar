@@ -10,25 +10,16 @@ Runs 12:20–1:05 pm ET, led by Kathryn.
 
 ## Materials
 
-- [Identification-assumptions insert (LaTeX source)](SegmentC_Identification_Assumptions.tex)
-- [Compiled identification-assumptions slides](SegmentC_Identification_Assumptions.pdf)
+- [Editable LaTeX source](Segment_C_Foundations.tex)
+- [Compiled Beamer slides](Segment_C_Foundations.pdf)
 
-The insert covers exchangeability, positivity, and consistency — the three
-assumptions that let observed data identify a causal effect — and is designed
-to merge into the full Foundations deck when it lands, or present standalone
-after target trials and time zero.
+The deck covers counterfactual and causal-structure examples, the target-trial
+protocol, the pneumonia-vaccine example, and the identification assumptions —
+exchangeability, positivity, and consistency — followed by an interactive poll
+bank. Artwork used by the slides lives in [art/](art/).
 
-To rebuild the slides, run
-`latexmk -pdf SegmentC_Identification_Assumptions.tex` from this folder.
-
-## Materials planned here
-
-- Full Foundations slides
-- Counterfactual and causal-structure examples
-- Target-trial protocol
-- Pneumonia-vaccine example
-
-**Status:** Identification-assumptions slides ready; the remaining materials
-are being assembled.
+To rebuild the Beamer slides, run `latexmk -pdf Segment_C_Foundations.tex` from
+this folder. The included TikZ diagrams require multiple LaTeX passes;
+`latexmk` handles them automatically.
 
 [Return to the seminar overview](../../README.md)
