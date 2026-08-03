@@ -1,0 +1,66 @@
+{
+  "placeholder": false,
+  "kit": "pneumonia-tmle",
+  "label": "Pneumococcal vaccination and 12-month pneumonia hospitalization",
+  "scale": "risk difference",
+  "estimand": "E[Y(1)] - E[Y(0)], marginal 12-month risk difference",
+  "treatment_column": "A",
+  "treated_value": "1",
+  "comparator_value": "0",
+  "outcome_column": "Y",
+  "outcome_event_value": "1",
+  "confounder_columns": ["age", "priorPneumonia", "priorVaccine"],
+  "n_total": 5000,
+  "n_treated": 1627,
+  "n_comparator": 3373,
+  "n_events": 334,
+  "estimates": [
+    {
+      "label": "Crude association",
+      "method": "Unadjusted difference in risks",
+      "estimate": 0.00757707,
+      "ci_low": null,
+      "ci_high": null,
+      "standard_error": null,
+      "p_value": null
+    },
+    {
+      "label": "G-computation",
+      "method": "Parametric outcome model, standardized",
+      "estimate": -0.03276296,
+      "ci_low": null,
+      "ci_high": null,
+      "standard_error": null,
+      "p_value": null
+    },
+    {
+      "label": "Hajek IPW",
+      "method": "Stabilized inverse probability weighting",
+      "estimate": -0.02935762,
+      "ci_low": null,
+      "ci_high": null,
+      "standard_error": null,
+      "p_value": null
+    },
+    {
+      "label": "TMLE",
+      "method": "tmle package with SuperLearner (glm, glmnet, ranger)",
+      "estimate": -0.03052356,
+      "ci_low": -0.04602208,
+      "ci_high": -0.01502503,
+      "standard_error": 0.00790756,
+      "p_value": 0.00011336
+    }
+  ],
+  "diagnostics": {
+    "propensity_min": 0.07652421,
+    "propensity_max": 0.909122,
+    "share_propensity_outside_0.025_0.975": 0,
+    "tmle_standard_error": 0.00790756
+  },
+  "packages": {
+    "tmle": "2.1.1",
+    "SuperLearner": "2.0.29",
+    "r_version": "4.5.2"
+  }
+}

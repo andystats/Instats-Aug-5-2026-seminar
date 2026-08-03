@@ -39,6 +39,7 @@ Rscript modules/G/pneumonia_tmle_technical.R
 
 ## Optional live demonstration: the analytics handoff
 
+- [Presenter kit](presenter-kit/) - orientation, the completed record, and the fallback output
 - [Facilitator guide](facilitator-analytics-handoff.md) - 10 to 12 minutes
 - [Data dictionary](data/pneumonia_dictionary.csv) - column roles for the tool
 - [Run-at-home kit](https://navigator.tao-rwd.com/kits/pneumonia-tmle/pneumonia-tmle.zip)
