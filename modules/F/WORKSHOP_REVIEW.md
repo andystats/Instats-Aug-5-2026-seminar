@@ -8,7 +8,8 @@ decisions. The adjusted result is held until Steps 1-7 are locked.
 
 Module G is now a direct continuation: it uses the same fixed cohort, variables,
 adjustment set, estimand, learner library, three-fold settings, and reporting
-scale.
+scale. Its optional analytics-handoff demonstration extends the same study into
+the Navigator without changing any of them.
 
 ## Canonical file roles
 
@@ -20,8 +21,8 @@ scale.
 | `REPRODUCIBILITY.md` | Maintainers and technical readers | Exact settings, outputs, provenance, and claim boundary |
 | `WORKSHOP_REVIEW.md` | Maintainers | Final QA and publication record |
 
-The two Beamer sources are canonical. Retained PowerPoint files are historical
-source drafts and should not be edited in place.
+The two Beamer sources are canonical. The historical PowerPoint drafts were
+retired once nothing referenced them; rebuild from the `.tex` sources.
 
 ## Pedagogical decisions retained
 
@@ -44,15 +45,19 @@ Archived and reviewable materials now include:
 - the standalone `simcausal` generator and seed reconstruction;
 - the Module F and G R analyses;
 - crude, g-computation, Hajek IPW, manual TMLE, and package TMLE outputs;
-- fitted treatment-model diagnostics and package versions; and
+- fitted treatment-model diagnostics and package versions;
+- the column dictionary that carries the same roles into the Navigator; and
 - the -4.04-point model-implied benchmark for the frozen cohort.
 
 Publication language must still not claim that:
 
 - the benchmark is an exact superpopulation truth or clinical evidence;
 - estimator agreement proves exchangeability, consistency, positivity, or no interference;
-- the fitted propensity-score range proves structural positivity; or
-- estimator bias or RMSE was evaluated.
+- the fitted propensity-score range proves structural positivity;
+- estimator bias or RMSE was evaluated; or
+- the analytics handoff verifies any of the above. It demonstrates that a
+  specification, and then a summary result, can travel without the row-level
+  data; it does not audit the estimate it carries.
 
 The aligned course-facing values are:
 
@@ -74,6 +79,10 @@ points with a 95% confidence interval of -4.6 to -1.5.
   matches age, prior pneumonia, and prior vaccination.
 - **Module E:** the accept/correct/reject disposition language is retained.
 - **Module G:** the live and technical examples implement this exact study plan.
+  The optional analytics-handoff demonstration reuses the same cohort,
+  dictionary, adjustment set, and estimand; the run-at-home kit reproduces the
+  course-facing values above to the reported precision, so the tool
+  demonstration cannot drift from the taught numbers without failing.
 - **Module H:** the participant kit links the Module G live deck, supplement,
   generator, and technical outputs while keeping the close estimator-agnostic.
 
@@ -95,6 +104,10 @@ points with a 95% confidence interval of -4.6 to -1.5.
 - [x] Image formats and repository links are valid.
 - [x] Module D cohort wording and the Navigator mapping are aligned.
 - [x] Module G directly implements the Module F example.
+- [x] The Module G analytics handoff is optional, time-boxed, and has a stated
+      fallback, so the session survives a tool or network failure.
+- [x] The handoff dictionary, kit, and facilitator guide report the same
+      contrast, adjustment set, and values as the taught example.
 - [x] GitHub Pages links point to the live G landing page and participant kit.
 - [x] R scripts parse and run from the repository root.
 - [x] Final PDFs were rebuilt, rendered, and visually inspected.
