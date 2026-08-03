@@ -37,9 +37,21 @@ function, uncertainty calculation, and package implementation.
 Rscript modules/G/pneumonia_tmle_technical.R
 ```
 
+## Optional live demonstration: the analytics handoff
+
+- [Facilitator guide](facilitator-analytics-handoff.md) - 10 to 12 minutes
+- [Data dictionary](data/pneumonia_dictionary.csv) - column roles for the tool
+- [Run-at-home kit](https://navigator.tao-rwd.com/kits/pneumonia-tmle/pneumonia-tmle.zip)
+
+The demonstration shows the join between Module F and Module G: the Navigator
+writes the analysis specification from a data dictionary alone, estimation runs
+locally, and only summary output returns to the study record. The kit contains
+the same cohort, a dictionary, and a script reporting the same four estimators.
+
 ## Synthetic data and provenance
 
 - [Frozen teaching cohort](data/pneumonia_data.csv)
+- [Data dictionary](data/pneumonia_dictionary.csv)
 - [Standalone `simcausal` generator](simulate_pneumonia_data.R)
 - [Model-implied benchmark](outputs/pneumonia_generator_benchmark.csv)
 

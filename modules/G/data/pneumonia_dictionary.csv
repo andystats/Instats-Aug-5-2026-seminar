@@ -1,0 +1,7 @@
+column,label,role,type,values
+ID,Participant identifier,identifier,integer,
+age,"Age at baseline, years",confounder,numeric,
+priorPneumonia,Pneumonia hospitalization before baseline,confounder,binary,0=no prior pneumonia; 1=prior pneumonia
+priorVaccine,Pneumococcal vaccination before baseline,confounder,binary,0=no prior vaccination; 1=prior vaccination
+A,Pneumococcal vaccination at baseline,treatment,binary,0=unvaccinated at baseline; 1=vaccinated at baseline
+Y,Pneumonia hospitalization within 12 months,outcome,binary,0=no hospitalization; 1=hospitalized for pneumonia
