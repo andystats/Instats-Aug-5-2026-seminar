@@ -232,7 +232,7 @@
     Crude & None & Compares the two observed treatment groups \\
     G-computation & \(Q(A,W)=E(Y\mid A,W)\) &
       Predicts outcomes under \(A=1\) and \(A=0\), then averages \\
-    Hajek IPW & \(g(W)=P(A=1\mid W)\) &
+    IPW & \(g(W)=P(A=1\mid W)\) &
       Reweights observed outcomes to balance measured \(W\) \\
     TMLE & \(Q\) and \(g\) &
       Targets the outcome fit for \(\Psi\), then uses the influence curve \\
@@ -302,7 +302,7 @@
       It describes how vaccination varies with measured baseline history.
 
       \vspace{0.55em}
-      Hajek IPW uses \(g(W)\) to reweight observed outcomes:
+      IPW uses \(g(W)\) to reweight observed outcomes:
       \[
         \widehat\Psi_{\mathrm{IPW}}=-2.94\text{ pp}.
       \]
@@ -526,7 +526,7 @@ fit$estimates$ATE$CI
     van der Laan (2014), and the Navigator roadmap.}
 \end{frame}
 
-\begin{frame}{The Estimate Completes the Roadmap}
+\begin{frame}{The Estimate Goes Back Into the Roadmap}
   \small
   \centering
   \begin{tikzpicture}[
